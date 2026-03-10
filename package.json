@@ -1,0 +1,25 @@
+{
+  "name": "t.ramarozaka-portfolio",
+  "version": "1.0.0",
+  "description": "-RAFANOMEZANTSOA Ny Fatratra -STD25001- N1 -ANDRIANARIMANANA Isaac Abderman -STD25027- N1",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatratra-png/T.Ramarozaka-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fatratra-png/T.Ramarozaka-portfolio/issues"
+  },
+  "homepage": "https://github.com/fatratra-png/T.Ramarozaka-portfolio#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.1",
+    "tailwindcss": "^4.2.1"
+  }
+}
