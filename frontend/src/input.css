@@ -1,4 +1,11 @@
 @import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════
+   @theme
+   All design tokens. Tailwind v4 reads these and exposes
+   them as utilities: bg-red, text-text-muted, etc.
+   No tailwind.config.js needed.
+═══════════════════════════════════════════════════════ */
 @theme {
   --color-red: #b91c1c;
   --color-red-dark: #991b1b;
@@ -10,4 +17,442 @@
   --color-text-light: #a8a29e;
   --color-border: #e5e0d8;
   --color-border-light: #f0ece4;
+
+  --font-display: "Playfair Display", serif;
+  --font-body: "DM Sans", sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════
+   @layer base
+   Resets + root element. font-body is set once here and
+   inherited by all descendants.
+═══════════════════════════════════════════════════════ */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply m-0 p-0 bg-bg-warm text-text-dark;
+    font-family: var(--font-display, "DM Sans", sans-serif);
+    /* override with body font — display font only on headings */
+    font-family: var(--font-body);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   @layer components
+   ─────────────────────────────────────────────────────
+   RULE: @apply may only reference Tailwind's built-in
+   utilities. Never @apply a class defined in this file.
+   Shared patterns are written out in full each time.
+═══════════════════════════════════════════════════════ */
+@layer components {
+  /* ── NAVBAR ──────────────────────────────────────── */
+
+  .navbar {
+    @apply fixed top-0 left-0 right-0 z-50 bg-red
+           flex items-center justify-between px-10 h-15.5;
+  }
+
+  .navbar__brand {
+    @apply flex flex-col leading-none cursor-pointer no-underline;
+  }
+
+  .navbar__brand-name {
+    @apply text-white text-lg font-semibold italic tracking-wide;
+    font-family: var(--font-display);
+  }
+
+  .navbar__brand-tagline {
+    @apply text-white/70 text-[10px] font-light tracking-[0.18em] mt-px;
+  }
+
+  .navbar__nav {
+    @apply flex items-center gap-8 max-lg:hidden;
+  }
+
+  .navbar__nav-link {
+    @apply text-white text-[11px] font-semibold tracking-[0.14em] uppercase
+           opacity-90 hover:opacity-60 transition-opacity duration-150
+           cursor-pointer no-underline;
+  }
+
+  .navbar__nav-link--active {
+    @apply opacity-100;
+  }
+
+  .navbar__controls {
+    @apply flex items-center gap-5;
+  }
+
+  .navbar__search-input {
+    @apply bg-transparent border-0 outline-none text-white
+           text-sm w-40 placeholder:italic placeholder:text-white/50;
+  }
+
+  .navbar__cart-wrapper {
+    @apply relative flex items-center;
+  }
+
+  .navbar__cart-button {
+    @apply text-white hover:opacity-60 transition-opacity duration-150
+           cursor-pointer bg-transparent border-0 p-0 flex items-center;
+  }
+
+  .navbar__cart-badge {
+    @apply absolute -top-1 -right-1 bg-white text-red text-[9px] font-bold
+           w-4 h-4 rounded-full flex items-center justify-center;
+  }
+
+  /* ── HERO ────────────────────────────────────────── */
+
+  .hero {
+    @apply bg-bg-warm min-h-screen flex items-center pt-15.5;
+  }
+
+  .hero__container {
+    @apply max-w-7xl mx-auto w-full px-12
+           grid grid-cols-2 gap-20 items-center py-20
+	   max-lg:grid-cols-1 max-lg:gap-12 max-lg:text-center max-lg:py-14;
+  }
+
+  .hero__content {
+    @apply flex flex-col;
+  }
+
+  /* eyebrow — expanded inline (no custom class chaining) */
+  .hero__eyebrow {
+    @apply flex items-center gap-3 mb-7;
+  }
+
+  .hero__eyebrow-line {
+    @apply w-9 h-px bg-text-muted block;
+  }
+
+  .hero__eyebrow-label {
+    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-text-muted;
+  }
+
+  .hero__heading {
+    @apply leading-none mb-4;
+  }
+
+  /* Both name lines share base styles; only colour differs */
+  .hero__heading-firstname,
+  .hero__heading-lastname {
+    @apply block text-[72px] font-normal leading-[1.05] max-lg:text-[52px];
+    font-family: var(--font-display);
+    letter-spacing: -1px;
+  }
+
+  .hero__heading-firstname {
+    @apply text-text-dark;
+  }
+  .hero__heading-lastname {
+    @apply italic text-red;
+  }
+
+  /* label-red pattern — expanded inline */
+  .hero__roles {
+    @apply text-[11px] font-semibold tracking-[0.18em] uppercase text-red
+           mt-5 mb-5;
+  }
+
+  .hero__description {
+    @apply text-[15px] leading-[1.75] text-text-muted max-w-105 mb-9 max-lg:max-w-full;
+  }
+
+  .hero__actions {
+    @apply flex items-center gap-4 mb-5;
+  }
+  .hero__eyebrow,
+  .hero__actions,
+  .hero__socials {
+    @apply max-lg:justify-center;
+  }
+  /* btn--solid — expanded inline */
+  .hero__btn-primary {
+    @apply text-[13px] font-semibold tracking-wide px-6 py-3.25
+           rounded-lg cursor-pointer border-0 transition-all duration-200
+           bg-red text-white hover:bg-red-hover;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* btn--outline — expanded inline */
+  .hero__btn-secondary {
+    @apply text-[13px] font-semibold tracking-wide px-6 py-3.25
+           rounded-lg cursor-pointer transition-all duration-200
+           bg-transparent text-text-dark border border-border
+           hover:bg-text-dark hover:text-white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  /* link-red pattern — expanded inline */
+  .hero__collab-link {
+    @apply inline-flex items-center gap-2 mb-9
+           text-[11px] font-semibold tracking-[0.16em] uppercase text-red
+           no-underline hover:opacity-60 transition-opacity duration-150;
+  }
+
+  .hero__socials {
+    @apply flex items-center gap-4.5;
+  }
+
+  .hero__social-icon {
+    @apply text-text-muted hover:text-red transition-colors duration-150
+           cursor-pointer flex items-center;
+  }
+
+  .hero__visual {
+    @apply flex items-center justify-center max-lg:-order-1;
+  }
+  .hero__image-frame {
+    @apply relative w-100 h-100 max-lg:w-65 max-lg:h-65;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__frame-bg {
+    @apply absolute inset-0 w-full h-full pointer-events-none;
+    object-fit: contain;
+    transform: scale(1.1);
+  }
+  .hero__image-circle {
+    @apply w-full h-full rounded-full overflow-hidden max-lg:w-65 max-lg:h-65 relative;
+  }
+
+  .hero__image {
+    @apply w-full h-full object-cover;
+  }
+
+  /* ── ABOUT ───────────────────────────────────────── */
+
+  .about {
+    @apply bg-bg-white py-24;
+  }
+
+  .about__container {
+    @apply max-w-7xl mx-auto w-full px-12
+           grid grid-cols-2 gap-24 items-start 
+	   max-lg:grid-cols-1 max-lg:gap-10;
+  }
+
+  /* eyebrow — expanded inline */
+  .about__eyebrow {
+    @apply flex items-center gap-3 mb-8;
+  }
+
+  .about__eyebrow-line {
+    @apply w-9 h-px bg-text-muted block;
+  }
+
+  .about__eyebrow-label {
+    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-text-muted;
+  }
+
+  .about__heading {
+    @apply leading-none max-lg:text-[40px];
+  }
+
+  /* Both heading lines share base; only italic differs */
+  .about__heading-plain,
+  .about__heading-italic {
+    @apply block text-[56px] font-normal text-text-dark leading-[1.1];
+    font-family: var(--font-display);
+  }
+
+  .about__heading-italic {
+    @apply italic;
+  }
+
+  .about__body {
+    @apply flex flex-col pt-px;
+  }
+
+  .about__paragraph {
+    @apply text-[15px] leading-[1.8] text-text-dark mb-5;
+  }
+
+  .about__paragraph:last-of-type {
+    @apply mb-0;
+  }
+
+  .about__stats {
+    @apply flex items-start gap-16 mt-12 max-lg:gap-8;
+  }
+
+  .about__stat {
+    @apply flex flex-col;
+  }
+
+  .about__stat-number {
+    @apply text-[40px] font-normal text-red leading-none mb-1;
+    font-family: var(--font-display);
+  }
+
+  .about__stat-label {
+    @apply text-[10px] font-semibold tracking-[0.18em] uppercase text-text-muted;
+  }
+
+  /* ── HOME-COURSES ────────────────────────────────── */
+
+  .home-courses {
+    @apply bg-bg-warm py-24;
+  }
+
+  .home-courses__container {
+    @apply max-w-7xl mx-auto w-full px-12;
+  }
+
+  /* centred eyebrow variant — expanded inline */
+  .home-courses__header {
+    @apply flex items-center justify-center gap-5 mb-6;
+  }
+
+  .home-courses__header-line {
+    @apply w-10 h-px bg-text-muted block;
+  }
+
+  .home-courses__header-label {
+    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-text-muted;
+  }
+
+  .home-courses__heading {
+    @apply text-center text-[52px] font-normal text-text-dark leading-[1.15] mb-14 max-lg:text-[36px];
+    font-family: var(--font-display);
+  }
+
+  .home-courses__heading-italic {
+    @apply italic;
+  }
+
+  .home-courses__grid {
+    @apply grid grid-cols-3 gap-6 mb-12 max-lg:grid-cols-1;
+  }
+
+  .home-courses__card {
+    @apply bg-bg-white border border-border rounded-lg p-7 flex flex-col;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.04);
+  }
+
+  .home-courses__card-tag {
+    @apply inline-flex self-start text-[11px] font-semibold tracking-wide
+           text-white px-3 py-1.25 rounded-full mb-5 bg-text-dark;
+  }
+
+  .home-courses__card-tag--development {
+    @apply bg-red;
+  }
+
+  .home-courses__card-title {
+    @apply text-[17px] font-semibold text-text-dark leading-snug flex-1 mb-8;
+    font-family: var(--font-display);
+  }
+
+  .home-courses__card-meta {
+    @apply flex items-center justify-between border-t border-border-light
+           pt-4 mt-auto;
+  }
+
+  /* mode and duration are visually identical — one shared class */
+  .home-courses__card-meta-text {
+    @apply text-[12px] text-text-muted;
+  }
+
+  .home-courses__cta {
+    @apply flex justify-center;
+  }
+
+  /* link-red pattern — expanded inline */
+  .home-courses__cta-link {
+    @apply inline-flex items-center gap-2
+           text-[11px] font-semibold tracking-[0.18em] uppercase text-red
+           no-underline hover:opacity-60 transition-opacity duration-150;
+  }
+
+  /* ── EXPERIENCE ──────────────────────────────────── */
+
+  .experience {
+    @apply bg-bg-white py-24;
+  }
+
+  .experience__container {
+    @apply max-w-7xl mx-auto w-full px-12;
+  }
+
+  /* eyebrow — expanded inline */
+  .experience__eyebrow {
+    @apply flex items-center gap-3 mb-7;
+  }
+
+  .experience__eyebrow-line {
+    @apply w-9 h-px bg-text-muted block;
+  }
+
+  .experience__eyebrow-label {
+    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-text-muted;
+  }
+
+  .experience__heading {
+    @apply text-[52px] font-normal text-text-dark leading-none mb-14;
+    font-family: var(--font-display);
+  }
+
+  .experience__grid {
+    @apply grid grid-cols-2 max-lg:grid-cols-1;
+    border-left: 2px solid var(--color-border);
+  }
+
+  .experience__entry {
+    @apply px-10 py-10;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .experience__entry:nth-child(odd) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  /* label-red pattern — expanded inline */
+  .experience__entry-year {
+    @apply text-[11px] font-semibold tracking-[0.16em] uppercase text-red
+           mb-2 block;
+  }
+
+  .experience__entry-role {
+    @apply text-[20px] font-semibold text-text-dark leading-snug mb-2;
+    font-family: var(--font-display);
+  }
+
+  .experience__entry-org {
+    @apply text-[10px] font-semibold tracking-[0.14em] uppercase
+           text-text-muted mb-4 block;
+  }
+
+  .experience__entry-desc {
+    @apply text-[14px] leading-[1.75] text-text-muted;
+  }
+
+  /* ── CTA BANNER ──────────────────────────────────── */
+
+  .cta-banner {
+    @apply bg-red py-20 flex flex-col items-center justify-center
+           text-center px-6;
+  }
+
+  .cta-banner__heading {
+    @apply text-white text-[36px] font-bold leading-tight mb-4;
+    font-family: var(--font-display);
+  }
+
+  .cta-banner__subheading {
+    @apply text-white/80 text-[15px] leading-relaxed mb-10 max-w-120;
+  }
+
+  .cta-banner__button {
+    @apply bg-white text-red text-[11px] font-semibold tracking-[0.2em]
+           uppercase px-10 py-4 rounded-full border-0 cursor-pointer
+           hover:bg-red-dark hover:text-white transition-all duration-200;
+  }
 }
