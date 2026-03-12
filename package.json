@@ -4,7 +4,7 @@
   "description": "-RAFANOMEZANTSOA Ny Fatratra -STD25001- N1 -ANDRIANARIMANANA Isaac Abderman -STD25027- N1",
   "main": "index.js",
   "scripts": {
-    "build-css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
+    "build-css": "npx @tailwindcss/cli -i ./frontend/src/input.css -o ./frontend/public/style.css --watch"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/fatratra-png/T.Ramarozaka-portfolio/issues"
   },
