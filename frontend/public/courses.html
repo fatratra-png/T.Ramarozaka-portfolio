@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokimahery Ramarozaka — All Courses</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" type="module"></script>
+  </head>
+  <body>
+    <header class="navbar" id="navbar">
+      <a class="navbar__brand" href="index.html">
+        <span class="navbar__brand-name">T. Ramarozaka</span>
+        <span class="navbar__brand-tagline">consultant · teacher · dev</span>
+      </a>
+      <nav class="navbar__nav" id="navbar-nav" aria-label="Primary navigation"></nav>
+      <div class="navbar__controls">
+        <input class="navbar__search-input" type="search" placeholder="Search anything..." id="navbar-search" aria-label="Search" />
+        <div class="navbar__cart-wrapper" id="navbar-cart-wrapper">
+          <button class="navbar__cart-button" id="navbar-cart-button" aria-label="Shopping cart">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <section class="courses" id="courses">
+      <div class="courses__container">
+        <div class="courses__header">
+          <div class="courses__eyebrow">
+            <span class="courses__eyebrow-line"></span>
+            <span class="courses__eyebrow-label">LEARNING</span>
+            <span class="courses__eyebrow-line"></span>
+          </div>
+          <h1 class="courses__heading">All <em class="text-red" style="font-style:italic;">courses</em></h1>
+          <p class="courses__subtitle">Online and offline courses across development, translation, and research.<br/>Find the one that fits your level and goals.</p>
+        </div>
+
+        <div class="filters-bar">
+          <div class="filter-group">
+            <span class="filter-label">LANGUAGE</span>
+            <div class="language-filters" id="language-filters">
+              <button data-lang="mg" class="flag-btn">🇲🇬</button>
+              <button data-lang="fr" class="flag-btn">🇫🇷</button>
+              <button data-lang="en" class="flag-btn">🇬🇧</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">TECHNOLOGY</span>
+            <select id="tech-select" class="select-filter">
+              <option value="all">All technologies</option>
+              <option value="javascript">JavaScript</option>
+              <option value="java">Java</option>
+              <option value="sql">SQL</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label">LEVEL</span>
+            <select id="level-select" class="select-filter">
+              <option value="all">All levels</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+          <div class="price-group filter-group">
+            <div class="price-label-row">
+              <span class="filter-label">PRICE RANGE</span>
+              <span id="price-values" class="price-label-values">0 Ar – 300,000 Ar</span>
+            </div>
+            <div class="range-container" id="range-container">
+              <div id="range-fill" class="range-fill" style="left:0%;width:100%"></div>
+              <input type="range" id="min-price" min="0" max="300000" value="0" step="5000" class="slider" />
+              <input type="range" id="max-price" min="0" max="300000" value="300000" step="5000" class="slider" />
+            </div>
+          </div>
+          <div class="search-group filter-group">
+            <span class="filter-label">SEARCH</span>
+            <input id="search-input" type="text" class="search-input" placeholder="Keywords..." />
+          </div>
+          <button id="clear-all" class="clear-all">CLEAR ALL</button>
+        </div>
+
+        <p class="courses-count" id="courses-count">9 COURSES FOUND</p>
+
+        <div class="courses__grid" id="courses-grid"></div>
+      </div>
+    </section>
+
+    <section class="courses-footer">
+      <div class="max-w-md mx-auto text-center">
+        <h2 class="courses-footer__heading">Not sure where to start?</h2>
+        <p class="courses-footer__text">Book a free discovery call and find the course that fits your goals and schedule.</p>
+        <button onclick="window.location.href='mailto:toky@mail.hei.school'" class="courses-footer__btn">Book discovery call</button>
+      </div>
+    </section>
+  </body>
+</html>
