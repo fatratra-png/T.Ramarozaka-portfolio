@@ -6,7 +6,10 @@
     <title>Tokimahery Ramarozaka — Testimonials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
   </head>
@@ -16,12 +19,52 @@
         <span class="navbar__brand-name">T. Ramarozaka</span>
         <span class="navbar__brand-tagline">consultant · teacher · dev</span>
       </a>
-      <nav class="navbar__nav" id="navbar-nav" aria-label="Primary navigation"></nav>
+      <nav
+        class="navbar__nav"
+        id="navbar-nav"
+        aria-label="Primary navigation"
+      ></nav>
+      <!-- Hamburger (mobile only) -->
+      <button
+        class="navbar__hamburger"
+        id="navbar-hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navbar-nav"
+      >
+        <span class="navbar__hamburger-bar"></span>
+        <span class="navbar__hamburger-bar"></span>
+        <span class="navbar__hamburger-bar"></span>
+      </button>
+
       <div class="navbar__controls">
-        <input class="navbar__search-input" type="search" placeholder="Search anything..." aria-label="Search" />
+        <input
+          class="navbar__search-input"
+          type="search"
+          placeholder="Search anything..."
+          id="navbar-search"
+          aria-label="Search"
+        />
         <div class="navbar__cart-wrapper" id="navbar-cart-wrapper">
-          <button class="navbar__cart-button" id="navbar-cart-button" aria-label="Shopping cart">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <button
+            class="navbar__cart-button"
+            id="navbar-cart-button"
+            aria-label="Shopping cart"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 01-8 0" />
+            </svg>
           </button>
         </div>
       </div>
@@ -35,8 +78,13 @@
             <span class="page-header__eyebrow-label">Social Proof</span>
             <span class="page-header__eyebrow-line"></span>
           </div>
-          <h1 class="page-header__heading">What people <em class="page-header__heading-italic">say</em></h1>
-          <p class="page-header__subtitle">Hundreds of students, collaborators, and clients have trusted Tokimahery's expertise. Here's what they have to say.</p>
+          <h1 class="page-header__heading">
+            What people <em class="page-header__heading-italic">say</em>
+          </h1>
+          <p class="page-header__subtitle">
+            Hundreds of students, collaborators, and clients have trusted
+            Tokimahery's expertise. Here's what they have to say.
+          </p>
         </div>
 
         <div id="testimonials-sections"></div>
@@ -44,10 +92,23 @@
 
       <div class="testi-footer">
         <h2 class="testi-footer__heading">Join them.</h2>
-        <p class="testi-footer__text">Whether you want to learn, collaborate, or get something built — Tokimahery is ready to help you move forward.</p>
+        <p class="testi-footer__text">
+          Whether you want to learn, collaborate, or get something built —
+          Tokimahery is ready to help you move forward.
+        </p>
         <div class="testi-footer__actions">
-          <button class="testi-footer__btn testi-footer__btn--primary" onclick="location.href='courses.html'">Book a course</button>
-          <button class="testi-footer__btn testi-footer__btn--secondary" onclick="location.href='mailto:toky@mail.hei.school'">Collaborate</button>
+          <button
+            class="testi-footer__btn testi-footer__btn--primary"
+            onclick="location.href = 'courses.html'"
+          >
+            Book a course
+          </button>
+          <button
+            class="testi-footer__btn testi-footer__btn--secondary"
+            onclick="location.href = 'mailto:toky@mail.hei.school'"
+          >
+            Collaborate
+          </button>
         </div>
       </div>
     </section>
