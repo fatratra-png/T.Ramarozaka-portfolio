@@ -148,36 +148,48 @@ export function initCoursesPage() {
     render();
   });
 
-  // — Price range sliders —
+  // — Price range sliders — deux tracks indépendants
   const minSlider = document.getElementById("min-price");
   const maxSlider = document.getElementById("max-price");
-  const priceVal = document.getElementById("price-values");
-  const fill = document.getElementById("range-fill");
+  const minValEl = document.getElementById("min-price-val");
+  const maxValEl = document.getElementById("max-price-val");
 
-  function updateRange() {
+  function fmt(n) {
+    return n.toLocaleString("fr-MG") + " Ar";
+  }
+
+  function updateMin() {
     let lo = parseInt(minSlider.value);
     let hi = parseInt(maxSlider.value);
     if (lo > hi) {
-      this === minSlider ? (minSlider.value = hi) : (maxSlider.value = lo);
-      lo = parseInt(minSlider.value);
-      hi = parseInt(maxSlider.value);
+      minSlider.value = hi;
+      lo = hi;
     }
     minPrice = lo;
-    maxPrice = hi;
-    const p1 = (lo / 300_000) * 100;
-    const p2 = (hi / 300_000) * 100;
-    if (fill) {
-      fill.style.left = p1 + "%";
-      fill.style.width = p2 - p1 + "%";
-    }
-    if (priceVal)
-      priceVal.textContent = `${lo.toLocaleString("fr-MG")} Ar – ${hi.toLocaleString("fr-MG")} Ar`;
+    if (minValEl) minValEl.textContent = fmt(lo);
     render();
   }
 
-  if (minSlider) minSlider.addEventListener("input", updateRange);
-  if (maxSlider) maxSlider.addEventListener("input", updateRange);
-  if (minSlider && maxSlider) updateRange.call(null);
+  function updateMax() {
+    let lo = parseInt(minSlider.value);
+    let hi = parseInt(maxSlider.value);
+    if (hi < lo) {
+      maxSlider.value = lo;
+      hi = lo;
+    }
+    maxPrice = hi;
+    if (maxValEl) maxValEl.textContent = fmt(hi);
+    render();
+  }
+
+  if (minSlider) {
+    minSlider.addEventListener("input", updateMin);
+    if (minValEl) minValEl.textContent = fmt(parseInt(minSlider.value));
+  }
+  if (maxSlider) {
+    maxSlider.addEventListener("input", updateMax);
+    if (maxValEl) maxValEl.textContent = fmt(parseInt(maxSlider.value));
+  }
 
   // — Search —
   document.getElementById("search-input")?.addEventListener("input", (e) => {
@@ -199,9 +211,14 @@ export function initCoursesPage() {
     maxPrice = 300_000;
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 300_000;
+<<<<<<< HEAD
     if (fill)     { fill.style.left = "0%"; fill.style.width = "100%"; }
     if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
 
+=======
+    if (minValEl) minValEl.textContent = "0 Ar";
+    if (maxValEl) maxValEl.textContent = "300 000 Ar";
+>>>>>>> 361b6bf37adcfdccce85c87d8bc3abee38f033e7
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";

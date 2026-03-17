@@ -701,68 +701,68 @@
   .price-group {
     display: flex;
     flex-direction: column;
-    min-width: 170px;
+    min-width: 200px;
     @media (width < 40rem) {
       width: 100%;
     }
   }
 
-  .range-container {
-    position: relative;
+  .price-sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .price-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .price-slider-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-width: 24px;
+  }
+
+  .price-slider {
+    flex: 1;
     height: 4px;
-    border-radius: 9999px;
-    background-color: #d9d9d9;
-    margin-top: 10px;
-  }
-
-  .range-fill {
-    position: absolute;
-    height: 100%;
-    background-color: var(--color-red);
-    border-radius: 9999px;
-    pointer-events: none;
-  }
-
-  .slider {
-    position: absolute;
-    width: 100%;
-    background: transparent;
-    pointer-events: none;
     appearance: none;
-    height: 4px;
-    top: 0;
-    margin: 0;
-    padding: 0;
+    background: #e0e0e0;
+    border-radius: 9999px;
+    outline: none;
+    cursor: pointer;
   }
 
-  .slider::-webkit-slider-thumb {
+  .price-slider::-webkit-slider-thumb {
     appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: var(--color-red);
     border: none;
     border-radius: 9999px;
     cursor: grab;
-    pointer-events: all;
-    position: relative;
-    z-index: 2;
   }
 
-  .slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
+  .price-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
     background: var(--color-red);
     border: none;
     border-radius: 9999px;
     cursor: grab;
-    pointer-events: all;
   }
 
-  #min-price {
-    z-index: 3;
-  }
-  #max-price {
-    z-index: 4;
+  .price-slider-val {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-red);
+    min-width: 72px;
+    text-align: right;
   }
 
   .search-group {
@@ -830,8 +830,8 @@
 
   .courses__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     @media (width < 64rem) {
       grid-template-columns: repeat(2, 1fr);
     }
