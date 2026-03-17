@@ -211,14 +211,9 @@ export function initCoursesPage() {
     maxPrice = 300_000;
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 300_000;
-<<<<<<< HEAD
     if (fill)     { fill.style.left = "0%"; fill.style.width = "100%"; }
     if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
 
-=======
-    if (minValEl) minValEl.textContent = "0 Ar";
-    if (maxValEl) maxValEl.textContent = "300 000 Ar";
->>>>>>> 361b6bf37adcfdccce85c87d8bc3abee38f033e7
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
