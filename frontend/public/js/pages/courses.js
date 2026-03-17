@@ -2,14 +2,17 @@ import { data } from "../../tokimahery.data.js";
 import { createEl } from "../utils.js";
 import { cart, addToCart } from "../cart.js";
 
-// Lang map without emoji for badges
 const LANG_CODE = { en: "EN", fr: "FR", mg: "MG" };
 
 const LEVEL_CLASS = {
-  beginner: "course-card__level--beginner",
+  beginner:     "course-card__level--beginner",
   intermediate: "course-card__level--intermediate",
-  advanced: "course-card__level--advanced",
+  advanced:     "course-card__level--advanced",
 };
+
+function formatPriceMGA(n) {
+  return "MGA " + n.toLocaleString("fr-MG");
+}
 
 function buildCourseCard(course) {
   const card = createEl("article", "course-card");
@@ -19,54 +22,37 @@ function buildCourseCard(course) {
   const img = createEl("img", "course-card__image");
   img.src = course.thumbnail;
   img.alt = course.title;
+  img.loading = "lazy";
   imgWrap.appendChild(img);
 
+  // Lang + tech badges
   const badges = createEl("div", "course-card__badges");
-  badges.appendChild(
-    createEl(
-      "span",
-      "course-card__badge course-card__lang",
-      LANG_CODE[course.language] || course.language.toUpperCase(),
-    ),
-  );
-  course.technologies.forEach((t) =>
-    badges.appendChild(
-      createEl("span", "course-card__badge course-card__tech", t.toLowerCase()),
-    ),
+  badges.appendChild(createEl("span", "course-card__badge course-card__lang",
+    LANG_CODE[course.language] || course.language.toUpperCase()));
+  course.technologies.forEach(t =>
+    badges.appendChild(createEl("span", "course-card__badge course-card__tech", t.toLowerCase()))
   );
   imgWrap.appendChild(badges);
+
+  // Level badge — class-based color
   const lvl = course.level.toLowerCase();
-  const levelBadge = createEl(
-    "span",
-    `course-card__level ${LEVEL_CLASS[lvl] || "course-card__level--beginner"}`,
-    lvl,
-  );
+  const levelBadge = createEl("span",
+    `course-card__level ${LEVEL_CLASS[lvl] || "course-card__level--beginner"}`, lvl);
   imgWrap.appendChild(levelBadge);
+
   card.appendChild(imgWrap);
 
   // — Body —
   const body = createEl("div", "course-card__body");
   body.appendChild(createEl("h3", "course-card__title", course.title));
-  body.appendChild(
-    createEl("p", "course-card__price", formatPriceMGA(course.price)),
-  );
-  body.appendChild(
-    createEl("p", "course-card__description", course.description),
-  );
+  body.appendChild(createEl("p",  "course-card__price", formatPriceMGA(course.price)));
+  body.appendChild(createEl("p",  "course-card__description", course.description));
 
-  const actions = createEl("div", "course-card__actions");
-  const learnBtn = createEl(
-    "button",
-    "course-card__btn course-card__btn--learn",
-    "Learn more",
-  );
-  const cartBtn = createEl(
-    "button",
-    "course-card__btn course-card__btn--cart",
-    "Add to cart",
-  );
+  const actions  = createEl("div", "course-card__actions");
+  const learnBtn = createEl("button", "course-card__btn course-card__btn--learn", "Learn more");
+  const cartBtn  = createEl("button", "course-card__btn course-card__btn--cart",  "Add to cart");
 
-  if (cart.find((c) => c.id === course.id)) {
+  if (cart.find(c => c.id === course.id)) {
     cartBtn.textContent = "Added ✓";
     cartBtn.disabled = true;
   }
@@ -84,37 +70,28 @@ function buildCourseCard(course) {
   return card;
 }
 
-function formatPriceMGA(n) {
-  return "MGA " + n.toLocaleString("fr-MG");
-}
-
 export function initCoursesPage() {
-  const grid = document.getElementById("courses-grid");
+  const grid    = document.getElementById("courses-grid");
   const countEl = document.getElementById("courses-count");
   if (!grid) return;
 
   // — Filter state —
   let activeLangs = new Set();
-  let activeTech = "all";
+  let activeTech  = "all";
   let activeLevel = "all";
-  let minPrice = 0;
-  let maxPrice = 300_000;
-  let searchQ = "";
+  let minPrice    = 0;
+  let maxPrice    = 300_000;
+  let searchQ     = "";
 
   function render() {
     grid.innerHTML = "";
-    const filtered = data.courses.filter((c) => {
-      if (activeLangs.size > 0 && !activeLangs.has(c.language)) return false;
-      if (activeTech !== "all" && !c.technologies.includes(activeTech))
-        return false;
-      if (activeLevel !== "all" && c.level !== activeLevel) return false;
-      if (c.price < minPrice || c.price > maxPrice) return false;
-      if (
-        searchQ &&
-        !c.title.toLowerCase().includes(searchQ) &&
-        !c.description.toLowerCase().includes(searchQ)
-      )
-        return false;
+    const filtered = data.courses.filter(c => {
+      if (activeLangs.size > 0 && !activeLangs.has(c.language))         return false;
+      if (activeTech  !== "all" && !c.technologies.includes(activeTech)) return false;
+      if (activeLevel !== "all" && c.level !== activeLevel)              return false;
+      if (c.price < minPrice || c.price > maxPrice)                      return false;
+      if (searchQ && !c.title.toLowerCase().includes(searchQ)
+                  && !c.description.toLowerCase().includes(searchQ))     return false;
       return true;
     });
 
@@ -124,40 +101,34 @@ export function initCoursesPage() {
     }
 
     if (filtered.length === 0) {
-      grid.appendChild(
-        createEl("p", "courses__empty", "No courses match your filters."),
-      );
+      grid.appendChild(createEl("p", "courses__empty", "No courses match your filters."));
     } else {
-      filtered.forEach((c) => grid.appendChild(buildCourseCard(c)));
+      filtered.forEach(c => grid.appendChild(buildCourseCard(c)));
     }
   }
 
   // — Language flags —
-  document.querySelectorAll(".flag-btn").forEach((btn) => {
+  document.querySelectorAll(".flag-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const lang = btn.dataset.lang;
       activeLangs.has(lang)
         ? (activeLangs.delete(lang), btn.classList.remove("active"))
-        : (activeLangs.add(lang), btn.classList.add("active"));
+        : (activeLangs.add(lang),   btn.classList.add("active"));
       render();
     });
   });
 
   // — Tech & level selects —
-  document.getElementById("tech-select")?.addEventListener("change", (e) => {
-    activeTech = e.target.value;
-    render();
-  });
-  document.getElementById("level-select")?.addEventListener("change", (e) => {
-    activeLevel = e.target.value;
-    render();
-  });
+  document.getElementById("tech-select")
+    ?.addEventListener("change", e => { activeTech  = e.target.value; render(); });
+  document.getElementById("level-select")
+    ?.addEventListener("change", e => { activeLevel = e.target.value; render(); });
 
   // — Price range sliders —
   const minSlider = document.getElementById("min-price");
   const maxSlider = document.getElementById("max-price");
-  const priceVal = document.getElementById("price-values");
-  const fill = document.getElementById("range-fill");
+  const priceVal  = document.getElementById("price-values");
+  const fill      = document.getElementById("range-fill");
 
   function updateRange() {
     let lo = parseInt(minSlider.value);
@@ -171,12 +142,9 @@ export function initCoursesPage() {
     maxPrice = hi;
     const p1 = (lo / 300_000) * 100;
     const p2 = (hi / 300_000) * 100;
-    if (fill) {
-      fill.style.left = p1 + "%";
-      fill.style.width = p2 - p1 + "%";
-    }
-    if (priceVal)
-      priceVal.textContent = `${lo.toLocaleString("fr-MG")} Ar – ${hi.toLocaleString("fr-MG")} Ar`;
+    if (fill)     { fill.style.left = p1 + "%"; fill.style.width = (p2 - p1) + "%"; }
+    if (priceVal) priceVal.textContent =
+      `${lo.toLocaleString("fr-MG")} Ar – ${hi.toLocaleString("fr-MG")} Ar`;
     render();
   }
 
@@ -185,39 +153,28 @@ export function initCoursesPage() {
   if (minSlider && maxSlider) updateRange.call(null);
 
   // — Search —
-  document.getElementById("search-input")?.addEventListener("input", (e) => {
-    searchQ = e.target.value.toLowerCase();
-    render();
-  });
+  document.getElementById("search-input")
+    ?.addEventListener("input", e => { searchQ = e.target.value.toLowerCase(); render(); });
 
   // — Clear all —
   document.getElementById("clear-all")?.addEventListener("click", () => {
     activeLangs.clear();
-    document
-      .querySelectorAll(".flag-btn")
-      .forEach((b) => b.classList.remove("active"));
-
-    activeTech = "all";
+    document.querySelectorAll(".flag-btn").forEach(b => b.classList.remove("active"));
+    activeTech  = "all";
     activeLevel = "all";
-    document.getElementById("tech-select") &&
-      (document.getElementById("tech-select").value = "all");
-    document.getElementById("level-select") &&
-      (document.getElementById("level-select").value = "all");
-
+    const techSel  = document.getElementById("tech-select");
+    const levelSel = document.getElementById("level-select");
+    if (techSel)  techSel.value  = "all";
+    if (levelSel) levelSel.value = "all";
     minPrice = 0;
     maxPrice = 300_000;
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 300_000;
-    if (fill) {
-      fill.style.left = "0%";
-      fill.style.width = "100%";
-    }
-    if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
-
+    if (fill)     { fill.style.left = "0%"; fill.style.width = "100%"; }
+    if (priceVal) priceVal.textContent = "0 Ar – 300 000 Ar";
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
-
     render();
   });
 
