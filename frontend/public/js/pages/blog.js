@@ -16,12 +16,16 @@ function buildPostRow({ title, description, creationDate, thumbnail, tags }) {
   row.appendChild(thumbWrap);
 
   const body = createEl("div", "blog-post-row__body");
-  body.appendChild(createEl("span", "blog-post-row__date", formatDate(creationDate)));
   body.appendChild(createEl("h3", "blog-post-row__title", title));
+  body.appendChild(
+    createEl("span", "blog-post-row__date", formatDate(creationDate)),
+  );
   body.appendChild(createEl("p", "blog-post-row__desc", description));
 
   const tagsWrap = createEl("div", "blog-post-row__tags");
-  tags.forEach(t => tagsWrap.appendChild(createEl("span", "blog-post-row__tag", t)));
+  tags.forEach((t) =>
+    tagsWrap.appendChild(createEl("span", "blog-post-row__tag", t)),
+  );
   body.appendChild(tagsWrap);
 
   row.appendChild(body);
@@ -35,23 +39,45 @@ function renderPagination(container, totalPosts, page) {
 
   // Prev button
   if (page > 1) {
-    const prev = createEl("button", "blog-pagination__btn blog-pagination__btn--nav", "← Prev");
-    prev.addEventListener("click", () => { currentPage = page - 1; renderBlogList(); });
+    const prev = createEl(
+      "button",
+      "blog-pagination__btn blog-pagination__btn--nav",
+      "← Prev",
+    );
+    prev.addEventListener("click", () => {
+      currentPage = page - 1;
+      renderBlogList();
+    });
     container.appendChild(prev);
   }
 
   // Page numbers
   for (let i = 1; i <= totalPages; i++) {
-    const btn = createEl("button", "blog-pagination__btn" + (i === page ? " blog-pagination__btn--active" : ""), String(i));
+    const btn = createEl(
+      "button",
+      "blog-pagination__btn" +
+        (i === page ? " blog-pagination__btn--active" : ""),
+      String(i),
+    );
     const p = i;
-    btn.addEventListener("click", () => { currentPage = p; renderBlogList(); });
+    btn.addEventListener("click", () => {
+      currentPage = p;
+      renderBlogList();
+    });
     container.appendChild(btn);
   }
 
   // Next button
   if (page < totalPages) {
-    const next = createEl("button", "blog-pagination__btn blog-pagination__btn--nav", "Next →");
-    next.addEventListener("click", () => { currentPage = page + 1; renderBlogList(); });
+    const next = createEl(
+      "button",
+      "blog-pagination__btn blog-pagination__btn--nav",
+      "Next →",
+    );
+    next.addEventListener("click", () => {
+      currentPage = page + 1;
+      renderBlogList();
+    });
     container.appendChild(next);
   }
 }
@@ -62,16 +88,19 @@ function renderBlogList() {
   if (!list) return;
 
   list.innerHTML = "";
-  const sorted = [...data.posts].sort((a, b) => b.creationDate - a.creationDate);
+  const sorted = [...data.posts].sort(
+    (a, b) => b.creationDate - a.creationDate,
+  );
   const start = (currentPage - 1) * POSTS_PER_PAGE;
   const page = sorted.slice(start, start + POSTS_PER_PAGE);
 
-  page.forEach(p => list.appendChild(buildPostRow(p)));
+  page.forEach((p) => list.appendChild(buildPostRow(p)));
 
   if (pagination) renderPagination(pagination, sorted.length, currentPage);
 
   // Scroll to top of blog list
-  if (currentPage > 1) list.scrollIntoView({ behavior: "smooth", block: "start" });
+  if (currentPage > 1)
+    list.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderYouTubeVideos(container) {
@@ -104,9 +133,9 @@ function renderArchives(container) {
 export function initBlogPage() {
   renderBlogList();
 
-  const ytContainer   = document.getElementById("youtube-videos");
+  const ytContainer = document.getElementById("youtube-videos");
   const archContainer = document.getElementById("blog-archives");
 
-  if (ytContainer)   renderYouTubeVideos(ytContainer);
+  if (ytContainer) renderYouTubeVideos(ytContainer);
   if (archContainer) renderArchives(archContainer);
 }
