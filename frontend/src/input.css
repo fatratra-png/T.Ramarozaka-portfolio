@@ -52,13 +52,12 @@
 
   .navbar {
     @apply fixed top-0 left-0 right-0 z-50 bg-red
-           flex items-center justify-between px-10 h-15.5;
+           flex items-center justify-between px-8 h-18;
   }
 
   /* Left white border + padding to separate brand visually */
   .navbar__brand {
-    @apply flex flex-col leading-none cursor-pointer no-underline pl-3.5;
-    border-left: 2px solid rgba(255, 255, 255, 0.45);
+    @apply flex flex-col leading-none cursor-pointer no-underline;
   }
 
   .navbar__brand-name {
@@ -75,7 +74,7 @@
   }
 
   .navbar__nav-link {
-    @apply text-white text-[11px] font-semibold tracking-[0.14em] uppercase
+    @apply text-white text-[11px] font-black tracking-[0.14em] uppercase
            opacity-90 hover:opacity-60 transition-opacity duration-150
            cursor-pointer no-underline;
   }
@@ -177,19 +176,19 @@
 
   /* eyebrow — expanded inline (no custom class chaining) */
   .hero__eyebrow {
-    @apply flex items-center gap-3 mb-7;
+    @apply flex items-center gap-3 mb-8;
   }
 
   .hero__eyebrow-line {
-    @apply w-9 h-px bg-text-muted block;
+    @apply w-9 h-0.5 bg-red-dark block;
   }
 
   .hero__eyebrow-label {
-    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-text-muted;
+    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-red-dark;
   }
 
   .hero__heading {
-    @apply leading-none mb-4;
+    @apply leading-none mb-3;
   }
 
   /* Both name lines share base styles; only colour differs */
@@ -210,12 +209,12 @@
 
   /* label-red pattern — expanded inline */
   .hero__roles {
-    @apply text-[11px] font-semibold tracking-[0.18em] uppercase text-red
+    @apply text-[11px] tracking-[0.16em] uppercase text-text-muted
            mt-5 mb-5;
   }
 
   .hero__description {
-    @apply text-[15px] leading-[1.75] text-text-muted max-w-105 mb-9 max-lg:max-w-full;
+    @apply text-[15px] leading-[1.75] text-text-muted max-w-[60ch] mb-9 max-lg:max-w-full;
   }
 
   .hero__actions {
@@ -230,7 +229,7 @@
 
   /* btn--solid — expanded inline */
   .hero__btn-primary {
-    @apply text-[13px] font-semibold tracking-wide px-6 py-3.25
+    @apply text-[13px] font-semibold tracking-wide px-8 py-4
            rounded-lg cursor-pointer border-0 transition-all duration-200
            bg-red text-white hover:bg-red-hover;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -238,18 +237,17 @@
 
   /* btn--outline — expanded inline */
   .hero__btn-secondary {
-    @apply text-[13px] font-semibold tracking-wide px-6 py-3.25
+    @apply text-[13px] font-semibold tracking-wide px-8 py-4
            rounded-lg cursor-pointer transition-all duration-200
-           bg-transparent text-text-dark border border-border
-           hover:bg-text-dark hover:text-white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+           bg-transparent text-text-muted border border-border
+           hover:border-gray-500 shadow-2xl;
   }
 
   /* link-red pattern — expanded inline */
   .hero__collab-link {
     @apply inline-flex items-center gap-2 mb-9
            text-[11px] font-semibold tracking-[0.16em] uppercase text-red
-           no-underline hover:opacity-60 transition-opacity duration-150;
+           underline underline-offset-5 hover:opacity-60 transition-opacity duration-150;
   }
 
   .hero__socials {
@@ -304,7 +302,7 @@
   }
 
   .about__eyebrow-line {
-    @apply w-9 h-px bg-text-muted block;
+    @apply w-9 h-0.5 bg-red-dark block;
   }
 
   .about__eyebrow-label {
@@ -318,7 +316,7 @@
   /* Both heading lines share base; only italic differs */
   .about__heading-plain,
   .about__heading-italic {
-    @apply block text-[56px] font-normal text-text-dark leading-[1.1];
+    @apply block text-[56px] font-semibold text-text-dark leading-[1.1];
     font-family: var(--font-display);
   }
 
@@ -371,7 +369,7 @@
   }
 
   .home-courses__header-line {
-    @apply w-10 h-px bg-text-muted block;
+    @apply w-10 h-0.5 bg-red-dark block;
   }
 
   .home-courses__header-label {
@@ -379,7 +377,7 @@
   }
 
   .home-courses__heading {
-    @apply text-center text-[52px] font-normal text-text-dark leading-[1.15] mb-14 max-lg:text-[36px];
+    @apply text-center text-[52px] font-semibold text-text-dark leading-[1.15] mb-14 max-lg:text-[36px];
     font-family: var(--font-display);
   }
 
@@ -392,8 +390,7 @@
   }
 
   .home-courses__card {
-    @apply bg-bg-white border border-border rounded-lg p-7 flex flex-col;
-    box-shadow: 0 1px 4px rgb(0 0 0 / 0.04);
+    @apply bg-bg-white shadow-sm rounded-xl p-7 flex flex-col;
   }
 
   .home-courses__card-tag {
@@ -447,7 +444,7 @@
   }
 
   .experience__eyebrow-line {
-    @apply w-9 h-px bg-text-muted block;
+    @apply w-9 h-0.5 bg-red-dark block;
   }
 
   .experience__eyebrow-label {
@@ -455,22 +452,16 @@
   }
 
   .experience__heading {
-    @apply text-[52px] font-normal text-text-dark leading-none mb-14;
+    @apply text-[52px] font-semibold text-text-dark leading-none mb-14;
     font-family: var(--font-display);
   }
 
   .experience__grid {
     @apply grid grid-cols-2 max-lg:grid-cols-1;
-    border-left: 2px solid var(--color-border);
   }
 
   .experience__entry {
-    @apply px-10 py-10;
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .experience__entry:nth-child(odd) {
-    border-right: 1px solid var(--color-border);
+    @apply px-10 py-10 border-l-2 border-border hover:border-red;
   }
 
   /* label-red pattern — expanded inline */
@@ -481,12 +472,11 @@
 
   .experience__entry-role {
     @apply text-[20px] font-semibold text-text-dark leading-snug mb-2;
-    font-family: var(--font-display);
   }
 
   .experience__entry-org {
     @apply text-[10px] font-semibold tracking-[0.14em] uppercase
-           text-text-muted mb-4 block;
+           text-text-light mb-4 block;
   }
 
   .experience__entry-desc {
@@ -506,13 +496,13 @@
   }
 
   .cta-banner__subheading {
-    @apply text-white/80 text-[15px] leading-relaxed mb-10 max-w-120;
+    @apply text-white/80 text-[15px] leading-relaxed mb-10 max-w-[60ch];
   }
 
   .cta-banner__button {
-    @apply bg-white text-red text-[11px] font-semibold tracking-[0.2em]
-           uppercase px-10 py-4 rounded-full border-0 cursor-pointer
-           hover:bg-red-dark hover:text-white transition-all duration-200;
+    @apply bg-transparent text-white text-[13px] font-semibold tracking-[0.2em]
+           uppercase px-8 py-3 rounded-full border-2 border-white cursor-pointer
+           hover:bg-white hover:text-red transition-all duration-200;
   }
 
   /* ── COURSES PAGE ────────────────────────────────── */
@@ -540,7 +530,7 @@
   }
 
   .courses__eyebrow-line {
-    @apply w-10 h-px bg-text-muted block;
+    @apply w-10 h-0.5 bg-red-dark block;
   }
 
   .courses__eyebrow-label {
@@ -950,7 +940,7 @@
   }
 
   .page-header__eyebrow-line {
-    @apply w-10 h-px bg-text-muted block;
+    @apply w-10 h-0.5 bg-red-dark block;
   }
 
   .page-header__eyebrow-label {
