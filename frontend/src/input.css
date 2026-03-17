@@ -1106,8 +1106,8 @@
   /* Teal/blue tag pills — matches the video */
   .blog-post-row__tag {
     @apply text-[11px] font-medium rounded-full px-3;
-    color: #0369a1;
-    background-color: #e0f2fe;
+    color: #e0f2fe;
+    background-color: #0369a1;
     padding-block: 2px;
     letter-spacing: 0.02em;
   }
@@ -1118,9 +1118,9 @@
   }
 
   .blog-pagination__btn {
-    @apply flex items-center justify-center min-w-9 h-9 rounded-full
+    @apply flex items-center justify-center min-w-9 h-9 rounded-xl
            text-[13px] font-semibold cursor-pointer border border-border
-           bg-bg-white text-text-muted transition-all duration-150 px-3
+           bg-transparent text-text-muted transition-all duration-150 px-3
            hover:border-red hover:text-red;
   }
 
@@ -1204,7 +1204,7 @@
 
   .yt-view-all {
     @apply inline-block text-[11px] font-semibold tracking-[0.16em] uppercase
-           text-red no-underline mt-2 hover:opacity-65;
+           text-red underline underline-offset-5 mt-2 hover:opacity-65;
   }
 
   /* Archives */
@@ -1221,6 +1221,11 @@
   .archive-count {
     @apply text-[12px] bg-border-light text-text-muted rounded-full px-2.5
            min-w-7 text-center;
+  }
+
+  .substitute-grid {
+    @apply grid;
+    grid-template-columns: 1fr calc(var(--spacing) * 80);
   }
 
   /* ── TESTIMONIALS PAGE ───────────────────────────── */
