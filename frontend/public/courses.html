@@ -103,6 +103,7 @@
               <option value="javascript">JavaScript</option>
               <option value="java">Java</option>
               <option value="sql">SQL</option>
+              <option value="python">Python</option>
             </select>
           </div>
           <div class="filter-group">
@@ -115,36 +116,36 @@
             </select>
           </div>
           <div class="price-group filter-group">
-            <div class="price-label-row">
-              <span class="filter-label">PRICE RANGE</span>
-              <span id="price-values" class="price-label-values"
-                >0 Ar – 300,000 Ar</span
-              >
-            </div>
-            <div class="range-container" id="range-container">
-              <div
-                id="range-fill"
-                class="range-fill"
-                style="left: 0%; width: 100%"
-              ></div>
-              <input
-                type="range"
-                id="min-price"
-                min="0"
-                max="300000"
-                value="0"
-                step="5000"
-                class="slider"
-              />
-              <input
-                type="range"
-                id="max-price"
-                min="0"
-                max="300000"
-                value="300000"
-                step="5000"
-                class="slider"
-              />
+            <span class="filter-label">PRICE RANGE</span>
+            <div class="price-sliders">
+              <div class="price-slider-row">
+                <span class="price-slider-label">Min</span>
+                <input
+                  type="range"
+                  id="min-price"
+                  min="0"
+                  max="300000"
+                  value="0"
+                  step="5000"
+                  class="price-slider"
+                />
+                <span id="min-price-val" class="price-slider-val">0 Ar</span>
+              </div>
+              <div class="price-slider-row">
+                <span class="price-slider-label">Max</span>
+                <input
+                  type="range"
+                  id="max-price"
+                  min="0"
+                  max="300000"
+                  value="300000"
+                  step="5000"
+                  class="price-slider"
+                />
+                <span id="max-price-val" class="price-slider-val"
+                  >300 000 Ar</span
+                >
+              </div>
             </div>
           </div>
           <div class="search-group filter-group">

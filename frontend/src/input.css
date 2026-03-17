@@ -90,9 +90,7 @@
     right: 50%;
     height: 2px;
     background-color: white;
-    transition:
-      left 200ms ease,
-      right 200ms ease;
+    transition: left 200ms ease, right 200ms ease;
   }
 
   .navbar__nav-link:hover::after,
@@ -145,9 +143,7 @@
            pointer-events-none opacity-0;
     top: calc(var(--spacing) * 15.5);
     transform: translateY(-110%);
-    transition:
-      transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 300ms ease;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
   }
 
   .navbar__mobile-nav.is-open {
@@ -549,12 +545,8 @@
     margin-inline: auto;
     width: 100%;
     padding-inline: calc(var(--spacing) * 8);
-    @media (width < 64rem) {
-      padding-inline: calc(var(--spacing) * 4);
-    }
-    @media (width < 40rem) {
-      padding-inline: calc(var(--spacing) * 3);
-    }
+    @media (width < 64rem) { padding-inline: calc(var(--spacing) * 4); }
+    @media (width < 40rem) { padding-inline: calc(var(--spacing) * 3); }
   }
 
   .courses__header {
@@ -580,9 +572,7 @@
     color: var(--color-text-dark);
     line-height: 1;
     margin-bottom: 16px;
-    @media (width < 64rem) {
-      font-size: 40px;
-    }
+    @media (width < 64rem) { font-size: 40px; }
   }
 
   .courses__subtitle {
@@ -619,9 +609,7 @@
   .filter-group {
     display: flex;
     flex-direction: column;
-    @media (width < 40rem) {
-      width: 100%;
-    }
+    @media (width < 40rem) { width: 100%; }
   }
 
   .filter-label {
@@ -668,9 +656,7 @@
     transition: transform 150ms ease;
   }
 
-  .flag-btn:hover {
-    transform: translateY(-1px);
-  }
+  .flag-btn:hover { transform: translateY(-1px); }
 
   .flag-btn.active {
     outline: 2px solid var(--color-red);
@@ -689,89 +675,81 @@
     outline: none;
     cursor: pointer;
     min-width: 155px;
-    @media (width < 40rem) {
-      width: 100%;
-    }
+    @media (width < 40rem) { width: 100%; }
   }
 
-  .select-filter:focus {
-    border-color: var(--color-red);
-  }
+  .select-filter:focus { border-color: var(--color-red); }
 
   .price-group {
     display: flex;
     flex-direction: column;
-    min-width: 170px;
-    @media (width < 40rem) {
-      width: 100%;
-    }
+    min-width: 200px;
+    @media (width < 40rem) { width: 100%; }
   }
 
-  .range-container {
-    position: relative;
+  .price-sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .price-slider-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .price-slider-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-width: 24px;
+  }
+
+  .price-slider {
+    flex: 1;
     height: 4px;
-    border-radius: 9999px;
-    background-color: #d9d9d9;
-    margin-top: 10px;
-  }
-
-  .range-fill {
-    position: absolute;
-    height: 100%;
-    background-color: var(--color-red);
-    border-radius: 9999px;
-    pointer-events: none;
-  }
-
-  .slider {
-    position: absolute;
-    width: 100%;
-    background: transparent;
-    pointer-events: none;
     appearance: none;
-    height: 4px;
-    top: 0;
-    margin: 0;
-    padding: 0;
+    background: #e0e0e0;
+    border-radius: 9999px;
+    outline: none;
+    cursor: pointer;
   }
 
-  .slider::-webkit-slider-thumb {
+  .price-slider::-webkit-slider-thumb {
     appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     background: var(--color-red);
     border: none;
     border-radius: 9999px;
     cursor: grab;
-    pointer-events: all;
-    position: relative;
-    z-index: 2;
   }
 
-  .slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
+  .price-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
     background: var(--color-red);
     border: none;
     border-radius: 9999px;
     cursor: grab;
-    pointer-events: all;
   }
 
-  #min-price {
-    z-index: 3;
-  }
-  #max-price {
-    z-index: 4;
+  .price-slider-val {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-red);
+    min-width: 72px;
+    text-align: right;
   }
 
-  .search-group {
+    .search-group {
     display: flex;
     flex-direction: column;
     min-width: 170px;
-    @media (width < 40rem) {
-      width: 100%;
-    }
+    @media (width < 40rem) { width: 100%; }
   }
 
   .search-input {
@@ -791,9 +769,7 @@
     font-style: italic;
   }
 
-  .search-input:focus {
-    border-color: var(--color-red);
-  }
+  .search-input:focus { border-color: var(--color-red); }
 
   .clear-all {
     font-size: 10px;
@@ -808,14 +784,10 @@
     margin-top: 26px;
     align-self: flex-start;
     transition: opacity 150ms ease;
-    @media (width < 40rem) {
-      margin-top: 0;
-    }
+    @media (width < 40rem) { margin-top: 0; }
   }
 
-  .clear-all:hover {
-    opacity: 0.65;
-  }
+  .clear-all:hover { opacity: 0.65; }
 
   .courses-count {
     font-size: 11px;
@@ -830,14 +802,10 @@
 
   .courses__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    @media (width < 64rem) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    @media (width < 40rem) {
-      grid-template-columns: repeat(1, 1fr);
-    }
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    @media (width < 64rem) { grid-template-columns: repeat(2, 1fr); }
+    @media (width < 40rem) { grid-template-columns: repeat(1, 1fr); }
   }
 
   /* ── COURSE CARD ── */
@@ -848,15 +816,13 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition:
-      transform 250ms ease,
-      box-shadow 250ms ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 250ms ease, box-shadow 250ms ease;
   }
 
   .course-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.13);
   }
 
   .course-card__image-wrapper {
@@ -909,15 +875,9 @@
     border-radius: 8px 0 0 0;
   }
 
-  .course-card__level--beginner {
-    background-color: #16a34a !important;
-  }
-  .course-card__level--intermediate {
-    background-color: #d97706 !important;
-  }
-  .course-card__level--advanced {
-    background-color: #b91c1c !important;
-  }
+  .course-card__level--beginner    { background-color: #16a34a !important; }
+  .course-card__level--intermediate { background-color: #d97706 !important; }
+  .course-card__level--advanced    { background-color: #b91c1c !important; }
 
   .course-card__body {
     padding: 20px 20px 22px;
@@ -978,9 +938,7 @@
     padding: 10px 0;
   }
 
-  .course-card__btn--learn:hover {
-    opacity: 0.7;
-  }
+  .course-card__btn--learn:hover { opacity: 0.7; }
 
   .course-card__btn--cart {
     background: var(--color-red);
@@ -990,13 +948,8 @@
     padding: 10px 20px;
   }
 
-  .course-card__btn--cart:hover {
-    background: var(--color-red-hover);
-  }
-  .course-card__btn--cart:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-  }
+  .course-card__btn--cart:hover { background: var(--color-red-hover); }
+  .course-card__btn--cart:disabled { opacity: 0.6; cursor: not-allowed; }
 
   .courses-footer {
     @apply bg-red py-20 text-center px-6 mt-20;
@@ -1020,7 +973,7 @@
     @apply col-span-full text-center py-20 text-text-muted text-[15px];
   }
 
-  /* ── SHARED PAGE HEADER ──────────────────────────── */
+    /* ── SHARED PAGE HEADER ──────────────────────────── */
 
   .page-header {
     @apply pt-15.5 pb-14 text-center;
@@ -1168,7 +1121,7 @@
 
   .sidebar-widget__title::before {
     @apply block flex-shrink-0;
-    content: "";
+    content: '';
     width: calc(var(--spacing) * 8);
     height: 1px;
     background-color: var(--color-red);
@@ -1454,9 +1407,8 @@
     margin-right: calc(var(--spacing) * 4);
     transform: translateY(-8px);
     opacity: 0;
-    transition:
-      transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 220ms ease;
+    transition: transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 220ms ease;
   }
 
   .cart-overlay.is-open .cart-modal {
@@ -1559,9 +1511,8 @@
     opacity: 0;
     max-width: calc(100vw - calc(var(--spacing) * 8));
     width: calc(var(--spacing) * 120);
-    transition:
-      transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 350ms ease;
+    transition: transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 350ms ease;
   }
 
   .order-toast.is-visible {
