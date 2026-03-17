@@ -1,6 +1,6 @@
 import { NAV_LINKS } from "./config.js";
 import { createEl } from "./utils.js";
-import { updateCartBadge } from "./cart.js";
+import { updateCartBadge, openCartPopup } from "./cart.js";
 
 export function renderNavLinks() {
   const nav = document.getElementById("navbar-nav");
@@ -94,4 +94,11 @@ export function initCart() {
   }
 
   updateCartBadge();
+
+  // Wire the cart button to open the popup
+  const cartBtn = document.getElementById("navbar-cart-button");
+  cartBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openCartPopup();
+  });
 }

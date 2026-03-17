@@ -2,8 +2,17 @@ import { data } from "../../tokimahery.data.js";
 import { createEl } from "../utils.js";
 import { cart, addToCart } from "../cart.js";
 
-// Lang map without emoji for badges
 const LANG_CODE = { en: "EN", fr: "FR", mg: "MG" };
+
+const LEVEL_CLASS = {
+  beginner: "course-card__level--beginner",
+  intermediate: "course-card__level--intermediate",
+  advanced: "course-card__level--advanced",
+};
+
+function formatPriceMGA(n) {
+  return "MGA " + n.toLocaleString("fr-MG");
+}
 
 function buildCourseCard(course) {
   const card = createEl("article", "course-card");
@@ -13,8 +22,10 @@ function buildCourseCard(course) {
   const img = createEl("img", "course-card__image");
   img.src = course.thumbnail;
   img.alt = course.title;
+  img.loading = "lazy";
   imgWrap.appendChild(img);
 
+  // Lang + tech badges
   const badges = createEl("div", "course-card__badges");
   badges.appendChild(
     createEl(
@@ -29,9 +40,7 @@ function buildCourseCard(course) {
     ),
   );
   imgWrap.appendChild(badges);
-  imgWrap.appendChild(
-    createEl("span", "course-card__level", course.level.toLowerCase()),
-  );
+  imgWrap.appendChild(createEl("span", "course-card__level", course.level.toLowerCase()));
   card.appendChild(imgWrap);
 
   // — Body —
@@ -72,10 +81,6 @@ function buildCourseCard(course) {
   body.appendChild(actions);
   card.appendChild(body);
   return card;
-}
-
-function formatPriceMGA(n) {
-  return "MGA " + n.toLocaleString("fr-MG");
 }
 
 export function initCoursesPage() {
@@ -183,31 +188,23 @@ export function initCoursesPage() {
   // — Clear all —
   document.getElementById("clear-all")?.addEventListener("click", () => {
     activeLangs.clear();
-    document
-      .querySelectorAll(".flag-btn")
-      .forEach((b) => b.classList.remove("active"));
+    document.querySelectorAll(".flag-btn").forEach(b => b.classList.remove("active"));
 
-    activeTech = "all";
+    activeTech  = "all";
     activeLevel = "all";
-    document.getElementById("tech-select") &&
-      (document.getElementById("tech-select").value = "all");
-    document.getElementById("level-select") &&
-      (document.getElementById("level-select").value = "all");
+    document.getElementById("tech-select")  && (document.getElementById("tech-select").value   = "all");
+    document.getElementById("level-select") && (document.getElementById("level-select").value  = "all");
 
     minPrice = 0;
     maxPrice = 300_000;
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 300_000;
-    if (fill) {
-      fill.style.left = "0%";
-      fill.style.width = "100%";
-    }
+    if (fill)     { fill.style.left = "0%"; fill.style.width = "100%"; }
     if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
 
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
-
     render();
   });
 
