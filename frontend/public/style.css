@@ -1482,12 +1482,12 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transition: transform 250ms ease, box-shadow 250ms ease;
   }
   .course-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.13);
   }
   .course-card__image-wrapper {
     position: relative;
@@ -1910,7 +1910,7 @@
   .sidebar-widget__title::before {
     display: block;
     flex-shrink: 0;
-    content: '';
+    content: "";
     width: calc(var(--spacing) * 8);
     height: 1px;
     background-color: var(--color-red);
