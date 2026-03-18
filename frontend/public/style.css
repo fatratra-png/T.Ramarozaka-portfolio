@@ -1755,13 +1755,14 @@
   .blog-page__container {
     margin-inline: auto;
     width: 100%;
-    background-color: var(--color-white);
+    background-color: var(--color-bg-warm);
   }
   .blog-layout {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     align-items: flex-start;
     gap: calc(var(--spacing) * 14);
+    background-color: var(--color-white);
     @media (width < 72rem) {
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }

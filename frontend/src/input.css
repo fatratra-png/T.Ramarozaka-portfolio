@@ -1052,12 +1052,12 @@
   }
 
   .blog-page__container {
-    @apply mx-auto w-full bg-white;
+    @apply mx-auto w-full bg-bg-warm;
   }
 
   /* Main area + sticky sidebar */
   .blog-layout {
-    @apply grid grid-cols-12 gap-14 items-start max-[72rem]:grid-cols-1 lg:px-30 lg:pt-10;
+    @apply bg-white grid grid-cols-12 gap-14 items-start max-[72rem]:grid-cols-1 lg:px-30 lg:pt-10;
   }
   .blog-main {
     @apply col-span-9;
