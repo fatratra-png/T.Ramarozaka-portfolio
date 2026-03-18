@@ -249,6 +249,15 @@
   .grow {
     flex-grow: 1;
   }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .py-15 {
+    padding-block: calc(var(--spacing) * 15);
+  }
   .text-center {
     text-align: center;
   }
@@ -1205,6 +1214,10 @@
       }
     }
   }
+  .inverted {
+    background-color: var(--color-white);
+    color: var(--color-red);
+  }
   .courses {
     background-color: #ffffff;
     padding-top: calc(var(--spacing) * 15.5);
@@ -1680,9 +1693,12 @@
     color: var(--color-text-muted);
   }
   .page-header {
+    margin-inline: auto;
+    background-color: var(--color-bg-warm);
     padding-top: calc(var(--spacing) * 15.5);
     padding-bottom: calc(var(--spacing) * 14);
     text-align: center;
+    max-width: calc(var(--spacing) * 200);
   }
   .page-header__eyebrow {
     margin-bottom: calc(var(--spacing) * 6);
@@ -1735,26 +1751,34 @@
     margin-top: calc(var(--spacing) * 20);
     min-height: 100vh;
     background-color: var(--color-bg-warm);
-    padding-bottom: calc(var(--spacing) * 24);
   }
   .blog-page__container {
     margin-inline: auto;
     width: 100%;
-    padding-inline: calc(var(--spacing) * 30);
+    background-color: var(--color-white);
   }
   .blog-layout {
     display: grid;
-    grid-template-columns: 1fr calc(var(--spacing) * 80);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     align-items: flex-start;
     gap: calc(var(--spacing) * 14);
     @media (width < 72rem) {
       grid-template-columns: repeat(1, minmax(0, 1fr));
     }
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 30);
+    }
+    @media (width >= 64rem) {
+      padding-top: calc(var(--spacing) * 10);
+    }
+  }
+  .blog-main {
+    grid-column: span 9 / span 9;
   }
   .blog-list {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--spacing) * 2);
+    gap: calc(var(--spacing) * 3);
   }
   .blog-post-row {
     display: flex;
@@ -1810,7 +1834,7 @@
     font-family: var(--font-body);
   }
   .blog-post-row__desc {
-    margin-bottom: calc(var(--spacing) * 18);
+    margin-bottom: calc(var(--spacing) * 20);
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -1837,7 +1861,8 @@
     letter-spacing: 0.02em;
   }
   .blog-pagination {
-    margin-top: calc(var(--spacing) * 10);
+    margin-top: calc(var(--spacing) * 12);
+    margin-bottom: calc(var(--spacing) * 8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1887,6 +1912,8 @@
     letter-spacing: 0.06em;
   }
   .blog-sidebar {
+    grid-column: span 3 / span 3;
+    margin-bottom: calc(var(--spacing) * 8);
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing) * 8);
@@ -1894,11 +1921,12 @@
     top: calc(var(--spacing) * 22);
   }
   .sidebar-widget {
+    border-radius: var(--radius-lg);
     border-style: var(--tw-border-style);
     border-width: 0px;
-    background-color: transparent;
-    padding: calc(var(--spacing) * 0);
-    border-radius: 0;
+    background-color: #fafbfa;
+    padding-inline: calc(var(--spacing) * 6);
+    padding-block: calc(var(--spacing) * 4);
   }
   .sidebar-widget__title {
     margin-bottom: calc(var(--spacing) * 5);
@@ -2287,19 +2315,19 @@
     }
   }
   .research-page {
+    margin-top: calc(var(--spacing) * 15.5);
     min-height: 100vh;
     background-color: var(--color-bg-warm);
-    padding-bottom: calc(var(--spacing) * 24);
   }
   .research-page__container {
     margin-inline: auto;
     width: 100%;
-    padding-inline: calc(var(--spacing) * 12);
-    max-width: calc(var(--spacing) * 200);
   }
   .papers-list {
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
+    max-width: calc(var(--spacing) * 200);
   }
   .paper-entry {
     padding-block: calc(var(--spacing) * 12);

@@ -526,7 +526,9 @@
            uppercase px-8 py-3 rounded-full border-2 border-white cursor-pointer
            hover:bg-white hover:text-red transition-all duration-200;
   }
-
+  .inverted {
+    @apply text-red bg-white;
+  }
   /* ── COURSES PAGE ────────────────────────────────── */
 
   .courses {
@@ -1014,7 +1016,8 @@
   /* ── SHARED PAGE HEADER ──────────────────────────── */
 
   .page-header {
-    @apply pt-15.5 pb-14 text-center;
+    @apply pt-15.5 pb-14 text-center bg-bg-warm mx-auto;
+    max-width: calc(var(--spacing) * 200);
   }
 
   .page-header__eyebrow {
@@ -1045,23 +1048,24 @@
   /* ── BLOG PAGE ───────────────────────────────────── */
 
   .blog-page {
-    @apply bg-bg-warm min-h-screen pb-24 mt-20;
+    @apply bg-bg-warm min-h-screen mt-20;
   }
 
   .blog-page__container {
-    @apply mx-auto w-full px-30;
+    @apply mx-auto w-full bg-white;
   }
 
   /* Main area + sticky sidebar */
   .blog-layout {
-    display: grid;
-    grid-template-columns: 1fr calc(var(--spacing) * 80);
-    @apply gap-14 items-start max-[72rem]:grid-cols-1;
+    @apply grid grid-cols-12 gap-14 items-start max-[72rem]:grid-cols-1 lg:px-30 lg:pt-10;
+  }
+  .blog-main {
+    @apply col-span-9;
   }
 
   /* ── Blog list (row per post) ── */
   .blog-list {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col gap-3;
   }
 
   .blog-post-row {
@@ -1096,7 +1100,7 @@
   }
 
   .blog-post-row__desc {
-    @apply text-[14px] leading-[1.7] text-text-muted mb-18 line-clamp-2;
+    @apply text-[14px] leading-[1.7] text-text-muted mb-20 line-clamp-2;
   }
 
   .blog-post-row__tags {
@@ -1114,7 +1118,7 @@
 
   /* ── Blog pagination ── */
   .blog-pagination {
-    @apply flex items-center justify-center gap-2 mt-10;
+    @apply flex items-center justify-center gap-2 mt-12 mb-8;
   }
 
   .blog-pagination__btn {
@@ -1134,15 +1138,14 @@
 
   /* ── Blog sidebar ── */
   .blog-sidebar {
-    @apply flex flex-col gap-8;
+    @apply flex flex-col gap-8 col-span-3 mb-8;
     position: sticky;
     top: calc(var(--spacing) * 22);
   }
 
   /* Borderless widget — title uses red-line prefix via ::before */
   .sidebar-widget {
-    @apply bg-transparent border-0 p-0;
-    border-radius: 0;
+    @apply bg-[#fafbfa] rounded-lg border-0 px-6 py-4;
   }
 
   .sidebar-widget__title {
