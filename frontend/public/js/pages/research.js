@@ -68,6 +68,6 @@ export function initResearchPage() {
     .getElementById("cta-button")
     ?.addEventListener(
       "click",
-      () => (location.href = RESEARCH_CTA_CONTENT.mailto),
+      () => (location.href = RESEARCH_CTA_CONTENT.page),
     );
 }

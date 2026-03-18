@@ -1586,4 +1586,201 @@
            bg-transparent border-0 cursor-pointer text-white/60
            hover:text-white transition-colors duration-150 mt-0.5;
   }
+  /* ── CONTACT PAGE ──────────────────────────────── */
+
+  .contact-hero {
+    @apply bg-bg-warm pt-38 pb-20;
+  }
+
+  .contact-hero__container {
+    @apply mx-auto w-full max-w-7xl px-12 max-lg:px-6;
+  }
+
+  .contact-hero__eyebrow {
+    @apply flex items-center gap-3 mb-8;
+  }
+
+  .contact-hero__eyebrow-line {
+    @apply block w-9 h-0.5 bg-red-dark;
+  }
+
+  .contact-hero__eyebrow-label {
+    @apply text-[11px] font-semibold tracking-[0.2em] uppercase text-red-dark;
+  }
+
+  .contact-hero__heading {
+    @apply font-display text-[80px] font-semibold leading-[1.05]
+           text-text-dark mb-7 max-lg:text-[52px];
+  }
+
+  .contact-hero__heading em {
+    @apply italic text-red;
+  }
+
+  .contact-hero__desc {
+    @apply text-base leading-[1.75] text-text-muted max-w-[54ch];
+  }
+
+  /* ── Contact section ── */
+
+  .contact-section {
+    @apply bg-bg-white py-24;
+  }
+
+  .contact-section__container {
+    @apply mx-auto w-full max-w-7xl px-12 gap-20 items-start;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+
+    @media (width < 64rem) {
+      @apply px-6 gap-14;
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Form ── */
+
+  .contact-form {
+    @apply flex flex-col gap-10;
+  }
+
+  .contact-form__row {
+    @apply grid grid-cols-2 gap-8 max-sm:grid-cols-1;
+  }
+
+  .contact-form__group {
+    @apply flex flex-col;
+  }
+
+  .contact-form__label {
+    @apply block text-[10px] font-semibold tracking-[0.2em] uppercase
+           text-text-light mb-2;
+  }
+
+  .contact-form__input,
+  .contact-form__select,
+  .contact-form__textarea {
+    @apply w-full bg-transparent border-b border-border text-[15px]
+           text-text-dark py-3 px-0 font-body outline-none
+           appearance-none rounded-none transition-colors duration-200;
+  }
+
+  .contact-form__input::placeholder,
+  .contact-form__textarea::placeholder {
+    @apply italic text-text-light;
+  }
+
+  .contact-form__input:focus,
+  .contact-form__select:focus,
+  .contact-form__textarea:focus {
+    @apply border-red;
+  }
+
+  .contact-form__select {
+    @apply cursor-pointer text-text-muted pr-6;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2378716c'%3E%3Cpath d='M8 10.5L3.5 6h9L8 10.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    background-size: 16px;
+  }
+
+  .contact-form__textarea {
+    @apply resize-none leading-[1.7];
+  }
+
+  .contact-form__submit {
+    @apply self-start cursor-pointer border-0 bg-red text-white font-body
+           text-[11px] font-semibold tracking-[0.2em] uppercase rounded-none
+           px-10 py-4 transition-colors duration-200 hover:bg-red-hover;
+  }
+
+  /* ── Sidebar ── */
+
+  .contact-sidebar {
+    @apply flex flex-col gap-12 sticky top-26;
+  }
+
+  .contact-sidebar__block-title {
+    @apply font-display text-2xl font-normal text-text-dark mb-6;
+  }
+
+  .contact-sidebar__details {
+    @apply flex flex-col gap-5;
+  }
+
+  .contact-sidebar__row {
+    @apply flex items-start gap-5;
+  }
+
+  .contact-sidebar__row-label {
+    @apply text-[10px] font-semibold tracking-[0.16em] uppercase
+           text-red flex-shrink-0 w-20 pt-[3px];
+  }
+
+  .contact-sidebar__row-value {
+    @apply text-[15px] leading-[1.6] text-text-muted no-underline
+           transition-colors duration-150 hover:text-red;
+  }
+
+  /* ── Socials ── */
+
+  .contact-sidebar__socials {
+    @apply flex items-center gap-5;
+  }
+
+  .contact-sidebar__social-link {
+    @apply flex items-center justify-center w-10 h-10 border border-border
+           rounded-full text-[15px] text-text-muted no-underline
+           transition-all duration-200
+           hover:border-red hover:text-red hover:bg-red/6;
+  }
+
+  /* ── Status card ── */
+
+  .contact-sidebar__status {
+    @apply bg-bg-warm p-7 border-l-2 border-l-red;
+  }
+
+  .contact-sidebar__status-badge {
+    @apply inline-flex items-center gap-2 text-[10px] font-semibold
+           tracking-[0.2em] uppercase text-red mb-4;
+  }
+
+  .contact-sidebar__status-dot {
+    @apply size-1.5 rounded-full bg-red;
+    animation: contact-status-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes contact-status-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .contact-sidebar__status-text {
+    @apply italic text-sm leading-[1.65] text-text-muted;
+  }
+
+  /* ── Success toast ── */
+
+  .contact-toast {
+    @apply fixed bottom-8 left-1/2 z-[200] bg-[#1a3a2a] text-white
+           flex items-center rounded gap-3 px-6 py-4 text-sm min-w-80
+           -translate-x-1/2 translate-y-[120%] opacity-0;
+    transition:
+      transform 350ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 350ms ease;
+  }
+
+  .contact-toast.is-visible {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .contact-toast__icon {
+    @apply text-lg;
+  }
 }

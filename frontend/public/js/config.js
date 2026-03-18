@@ -42,7 +42,7 @@ export const CTA_CONTENT = {
   subheading:
     "Whether you're looking for a course, a consultation, or a translation — let's talk.",
   buttonText: "Get in touch",
-  mailto: "mailto:toky@mail.hei.school",
+  page: "./contact.html",
 };
 
 export const RESEARCH_CTA_CONTENT = {
@@ -50,7 +50,7 @@ export const RESEARCH_CTA_CONTENT = {
   subheading:
     "Open to co-authoring, peer review, and academic consulting engagements.",
   buttonText: "Get in touch",
-  mailto: CTA_CONTENT.mailto,
+  page: CTA_CONTENT.page,
 };
 
 export const CARD_TAG_MODIFIERS = {
