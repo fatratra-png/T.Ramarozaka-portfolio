@@ -111,7 +111,6 @@ function renderYouTubeVideos(container) {
         <iframe
           src="https://www.youtube.com/embed/${id}"
           title="${title}"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
         ></iframe>
       </div>
