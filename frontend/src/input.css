@@ -1351,17 +1351,17 @@
   /* ── RESEARCH PAGE ───────────────────────────────── */
 
   .research-page {
-    @apply bg-bg-warm min-h-screen pb-24;
+    @apply bg-bg-warm min-h-screen  mt-15.5;
   }
 
   .research-page__container {
-    @apply mx-auto w-full px-12;
-    max-width: calc(var(--spacing) * 200);
+    @apply mx-auto w-full;
   }
 
   /* Flat list — no cards, just horizontal rule separators */
   .papers-list {
-    @apply flex flex-col;
+    @apply flex flex-col mx-auto;
+    max-width: calc(var(--spacing) * 200);
   }
 
   .paper-entry {
@@ -1383,13 +1383,13 @@
 
   /* Outlined tags — matches the video */
   .paper-entry__tag {
-    @apply border border-border text-text-dark text-[10px] font-semibold
-           px-3 py-1 rounded uppercase;
+    @apply bg-bg-warm text-gray-500 text-[10px] font-semibold
+           px-3 py-1 rounded-full uppercase;
     letter-spacing: 0.06em;
   }
 
   .paper-entry__date {
-    @apply text-[11px] font-semibold tracking-[0.14em] uppercase text-text-light
+    @apply text-[11px] font-semibold tracking-[0.14em] text-text-light
            whitespace-nowrap;
   }
 
@@ -1416,7 +1416,7 @@
 
   /* "📄 READ PDF" — plain red text link, no button */
   .paper-entry__read-link {
-    @apply inline-flex items-center gap-2 no-underline text-[11px] font-semibold
+    @apply inline-flex items-center gap-2 underline underline-offset-4 text-[11px] font-semibold
            tracking-[0.16em] uppercase text-red transition-opacity duration-150
            hover:opacity-65;
   }

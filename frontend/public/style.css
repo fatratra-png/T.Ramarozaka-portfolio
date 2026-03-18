@@ -2350,16 +2350,14 @@
     gap: calc(var(--spacing) * 2);
   }
   .paper-entry__tag {
-    border-radius: 0.25rem;
-    border-style: var(--tw-border-style);
-    border-width: 1px;
-    border-color: var(--color-border);
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-bg-warm);
     padding-inline: calc(var(--spacing) * 3);
     padding-block: calc(var(--spacing) * 1);
     font-size: 10px;
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-text-dark);
+    color: var(--color-gray-500);
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
@@ -2371,7 +2369,6 @@
     letter-spacing: 0.14em;
     white-space: nowrap;
     color: var(--color-text-light);
-    text-transform: uppercase;
   }
   .paper-entry__title {
     margin-bottom: calc(var(--spacing) * 3);
@@ -2414,7 +2411,8 @@
     letter-spacing: 0.16em;
     color: var(--color-red);
     text-transform: uppercase;
-    text-decoration-line: none;
+    text-decoration-line: underline;
+    text-underline-offset: 4px;
     transition-property: opacity;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));

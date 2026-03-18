@@ -45,6 +45,14 @@ export const CTA_CONTENT = {
   mailto: "mailto:toky@mail.hei.school",
 };
 
+export const RESEARCH_CTA_CONTENT = {
+  heading: "Interested in collaborating?",
+  subheading:
+    "Open to co-authoring, peer review, and academic consulting engagements.",
+  buttonText: "Get in touch",
+  mailto: CTA_CONTENT.mailto,
+};
+
 export const CARD_TAG_MODIFIERS = {
   Development: "home-courses__card-tag--development",
 };
