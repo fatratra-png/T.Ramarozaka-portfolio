@@ -1226,20 +1226,20 @@
     color: var(--color-red);
   }
   .courses {
-    background-color: #ffffff;
-    padding-top: calc(var(--spacing) * 15.5);
+    background-color: var(--color-white);
+    padding-top: calc(var(--spacing) * 35.5);
     padding-bottom: calc(var(--spacing) * 24);
   }
   .courses__container {
-    max-width: var(--container-7xl);
     margin-inline: auto;
     width: 100%;
+    max-width: var(--container-7xl);
     padding-inline: calc(var(--spacing) * 8);
     @media (width < 64rem) {
       padding-inline: calc(var(--spacing) * 4);
     }
     @media (width < 40rem) {
-      padding-inline: calc(var(--spacing) * 3);
+      padding-inline: calc(var(--spacing) * 12);
     }
   }
   .courses__header {
@@ -1269,12 +1269,14 @@
     text-transform: uppercase;
   }
   .courses__heading {
+    margin-bottom: calc(var(--spacing) * 4);
     font-family: var(--font-display);
     font-size: 52px;
-    font-weight: 400;
-    color: var(--color-text-dark);
+    --tw-leading: 1;
     line-height: 1;
-    margin-bottom: 16px;
+    --tw-font-weight: var(--font-weight-semibold);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-dark);
     @media (width < 64rem) {
       font-size: 40px;
     }
@@ -1411,6 +1413,10 @@
   .price-slider {
     flex: 1;
     height: 4px;
+    flex-grow: 0;
+    @media (width >= 64rem) {
+      width: calc(var(--spacing) * 47.5);
+    }
     appearance: none;
     background: #e0e0e0;
     border-radius: 9999px;
@@ -1438,8 +1444,8 @@
     font-size: 11px;
     font-weight: 700;
     color: var(--color-red);
-    min-width: 72px;
     text-align: right;
+    margin-left: 10px;
   }
   .search-group {
     display: flex;
@@ -2936,8 +2942,8 @@
     flex-shrink: 0;
     padding-top: 3px;
     font-size: 10px;
-    --tw-font-weight: var(--font-weight-semibold);
-    font-weight: var(--font-weight-semibold);
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
     --tw-tracking: 0.16em;
     letter-spacing: 0.16em;
     color: var(--color-red);

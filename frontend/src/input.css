@@ -532,22 +532,11 @@
   /* ── COURSES PAGE ────────────────────────────────── */
 
   .courses {
-    background-color: #ffffff;
-    padding-top: calc(var(--spacing) * 15.5);
-    padding-bottom: calc(var(--spacing) * 24);
+    @apply bg-white pt-35.5 pb-24;
   }
 
   .courses__container {
-    max-width: var(--container-7xl);
-    margin-inline: auto;
-    width: 100%;
-    padding-inline: calc(var(--spacing) * 8);
-    @media (width < 64rem) {
-      padding-inline: calc(var(--spacing) * 4);
-    }
-    @media (width < 40rem) {
-      padding-inline: calc(var(--spacing) * 3);
-    }
+    @apply max-w-7xl mx-auto w-full px-8 max-lg:px-4 max-sm:px-12;
   }
 
   .courses__header {
@@ -567,15 +556,7 @@
   }
 
   .courses__heading {
-    font-family: var(--font-display);
-    font-size: 52px;
-    font-weight: 400;
-    color: var(--color-text-dark);
-    line-height: 1;
-    margin-bottom: 16px;
-    @media (width < 64rem) {
-      font-size: 40px;
-    }
+    @apply font-display text-[52px] font-semibold text-text-dark leading-none mb-4 max-lg:text-[40px];
   }
 
   .courses__subtitle {
@@ -724,6 +705,7 @@
   .price-slider {
     flex: 1;
     height: 4px;
+    @apply lg:w-47.5 grow-0;
     appearance: none;
     background: #e0e0e0;
     border-radius: 9999px;
@@ -754,8 +736,8 @@
     font-size: 11px;
     font-weight: 700;
     color: var(--color-red);
-    min-width: 72px;
     text-align: right;
+    margin-left: 10px;
   }
 
   .search-group {
@@ -1713,7 +1695,7 @@
   }
 
   .contact-sidebar__row-label {
-    @apply text-[10px] font-semibold tracking-[0.16em] uppercase
+    @apply text-[10px] font-bold tracking-[0.16em] uppercase
            text-red flex-shrink-0 w-20 pt-[3px];
   }
 
