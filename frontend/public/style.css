@@ -1236,6 +1236,9 @@
   .inverted {
     background-color: var(--color-white);
     color: var(--color-red);
+    @media (width < 40rem) {
+      display: none;
+    }
   }
   .courses {
     background-color: var(--color-white);
@@ -1882,7 +1885,10 @@
     }
   }
   .blog-main {
-    grid-column: span 9 / span 9;
+    grid-column: span 12 / span 12;
+    @media (width >= 64rem) {
+      grid-column: span 9 / span 9;
+    }
   }
   .blog-list {
     display: flex;
@@ -2040,13 +2046,16 @@
   .blog-sidebar {
     position: sticky;
     top: calc(var(--spacing) * 22);
-    grid-column: span 3 / span 3;
+    grid-column: span 12 / span 12;
     margin-bottom: calc(var(--spacing) * 8);
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing) * 8);
     @media (width < 72rem) {
       position: static;
+    }
+    @media (width >= 64rem) {
+      grid-column: span 3 / span 3;
     }
   }
   .sidebar-widget {
@@ -2245,7 +2254,7 @@
     margin-inline: auto;
     width: 100%;
     max-width: var(--container-7xl);
-    padding-inline: calc(var(--spacing) * 12);
+    padding-inline: calc(var(--spacing) * 10);
   }
   .testi-section {
     margin-bottom: calc(var(--spacing) * 14);
@@ -2461,12 +2470,18 @@
     display: flex;
     max-width: calc(var(--spacing) * 200);
     flex-direction: column;
+    @media (width < 40rem) {
+      padding-inline: calc(var(--spacing) * 10);
+    }
   }
   .paper-entry {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
     border-color: var(--color-border);
     padding-block: calc(var(--spacing) * 12);
+    @media (width < 40rem) {
+      padding-block: calc(var(--spacing) * 8);
+    }
   }
   .paper-entry:first-child {
     border-top-style: var(--tw-border-style);
@@ -2507,6 +2522,9 @@
     letter-spacing: 0.14em;
     white-space: nowrap;
     color: var(--color-text-light);
+    @media (width < 40rem) {
+      white-space: normal;
+    }
   }
   .paper-entry__title {
     margin-bottom: calc(var(--spacing) * 3);
@@ -2538,6 +2556,9 @@
     --tw-leading: 1.85;
     line-height: 1.85;
     color: var(--color-text-muted);
+    @media (width < 40rem) {
+      margin-bottom: calc(var(--spacing) * 5);
+    }
   }
   .paper-entry__read-link {
     display: inline-flex;

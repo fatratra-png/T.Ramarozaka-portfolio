@@ -503,7 +503,7 @@
            hover:bg-white hover:text-red transition-all duration-200;
   }
   .inverted {
-    @apply text-red bg-white;
+    @apply text-red bg-white max-sm:hidden;
   }
   /* ── COURSES PAGE ────────────────────────────────── */
 
@@ -853,7 +853,7 @@
            max-[72rem]:px-5 max-[72rem]:pt-8 max-[72rem]:pb-8 max-[72rem]:gap-8;
   }
   .blog-main {
-    @apply col-span-9;
+    @apply lg:col-span-9 col-span-12;
   }
 
   /* ── Blog list (row per post) ── */
@@ -931,7 +931,7 @@
 
   /* ── Blog sidebar ── */
   .blog-sidebar {
-    @apply flex flex-col gap-8 col-span-3 mb-8 sticky top-22
+    @apply flex flex-col gap-8 lg:col-span-3 col-span-12 mb-8 sticky top-22
            max-[72rem]:static;
   }
 
@@ -1025,7 +1025,7 @@
   }
 
   .testi-page__container {
-    @apply max-w-7xl mx-auto w-full px-12;
+    @apply max-w-7xl mx-auto w-full px-10;
   }
 
   /* Role section block */
@@ -1139,11 +1139,13 @@
 
   /* Flat list — no cards, just horizontal rule separators */
   .papers-list {
-    @apply flex flex-col mx-auto max-w-200;
+    @apply flex flex-col mx-auto max-w-200
+           max-sm:px-10;
   }
 
   .paper-entry {
-    @apply py-12 border-b border-border;
+    @apply py-12 border-b border-border
+           max-sm:py-8;
   }
 
   .paper-entry:first-child {
@@ -1166,7 +1168,7 @@
 
   .paper-entry__date {
     @apply text-[11px] font-semibold tracking-[0.14em] text-text-light
-           whitespace-nowrap;
+           whitespace-nowrap max-sm:whitespace-normal;
   }
 
   .paper-entry__title {
@@ -1184,7 +1186,8 @@
   }
 
   .paper-entry__abstract {
-    @apply text-[14px] leading-[1.85] text-text-muted mb-7;
+    @apply text-[14px] leading-[1.85] text-text-muted mb-7
+           max-sm:mb-5;
   }
 
   /* "📄 READ PDF" — plain red text link, no button */
