@@ -682,21 +682,13 @@
   /* ── COURSES GRID ── */
 
   .courses__grid {
-    @apply grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1;
+    @apply grid grid-cols-4 gap-10 max-lg:grid-cols-2 max-sm:grid-cols-1;
   }
 
   /* ── COURSE CARD ── */
 
   .course-card {
-    @apply bg-white rounded-[10px] overflow-hidden flex flex-col
-           shadow-[0_2px_8px_rgba(0,0,0,0.08)];
-    transition:
-      transform 250ms ease,
-      box-shadow 250ms ease;
-  }
-
-  .course-card:hover {
-    @apply -translate-y-[3px] shadow-[0_6px_20px_rgba(0,0,0,0.13)];
+    @apply bg-white rounded-[10px] overflow-hidden flex flex-col;
   }
 
   .course-card__image-wrapper {
@@ -739,11 +731,11 @@
   }
 
   .course-card__body {
-    @apply p-[20px] pb-[22px] flex-1 flex flex-col;
+    @apply py-[20px] flex-1 flex flex-col;
   }
 
   .course-card__title {
-    @apply font-display not-italic text-[20px] font-semibold
+    @apply not-italic text-2xl font-normal
            leading-[1.25] text-red mb-[5px];
   }
 
@@ -756,7 +748,7 @@
   }
 
   .course-card__actions {
-    @apply flex items-center justify-between mt-4;
+    @apply flex items-center justify-center gap-2 mt-4;
   }
 
   .course-card__btn {
@@ -764,7 +756,7 @@
   }
 
   .course-card__btn--learn {
-    @apply bg-transparent border-0 text-red py-[10px] px-0;
+    @apply bg-transparent border-0 text-red py-4 px-8 shadow-lg rounded-lg;
   }
 
   .course-card__btn--learn:hover {
@@ -772,7 +764,7 @@
   }
 
   .course-card__btn--cart {
-    @apply bg-red text-white border-0 rounded-lg py-[10px] px-5;
+    @apply bg-red text-white border-0 rounded-lg py-4 px-8 shadow-sm;
   }
 
   .course-card__btn--cart:hover {
