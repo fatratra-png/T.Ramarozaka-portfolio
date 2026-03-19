@@ -511,7 +511,7 @@
     @apply bg-bg-warm pt-35.5 mx-auto;
   }
   .courses-main {
-    @apply bg-white pt-8 pb-24;
+    @apply bg-white pt-6 pb-24;
   }
   .courses__container > * {
     @apply w-full lg:px-40 max-sm:px-10;
@@ -544,7 +544,7 @@
   /* ── FILTERS BAR ── */
 
   .filters-bar {
-    @apply bg-bg-warm rounded-xl flex flex-wrap gap-8 justify-between items-start py-4 px-8 mb-6;
+    @apply bg-bg-warm rounded-xl flex flex-wrap gap-8 justify-between items-start py-4 px-8;
     @media (width < 64rem) {
       @apply flex-col gap-4 px-4 -mx-4;
     }
@@ -676,7 +676,7 @@
 
   .courses-count {
     @apply text-[11px] font-semibold tracking-[0.14em] uppercase
-           text-text-muted mb-6;
+           text-text-muted mb-6 pt-4;
   }
 
   /* ── COURSES GRID ── */

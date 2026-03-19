@@ -262,8 +262,18 @@
   .rounded-lg {
     border-radius: var(--radius-lg);
   }
+  .border-b {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 1px;
+  }
+  .border-border {
+    border-color: var(--color-border);
+  }
   .bg-white {
     background-color: var(--color-white);
+  }
+  .py-6 {
+    padding-block: calc(var(--spacing) * 6);
   }
   .py-15 {
     padding-block: calc(var(--spacing) * 15);
@@ -1248,7 +1258,7 @@
   }
   .courses-main {
     background-color: var(--color-white);
-    padding-top: calc(var(--spacing) * 8);
+    padding-top: calc(var(--spacing) * 6);
     padding-bottom: calc(var(--spacing) * 24);
   }
   .courses__container > * {
@@ -1308,7 +1318,6 @@
     color: var(--color-text-muted);
   }
   .filters-bar {
-    margin-bottom: calc(var(--spacing) * 6);
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -1542,6 +1551,7 @@
   }
   .courses-count {
     margin-bottom: calc(var(--spacing) * 6);
+    padding-top: calc(var(--spacing) * 4);
     font-size: 11px;
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
@@ -3234,6 +3244,11 @@
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
 }
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-leading {
   syntax: "*";
   inherits: false;
@@ -3249,11 +3264,6 @@
 @property --tw-duration {
   syntax: "*";
   inherits: false;
-}
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-ease {
   syntax: "*";
@@ -3362,11 +3372,11 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
+      --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
       --tw-duration: initial;
-      --tw-border-style: solid;
       --tw-ease: initial;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
