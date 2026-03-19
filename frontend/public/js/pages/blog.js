@@ -98,9 +98,11 @@ function renderBlogList() {
 
   if (pagination) renderPagination(pagination, sorted.length, currentPage);
 
-  // Scroll to top of blog list
+  // Defer scroll to avoid forcing layout before stylesheets are fully applied
   if (currentPage > 1)
-    list.scrollIntoView({ behavior: "smooth", block: "start" });
+    requestAnimationFrame(() =>
+      list.scrollIntoView({ behavior: "smooth", block: "start" }),
+    );
 }
 
 function renderYouTubeVideos(container) {
@@ -109,9 +111,11 @@ function renderYouTubeVideos(container) {
     wrap.innerHTML = `
       <div class="yt-iframe-wrap">
         <iframe
-          src="https://www.youtube.com/embed/${id}"
+          src="https://www.youtube-nocookie.com/embed/${id}"
           title="${title}"
+          loading="lazy"
           allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
       </div>
       <p class="yt-iframe-title">${title}</p>`;
