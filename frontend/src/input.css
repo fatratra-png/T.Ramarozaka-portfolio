@@ -425,7 +425,7 @@
   .home-courses__cta-link {
     @apply inline-flex items-center gap-2
            text-[11px] font-semibold tracking-[0.18em] uppercase text-red
-           no-underline hover:opacity-60 transition-opacity duration-150;
+           underline underline-offset-4 hover:opacity-60 transition-opacity duration-150;
   }
 
   /* ── EXPERIENCE ──────────────────────────────────── */
@@ -508,11 +508,13 @@
   /* ── COURSES PAGE ────────────────────────────────── */
 
   .courses {
-    @apply bg-white pt-35.5 pb-24;
+    @apply bg-bg-warm pt-35.5 mx-auto;
   }
-
-  .courses__container {
-    @apply max-w-7xl mx-auto w-full px-8 max-lg:px-4 max-sm:px-12;
+  .courses-main {
+    @apply bg-white pt-8 pb-24;
+  }
+  .courses__container > * {
+    @apply w-full lg:px-40 max-sm:px-10;
   }
 
   .courses__header {
@@ -542,13 +544,9 @@
   /* ── FILTERS BAR ── */
 
   .filters-bar {
-    @apply bg-white border-t border-b border-border-light
-           flex flex-wrap gap-8 items-start py-4 px-8 -mx-8 mb-6;
+    @apply bg-bg-warm rounded-xl flex flex-wrap gap-8 justify-between items-start py-4 px-8 mb-6;
     @media (width < 64rem) {
-      @apply gap-4 px-4 -mx-4;
-    }
-    @media (width < 40rem) {
-      @apply flex-col gap-3 px-3 -mx-3;
+      @apply flex-col gap-4 px-4 -mx-4;
     }
   }
 
