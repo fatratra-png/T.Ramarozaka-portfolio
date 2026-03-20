@@ -6,66 +6,22 @@
     <title>Tokimahery Ramarozaka — Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
   </head>
   <body>
     <header class="navbar" id="navbar">
       <a class="navbar__brand" href="index.html">
-        <img src="assets/logo.png" alt="Logo" class="h-12.5" />
+        <span class="navbar__brand-name">T. Ramarozaka</span>
+        <span class="navbar__brand-tagline">consultant · teacher · dev</span>
       </a>
-
-      <nav
-        class="navbar__nav"
-        id="navbar-nav"
-        aria-label="Primary navigation"
-      ></nav>
-
-      <!-- Hamburger (mobile only) -->
-      <button
-        class="navbar__hamburger"
-        id="navbar-hamburger"
-        aria-label="Toggle navigation"
-        aria-expanded="false"
-        aria-controls="navbar-nav"
-      >
-        <span class="navbar__hamburger-bar"></span>
-        <span class="navbar__hamburger-bar"></span>
-        <span class="navbar__hamburger-bar"></span>
-      </button>
-
+      <nav class="navbar__nav" id="navbar-nav" aria-label="Primary navigation"></nav>
       <div class="navbar__controls">
-        <input
-          class="navbar__search-input"
-          type="search"
-          placeholder="Search anything..."
-          id="navbar-search"
-          aria-label="Search"
-        />
+        <input class="navbar__search-input" type="search" placeholder="Search anything..." aria-label="Search" />
         <div class="navbar__cart-wrapper" id="navbar-cart-wrapper">
-          <button
-            class="navbar__cart-button"
-            id="navbar-cart-button"
-            aria-label="Shopping cart"
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
-            </svg>
+          <button class="navbar__cart-button" id="navbar-cart-button" aria-label="Shopping cart">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
           </button>
         </div>
       </div>
@@ -79,12 +35,8 @@
             <span class="page-header__eyebrow-label">Writing</span>
             <span class="page-header__eyebrow-line"></span>
           </div>
-          <h1 class="page-header__heading">
-            The <em class="page-header__heading-italic">blog</em>
-          </h1>
-          <p class="page-header__subtitle">
-            Thoughts on education, research, software development and language.
-          </p>
+          <h1 class="page-header__heading">Blog &amp; <em class="page-header__heading-italic">Articles</em></h1>
+          <p class="page-header__subtitle">Thoughts on education, research, software development and language.</p>
         </div>
 
         <div class="blog-layout">
@@ -100,43 +52,19 @@
             <div class="sidebar-widget">
               <h3 class="sidebar-widget__title">Newsletter</h3>
               <div class="newsletter-widget">
-                <p class="newsletter-widget__text">
-                  Get new articles straight to your inbox. No spam, ever.
-                </p>
-                <input
-                  type="email"
-                  class="newsletter-widget__input"
-                  placeholder="your@email.com"
-                />
-                <button class="newsletter-widget__btn">Subscribe</button>
+                <p class="newsletter-widget__text">Get new articles straight to your inbox. No spam, ever.</p>
+                <input type="email" class="newsletter-widget__input" id="newsletter-email" placeholder="your@email.com" />
+                <button class="newsletter-widget__btn" id="newsletter-btn">Subscribe</button>
               </div>
             </div>
             <div class="sidebar-widget">
               <h3 class="sidebar-widget__title">On YouTube</h3>
               <p class="yt-sidebar-label">Latest videos from the channel.</p>
               <div id="youtube-videos" class="yt-list"></div>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener"
-                class="yt-view-all"
-                >View all videos →</a
-              >
+              <a href="https://youtube.com" target="_blank" rel="noopener" class="yt-view-all">View all videos →</a>
             </div>
           </aside>
         </div>
-      </div>
-    </section>
-    <section class="cta-banner" id="cta-banner" aria-labelledby="cta-heading">
-      <h2 class="cta-banner__heading" id="cta-heading">Want to go deeper?</h2>
-      <p class="cta-banner__subheading" id="cta-subheading">
-        Explore the courses or get in touch to get a consultation
-      </p>
-      <div class="flex gap-4">
-        <button class="cta-banner__button inverted" id="cta-button">
-          Browse courses
-        </button>
-        <button class="cta-banner__button" id="cta-button">Collaborate</button>
       </div>
     </section>
   </body>
