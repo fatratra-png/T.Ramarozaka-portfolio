@@ -26,6 +26,7 @@ export function initHeroSection() {
       a.innerHTML = svg;
       return a;
     },
+    
   );
 
   document
