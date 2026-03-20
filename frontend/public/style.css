@@ -3245,6 +3245,35 @@
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
   }
+  .nl-toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(16px);
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 200ms ease, transform 200ms ease;
+    z-index: 9999;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .nl-toast--visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  .newsletter-widget__success {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-red);
+    line-height: 1.5;
+  }
 }
 @property --tw-border-style {
   syntax: "*";
