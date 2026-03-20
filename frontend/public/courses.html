@@ -15,9 +15,8 @@
   </head>
   <body>
     <header class="navbar" id="navbar">
-      <a class="navbar__brand" href="index.html">
-        <span class="navbar__brand-name">T. Ramarozaka</span>
-        <span class="navbar__brand-tagline">consultant · teacher · dev</span>
+      <a class="navbar__brand" href="index.html"
+        ><img src="assets/logo.png" alt="Logo" class="h-12.5" />
       </a>
       <nav
         class="navbar__nav"
@@ -94,82 +93,84 @@
             research.<br />Find the one that fits your level and goals.
           </p>
         </div>
-
-        <div class="filters-bar">
-          <div class="filter-group">
-            <span class="filter-label">LANGUAGE</span>
-            <div class="language-filters" id="language-filters">
-              <button data-lang="mg" class="flag-btn">🇲🇬</button>
-              <button data-lang="fr" class="flag-btn">🇫🇷</button>
-              <button data-lang="en" class="flag-btn">🇬🇧</button>
-            </div>
-          </div>
-          <div class="filter-group">
-            <span class="filter-label">TECHNOLOGY</span>
-            <select id="tech-select" class="select-filter">
-              <option value="all">All technologies</option>
-              <option value="javascript">JavaScript</option>
-              <option value="java">Java</option>
-              <option value="sql">SQL</option>
-              <option value="python">Python</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <span class="filter-label">LEVEL</span>
-            <select id="level-select" class="select-filter">
-              <option value="all">All levels</option>
-              <option value="beginner">Beginner</option>
-              <option value="intermediate">Intermediate</option>
-              <option value="advanced">Advanced</option>
-            </select>
-          </div>
-          <div class="price-group filter-group">
-            <span class="filter-label">PRICE RANGE</span>
-            <div class="price-sliders">
-              <div class="price-slider-row">
-                <span class="price-slider-label">Min</span>
-                <input
-                  type="range"
-                  id="min-price"
-                  min="0"
-                  max="300000"
-                  value="0"
-                  step="5000"
-                  class="price-slider"
-                />
-                <span id="min-price-val" class="price-slider-val">0 Ar</span>
-              </div>
-              <div class="price-slider-row">
-                <span class="price-slider-label">Max</span>
-                <input
-                  type="range"
-                  id="max-price"
-                  min="0"
-                  max="300000"
-                  value="300000"
-                  step="5000"
-                  class="price-slider"
-                />
-                <span id="max-price-val" class="price-slider-val"
-                  >300 000 Ar</span
-                >
+        <div class="filter_wrapper bg-white py-6 border-b border-border bg">
+          <div class="filters-bar">
+            <div class="filter-group">
+              <span class="filter-label">LANGUAGE</span>
+              <div class="language-filters" id="language-filters">
+                <button data-lang="mg" class="flag-btn">🇲🇬</button>
+                <button data-lang="fr" class="flag-btn">🇫🇷</button>
+                <button data-lang="en" class="flag-btn">🇬🇧</button>
               </div>
             </div>
+            <div class="filter-group">
+              <span class="filter-label">TECHNOLOGY</span>
+              <select id="tech-select" class="select-filter">
+                <option value="all">All technologies</option>
+                <option value="javascript">JavaScript</option>
+                <option value="java">Java</option>
+                <option value="sql">SQL</option>
+                <option value="python">Python</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">LEVEL</span>
+              <select id="level-select" class="select-filter">
+                <option value="all">All levels</option>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
+            </div>
+            <div class="price-group filter-group">
+              <span class="filter-label">PRICE RANGE</span>
+              <div class="price-sliders">
+                <div class="price-slider-row">
+                  <span class="price-slider-label">Min</span>
+                  <input
+                    type="range"
+                    id="min-price"
+                    min="0"
+                    max="300000"
+                    value="0"
+                    step="5000"
+                    class="price-slider"
+                  />
+                  <span id="min-price-val" class="price-slider-val">0 Ar</span>
+                </div>
+                <div class="price-slider-row">
+                  <span class="price-slider-label">Max</span>
+                  <input
+                    type="range"
+                    id="max-price"
+                    min="0"
+                    max="300000"
+                    value="300000"
+                    step="5000"
+                    class="price-slider"
+                  />
+                  <span id="max-price-val" class="price-slider-val"
+                    >300 000 Ar</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="search-group filter-group">
+              <span class="filter-label">SEARCH</span>
+              <input
+                id="search-input"
+                type="text"
+                class="search-input"
+                placeholder="Keywords..."
+              />
+            </div>
+            <button id="clear-all" class="clear-all">CLEAR ALL</button>
           </div>
-          <div class="search-group filter-group">
-            <span class="filter-label">SEARCH</span>
-            <input
-              id="search-input"
-              type="text"
-              class="search-input"
-              placeholder="Keywords..."
-            />
-          </div>
-          <button id="clear-all" class="clear-all">CLEAR ALL</button>
         </div>
-
-        <p class="courses-count" id="courses-count">9 COURSES FOUND</p>
-        <div class="courses__grid" id="courses-grid"></div>
+        <div class="courses-main">
+          <p class="courses-count" id="courses-count">9 COURSES FOUND</p>
+          <div class="courses__grid" id="courses-grid"></div>
+        </div>
       </div>
     </section>
 

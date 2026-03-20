@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tokimahery Ramarozaka — Contact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="main.js" type="module"></script>
+  </head>
+
+  <body>
+    <!-- ════════════════════════════════
+       NAVBAR (same as all pages – populated by main.js)
+    ════════════════════════════════ -->
+    <header class="navbar" id="navbar">
+      <a class="navbar__brand" href="index.html">
+        <span class="navbar__brand-name">T. Ramarozaka</span>
+        <span class="navbar__brand-tagline">consultant · teacher · dev</span>
+      </a>
+
+      <nav
+        class="navbar__nav"
+        id="navbar-nav"
+        aria-label="Primary navigation"
+      ></nav>
+
+      <button
+        class="navbar__hamburger"
+        id="navbar-hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navbar-nav"
+      >
+        <span class="navbar__hamburger-bar"></span>
+        <span class="navbar__hamburger-bar"></span>
+        <span class="navbar__hamburger-bar"></span>
+      </button>
+
+      <div class="navbar__controls">
+        <input
+          class="navbar__search-input"
+          type="search"
+          placeholder="Search anything..."
+          id="navbar-search"
+          aria-label="Search"
+        />
+        <div class="navbar__cart-wrapper" id="navbar-cart-wrapper">
+          <button
+            class="navbar__cart-button"
+            id="navbar-cart-button"
+            aria-label="Shopping cart"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 01-8 0" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ════════════════════════════════
+       CONTACT HERO
+    ════════════════════════════════ -->
+    <section class="contact-hero" aria-labelledby="contact-heading">
+      <div class="contact-hero__container mx-auto">
+        <div class="contact-hero__eyebrow">
+          <span class="contact-hero__eyebrow-line"></span>
+          <span class="contact-hero__eyebrow-label">Contact</span>
+          <span class="contact-hero__eyebrow-line"></span>
+        </div>
+
+        <h1 class="contact-hero__heading" id="contact-heading">
+          Get in <em>touch</em>
+        </h1>
+
+        <p class="contact-hero__desc">
+          Whether you're looking for a professional consultation, interested in
+          one of my courses, or want to discuss a potential software development
+          project — I'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════
+       CONTACT FORM + SIDEBAR
+    ════════════════════════════════ -->
+    <section class="contact-section" aria-label="Contact form and details">
+      <div class="contact-section__container">
+        <!-- LEFT: form -->
+        <form
+          class="contact-form"
+          id="contact-form"
+          novalidate
+          aria-label="Send a message"
+        >
+          <div class="contact-form__row">
+            <div class="contact-form__group">
+              <label class="contact-form__label" for="name">Your Name</label>
+              <input
+                class="contact-form__input"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="John Doe"
+                required
+                autocomplete="name"
+              />
+            </div>
+
+            <div class="contact-form__group">
+              <label class="contact-form__label" for="email"
+                >Email Address</label
+              >
+              <input
+                class="contact-form__input"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="john@example.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <div class="contact-form__group">
+            <label class="contact-form__label" for="subject">Subject</label>
+            <select class="contact-form__select" id="subject" name="subject">
+              <option value="" disabled selected>Choose a topic…</option>
+              <option value="collaboration">Collaboration Inquiry</option>
+              <option value="course">Course Enrollment</option>
+              <option value="consulting">Professional Consulting</option>
+              <option value="translation">Translation Request</option>
+              <option value="research">Research &amp; Academic</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="contact-form__group">
+            <label class="contact-form__label" for="message"
+              >Your Message</label
+            >
+            <textarea
+              class="contact-form__textarea"
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="How can I help you?"
+              required
+            ></textarea>
+          </div>
+
+          <div>
+            <button class="contact-form__submit rounded-lg" type="submit">
+              Send Message
+            </button>
+          </div>
+        </form>
+
+        <!-- RIGHT: sidebar info -->
+        <aside class="contact-sidebar" aria-label="Contact information">
+          <!-- Details -->
+          <div>
+            <h2 class="contact-sidebar__block-title">Contact Details</h2>
+            <div class="contact-sidebar__details">
+              <div class="contact-sidebar__row">
+                <span class="contact-sidebar__row-label">Email</span>
+                <a
+                  class="contact-sidebar__row-value"
+                  href="mailto:toky@mail.hei.school"
+                  >toky@mail.hei.school</a
+                >
+              </div>
+              <div class="contact-sidebar__row">
+                <span class="contact-sidebar__row-label">Location</span>
+                <span class="contact-sidebar__row-value"
+                  >Antananarivo, Madagascar<br />Available remote
+                  worldwide</span
+                >
+              </div>
+              <div class="contact-sidebar__row">
+                <span class="contact-sidebar__row-label">Response</span>
+                <span class="contact-sidebar__row-value">Within 48 hours</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Networks -->
+          <div>
+            <h2 class="contact-sidebar__block-title">Social Networks</h2>
+            <div class="contact-sidebar__socials">
+              <a
+                class="contact-sidebar__social-link"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="Facebook"
+              >
+                <i class="fa-brands fa-facebook-f"></i>
+              </a>
+              <a
+                class="contact-sidebar__social-link"
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="YouTube"
+              >
+                <i class="fa-brands fa-youtube"></i>
+              </a>
+              <a
+                class="contact-sidebar__social-link"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+              >
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                class="contact-sidebar__social-link"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="LinkedIn"
+              >
+                <i class="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Status -->
+          <div class="contact-sidebar__status">
+            <div class="contact-sidebar__status-badge">
+              <span class="contact-sidebar__status-dot"></span>
+              Current Status
+            </div>
+            <p class="contact-sidebar__status-text">
+              Available for selected consultancy projects and academic
+              collaborations starting Q2 2026.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Success toast -->
+    <div
+      class="contact-toast"
+      id="contact-toast"
+      role="status"
+      aria-live="polite"
+    >
+      <span class="contact-toast__icon">✓</span>
+      <span>Message sent — I'll get back to you within 48 hours.</span>
+    </div>
+
+    <script>
+      // Lightweight form feedback (no backend – shows success toast on submit)
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const toast = document.getElementById("contact-toast");
+          toast.classList.add("is-visible");
+          e.target.reset();
+          setTimeout(() => toast.classList.remove("is-visible"), 4000);
+        });
+    </script>
+  </body>
+</html>

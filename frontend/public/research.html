@@ -10,14 +10,20 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
   </head>
   <body>
     <header class="navbar" id="navbar">
-      <a class="navbar__brand" href="index.html">
-        <span class="navbar__brand-name">T. Ramarozaka</span>
-        <span class="navbar__brand-tagline">consultant · teacher · dev</span>
+      <a class="navbar__brand" href="index.html"
+        ><img src="assets/logo.png" alt="Logo" class="h-12.5" />
       </a>
       <nav
         class="navbar__nav"
@@ -87,8 +93,15 @@
             and social structures in complex, distributed environments.
           </p>
         </div>
-        <div class="papers-list" id="papers-list"></div>
+        <div class="bg-white py-15">
+          <div class="papers-list" id="papers-list"></div>
+        </div>
       </div>
+    </section>
+    <section class="cta-banner" id="cta-banner" aria-labelledby="cta-heading">
+      <h2 class="cta-banner__heading" id="cta-heading"></h2>
+      <p class="cta-banner__subheading" id="cta-subheading"></p>
+      <button class="cta-banner__button" id="cta-button"></button>
     </section>
   </body>
 </html>
