@@ -378,8 +378,8 @@
   }
 
   .home-courses__heading {
-    @apply text-center text-[52px] font-semibold text-text-dark leading-[1.15] mb-14
-           max-lg:text-[36px] font-display;
+    @apply text-center lg:text-[52px] font-semibold text-text-dark leading-[1.15] mb-14
+           text-[40px] font-display;
   }
 
   .home-courses__heading-italic {
@@ -452,7 +452,7 @@
   }
 
   .experience__heading {
-    @apply text-[52px] font-semibold text-text-dark leading-none mb-14 font-display;
+    @apply lg:text-[52px] text-[40px] font-semibold text-text-dark leading-none mb-14 font-display;
   }
 
   .experience__grid {
