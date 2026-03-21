@@ -7,6 +7,8 @@ const ROLE_ORDER = [
   { key: "customer", label: "Customers" },
 ];
 
+const INITIAL_VISIBLE = 2;
+
 function buildTestimonialCard({
   role,
   rating,
@@ -17,7 +19,6 @@ function buildTestimonialCard({
   const card = createEl("article", "testi-card");
   card.classList.add(`testi-card--${role}`);
 
-  // 1. Author + avatar at TOP
   const authorWrap = createEl("div", "testi-card__author");
   const av = createEl("div", "testi-card__avatar");
   const avImg = createEl("img", "testi-card__avatar-img");
@@ -38,13 +39,9 @@ function buildTestimonialCard({
   authorWrap.appendChild(meta);
   card.appendChild(authorWrap);
 
-  // 2. Red separator
   card.appendChild(createEl("span", "testi-card__sep"));
-
-  // 3. Quote text
   card.appendChild(createEl("p", "testi-card__text", description));
 
-  // 4. Stars at BOTTOM
   const stars = createEl("div", "testi-card__stars");
   stars.innerHTML = starsHTML(rating);
   card.appendChild(stars);
@@ -62,7 +59,6 @@ export function initTestimonialsPage() {
 
     const section = createEl("div", "testi-section");
 
-    // Section heading with red line prefix
     const heading = createEl("div", "testi-section-heading");
     heading.appendChild(createEl("span", "testi-section-heading__line"));
     heading.appendChild(
@@ -70,12 +66,73 @@ export function initTestimonialsPage() {
     );
     section.appendChild(heading);
 
-    // Grid of cards
     const grid = createEl("div", "testimonials-grid");
     grid.classList.add(`testimonials-grid--${key}`);
     section.classList.add(`testi-section--${key}`);
-    group.forEach((t) => grid.appendChild(buildTestimonialCard(t)));
+
+    const hiddenCards = [];
+
+    group.forEach((t, index) => {
+      const card = buildTestimonialCard(t);
+      if (index >= INITIAL_VISIBLE) {
+        card.classList.add("testi-card--hidden");
+        hiddenCards.push(card);
+      }
+      grid.appendChild(card);
+    });
+
     section.appendChild(grid);
+
+    if (hiddenCards.length > 0) {
+      const showMoreWrap = createEl("div", "testi-show-more-wrap");
+
+      const btn = createEl("button", "testi-show-more-btn");
+      const btnText = createEl("span", "testi-show-more-btn__text");
+      btnText.textContent = `SHOW MORE ${label.toUpperCase()}`;
+      const btnArrow = createEl("span", "testi-show-more-btn__arrow");
+      btnArrow.textContent = "→";
+      btn.appendChild(btnText);
+      btn.appendChild(btnArrow);
+
+      const countBadge = createEl("span", "testi-show-more-btn__count");
+      countBadge.textContent = `+${hiddenCards.length}`;
+
+      showMoreWrap.appendChild(btn);
+      showMoreWrap.appendChild(countBadge);
+
+      let expanded = false;
+
+      btn.addEventListener("click", () => {
+        expanded = !expanded;
+
+        hiddenCards.forEach((card, i) => {
+          if (expanded) {
+            card.classList.remove("testi-card--hidden");
+            card.style.animationDelay = `${i * 60}ms`;
+            card.classList.add("testi-card--revealed");
+          } else {
+            card.classList.add("testi-card--hidden");
+            card.classList.remove("testi-card--revealed");
+            card.style.animationDelay = "";
+          }
+        });
+
+        if (expanded) {
+          btnText.textContent = `SHOW LESS ${label.toUpperCase()}`;
+          btnArrow.textContent = "↑";
+          countBadge.style.display = "none";
+          btn.classList.add("testi-show-more-btn--expanded");
+        } else {
+          btnText.textContent = `SHOW MORE ${label.toUpperCase()}`;
+          btnArrow.textContent = "→";
+          countBadge.style.display = "";
+          btn.classList.remove("testi-show-more-btn--expanded");
+          heading.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      section.appendChild(showMoreWrap);
+    }
 
     container.appendChild(section);
   });

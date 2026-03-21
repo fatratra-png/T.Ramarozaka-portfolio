@@ -1156,6 +1156,72 @@
     @apply hidden;
   }
 
+  /* ── PROGRESSIVE DISCLOSURE ─────────────────────────
+     Hidden cards are collapsed by default; revealed with
+     a staggered fade-up animation via JS.
+  ─────────────────────────────────────────────────── */
+
+  .testi-card--hidden {
+    @apply hidden;
+  }
+
+  @keyframes testi-reveal {
+    from {
+      opacity: 0;
+      translate: 0 16px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  .testi-card--revealed {
+    animation: testi-reveal 0.35s ease both;
+  }
+
+  /* Wrapper aligns button + count badge on the same row */
+  .testi-show-more-wrap {
+    @apply flex items-center gap-3 max-w-7xl mx-auto px-8 mt-10 lg:px-20;
+  }
+
+  /* The button itself — no box, just the underlined red text + arrow
+     mirroring the "ASK FOR A COLLABORATION →" reference image */
+  .testi-show-more-btn {
+    @apply inline-flex items-center gap-2 cursor-pointer
+           bg-transparent border-0 border-b-2 border-b-red
+           pb-0.25 p-0 transition-opacity duration-150
+           hover:opacity-70;
+  }
+
+  .testi-show-more-btn__text {
+    @apply text-[11px] font-semibold tracking-[0.18em] uppercase text-red;
+  }
+
+  .testi-show-more-btn__arrow {
+    @apply text-[13px] text-red inline-block
+           transition-transform duration-200;
+  }
+
+  .testi-show-more-btn:hover .testi-show-more-btn__arrow {
+    @apply translate-x-1;
+  }
+
+  .testi-show-more-btn--expanded .testi-show-more-btn__arrow {
+    @apply translate-x-0;
+  }
+
+  .testi-show-more-btn--expanded:hover .testi-show-more-btn__arrow {
+    @apply -translate-y-0.5;
+  }
+
+  /* Small pill showing the hidden card count e.g. "+4" */
+  .testi-show-more-btn__count {
+    @apply text-[10px] font-semibold tracking-wide text-red
+           bg-red/10 border border-red/25
+           rounded-full px-2.5 py-0.5;
+  }
+
   /* Testimonials page footer CTA */
   .testi-footer {
     @apply bg-red text-center px-6 py-20;
@@ -1170,7 +1236,7 @@
   }
 
   .testi-footer__actions {
-    @apply flex gap-4 justify-center flex-wrap;
+    @apply flex gap-4 justify-center flex-wrap grow max-w-fit;
   }
 
   .testi-footer__btn {
