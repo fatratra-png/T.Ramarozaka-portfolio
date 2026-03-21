@@ -662,7 +662,7 @@
   }
 
   .clear-all {
-    @apply text-[10px] font-bold tracking-[0.14em] uppercase text-red
+    @apply text-[10px] font-bold tracking-[0.14em] text-text-muted uppercase hover:text-red
            cursor-pointer bg-transparent border-0 p-0 mt-[26px]
            self-start transition-opacity duration-150;
     @media (width < 40rem) {

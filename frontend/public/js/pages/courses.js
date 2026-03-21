@@ -235,14 +235,14 @@ export function initCoursesPage() {
 
     minPrice = 0;
     maxPrice = 300_000;
-    if (minSlider) minSlider.value = 0;
-    if (maxSlider) maxSlider.value = 300_000;
-    if (fill) {
-      fill.style.left = "0%";
-      fill.style.width = "100%";
+    if (minSlider) {
+      minSlider.value = 0;
+      updateMin();
     }
-    if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
-
+    if (maxSlider) {
+      maxSlider.value = 300_000;
+      updateMax();
+    }
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
