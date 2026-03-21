@@ -815,7 +815,7 @@
   }
 
   .page-header__heading {
-    @apply text-[52px] leading-[1.1] font-semibold text-text-dark mb-5
+    @apply text-[52px] leading-[1.1] font-semibold text-text-dark mb-5 mx-auto text-center
            max-lg:text-[40px] font-display;
   }
 
@@ -1013,47 +1013,57 @@
   .testi-page {
     @apply bg-bg-warm min-h-screen pb-0;
   }
-
   .testi-page__container {
-    @apply max-w-7xl mx-auto w-full pt-20 px-10;
+    @apply pt-20;
+  }
+  .page-header {
+    @apply max-w-7xl mx-auto w-full;
   }
 
-  /* Role section block */
   .testi-section {
-    @apply mb-14;
+    @apply w-full px-8 py-16;
+  }
+  .testi-section-heading,
+  .testimonials-grid {
+    @apply max-w-7xl mx-auto px-12;
   }
 
+  #testimonials-sections .testi-section:nth-child(odd) {
+    @apply bg-white;
+  }
+
+  #testimonials-sections .testi-section:nth-child(even) {
+    @apply bg-bg-warm;
+  }
   /* Section heading: red line + uppercase label */
   .testi-section-heading {
     @apply flex items-center gap-4 mb-10;
   }
 
   .testi-section-heading__line {
-    @apply block flex-shrink-0 h-0.5 bg-red w-8;
+    @apply block shrink-0 h-0.5 bg-red w-8;
   }
 
   .testi-section-heading__label {
     @apply text-[10px] font-semibold tracking-[0.2em] uppercase text-text-muted;
   }
 
-  /* Testimonials grid — 3-col */
+  /* Testimonials grid — 3-col default */
   .testimonials-grid {
     @apply grid grid-cols-3 gap-7 max-[72rem]:grid-cols-2 max-md:grid-cols-1;
   }
 
-  /* Card layout: author → red sep → quote text → stars */
+  /* Card base — shared structure */
   .testi-card {
-    @apply bg-bg-white border border-border rounded-2xl p-7
-           flex flex-col hover:-translate-y-0.5 transition-transform duration-200
-           shadow-[0_1px_4px_rgb(0_0_0/0.04)];
+    @apply flex flex-col transition-transform duration-200 bg-[#fafbfa] py-8 px-6 rounded-2xl hover:shadow-lg;
   }
 
   .testi-card__author {
-    @apply flex items-center gap-4 mb-3;
+    @apply flex items-center gap-4;
   }
 
   .testi-card__avatar {
-    @apply w-11 h-11 rounded-full overflow-hidden flex-shrink-0;
+    @apply w-11 h-11 rounded-full overflow-hidden shrink-0;
   }
 
   .testi-card__avatar-img {
@@ -1072,23 +1082,83 @@
     @apply text-[10px] tracking-[0.14em] uppercase text-text-muted;
   }
 
-  /* Red separator between author and quote */
   .testi-card__sep {
-    @apply block flex-shrink-0 h-0.5 bg-red mb-5 mt-1 w-8;
+    @apply block shrink-0 h-0.5 bg-red w-8 my-2;
   }
 
   .testi-card__text {
-    @apply text-[14px] leading-[1.8] text-text-dark italic flex-1;
+    @apply text-[14px] leading-[1.8] text-text-muted flex-1 mb-6;
   }
 
-  /* Stars at the bottom */
   .testi-card__stars {
-    @apply flex gap-1 mt-5;
+    @apply flex gap-1;
+  }
+
+  /* ── CUSTOMERS ───────────────────────────────────────
+     Layout: stars (top) → quote → author (bottom)
+     Open layout — no card box/border
+  ─────────────────────────────────────────────────── */
+  .testimonials-grid--customer {
+    @apply grid-cols-3 max-[72rem]:grid-cols-2 max-md:grid-cols-1;
+  }
+
+  .testi-card--customer {
+    @apply bg-white border border-border-light/70 shadow-none py-8 px-6 gap-0 hover:shadow-md hover:-translate-y-0.5 rounded-2xl;
+  }
+
+  .testi-card--customer .testi-card__stars {
+    order: 1;
+    @apply mb-4;
+  }
+
+  .testi-card--customer .testi-card__text {
+    order: 2;
+    @apply not-italic mb-5 text-zinc-600;
+  }
+
+  .testi-card--customer .testi-card__author {
+    order: 3;
+    @apply mt-auto pt-2;
+  }
+
+  .testi-card--customer .testi-card__sep {
+    @apply hidden;
+  }
+
+  /* ── COLLABORATORS ───────────────────────────────────
+     Layout: quote (top, italic) → author (bottom)
+     Boxed white cards, 2-col grid, cream section bg
+  ─────────────────────────────────────────────────── */
+
+  .testimonials-grid--collaborator {
+    @apply grid-cols-2 max-md:grid-cols-1;
+  }
+
+  .testi-card--collaborator {
+    @apply bg-bg-white border border-border-light shadow-sm hover:shadow-lg rounded-2xl py-12 px-8 hover:-translate-y-0.5 gap-0;
+  }
+
+  .testi-card--collaborator .testi-card__text {
+    order: 1;
+    @apply italic mb-10 font-display text-stone-700 text-base leading-[1.4];
+  }
+
+  .testi-card--collaborator .testi-card__author {
+    order: 2;
+    @apply mt-auto;
+  }
+
+  .testi-card--collaborator .testi-card__sep {
+    @apply hidden;
+  }
+
+  .testi-card--collaborator .testi-card__stars {
+    @apply hidden;
   }
 
   /* Testimonials page footer CTA */
   .testi-footer {
-    @apply bg-red text-center px-6 py-20 mt-24;
+    @apply bg-red text-center px-6 py-20;
   }
 
   .testi-footer__heading {
