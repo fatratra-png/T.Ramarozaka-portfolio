@@ -104,7 +104,7 @@ function renderYouTubeVideos(container) {
     wrap.innerHTML = `
       <div class="yt-iframe-wrap">
         <iframe
-          src="https://www.youtube.com/embed/${id}"
+          src="https://www.youtube-nocookie.com/embed/${id}"
           title="${title}"
           allowfullscreen
         ></iframe>
