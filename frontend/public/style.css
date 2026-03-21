@@ -2258,6 +2258,7 @@
     width: 100%;
     max-width: var(--container-7xl);
     padding-inline: calc(var(--spacing) * 10);
+    padding-top: calc(var(--spacing) * 20);
   }
   .testi-section {
     margin-bottom: calc(var(--spacing) * 14);
