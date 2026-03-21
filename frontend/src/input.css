@@ -880,11 +880,11 @@
 
   /* Red title — matches the video */
   .blog-post-row__title {
-    @apply text-[20px] leading-[1.3] text-red mb-2 font-body;
+    @apply text-[20px] leading-[1.3] text-red mb-2 wrap-break-word font-body;
   }
 
   .blog-post-row__desc {
-    @apply text-[14px] leading-[1.7] text-text-muted mb-20 line-clamp-2
+    @apply text-[14px] leading-[1.7] text-text-muted mb-20 wrap-break-word line-clamp-2
            max-sm:mb-4;
   }
 
@@ -1025,7 +1025,7 @@
   }
   .testi-section-heading,
   .testimonials-grid {
-    @apply max-w-7xl mx-auto px-12;
+    @apply max-w-7xl mx-auto lg:px-12;
   }
 
   #testimonials-sections .testi-section:nth-child(odd) {
