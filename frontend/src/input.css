@@ -272,6 +272,24 @@
   .hero__image-frame {
     @apply relative w-100 h-100 max-lg:w-65 max-lg:h-65
            flex items-center justify-center;
+    isolation: isolate;
+    overflow: visible;
+  }
+  @media (width > 1024px) {
+    .hero__image-frame::after {
+      content: "";
+      background-image: url("./assets/bg.svg");
+      background-size: contain;
+      position: absolute;
+      width: 350px;
+      aspect-ratio: 1/1;
+
+      top: 0;
+      right: 0;
+      translate: 72% -72%;
+
+      z-index: -1;
+    }
   }
 
   .hero__frame-bg {

@@ -1,0 +1,10 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4096 4096" width="4096" height="4096">
+	<style>
+		.s0 { fill: none;stroke: hsla(9, 27%, 72%, 0.2);stroke-miterlimit:100;stroke-width: 14;stroke-dasharray: 56,28 } 
+		.s1 { fill: none;stroke: hsla(9, 27%, 72%, 0.2);stroke-miterlimit:100;stroke-width: 14;stroke-dasharray: 80,28 } 
+	</style>
+	<g id="Layer 1">
+		<path id="Shape 1" fill-rule="evenodd" class="s0" d="m1901.26 3636.64c-752.21 0-1360.23-608.03-1360.23-1360.23 0-752.21 608.02-1360.23 1360.23-1360.23 752.21 0 1360.23 608.02 1360.23 1360.23 0 752.2-608.02 1360.23-1360.23 1360.23z"/>
+		<path id="Shape 1 copy" fill-rule="evenodd" class="s1" d="m2048 4096c-1132.54 0-2048-915.46-2048-2048 0-1132.54 915.46-2048 2048-2048 1132.54 0 2048 915.46 2048 2048 0 1132.54-915.46 2048-2048 2048z"/>
+	</g>
+</svg>
