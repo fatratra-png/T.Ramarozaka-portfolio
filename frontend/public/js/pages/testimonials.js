@@ -9,13 +9,7 @@ const ROLE_ORDER = [
 
 const INITIAL_VISIBLE = 2;
 
-function buildTestimonialCard({
-  role,
-  rating,
-  description,
-  author,
-  thumbnail,
-}) {
+function buildTestimonialCard({ role, rating, description, author, thumbnail }) {
   const card = createEl("article", "testi-card");
   card.classList.add(`testi-card--${role}`);
 
@@ -43,6 +37,8 @@ function buildTestimonialCard({
   card.appendChild(createEl("p", "testi-card__text", description));
 
   const stars = createEl("div", "testi-card__stars");
+  // FIX: add aria-label so screen readers convey rating without reading raw SVG
+  stars.setAttribute("aria-label", `Rating: ${rating} out of 5`);
   stars.innerHTML = starsHTML(rating);
   card.appendChild(stars);
 
@@ -57,18 +53,25 @@ export function initTestimonialsPage() {
     const group = data.testimonials.filter((t) => t.role === key);
     if (group.length === 0) return;
 
-    const section = createEl("div", "testi-section");
+    // FIX: <div> → <section> for semantic grouping; aria-labelledby wired to heading id
+    const section = createEl("section", "testi-section");
+    section.setAttribute("aria-labelledby", `testi-label-${key}`);
+    section.classList.add(`testi-section--${key}`);
 
     const heading = createEl("div", "testi-section-heading");
     heading.appendChild(createEl("span", "testi-section-heading__line"));
-    heading.appendChild(
-      createEl("span", "testi-section-heading__label", label.toUpperCase()),
+    const headingLabel = createEl(
+      "span",
+      "testi-section-heading__label",
+      label.toUpperCase(),
     );
+    // FIX: id added so section's aria-labelledby resolves correctly
+    headingLabel.id = `testi-label-${key}`;
+    heading.appendChild(headingLabel);
     section.appendChild(heading);
 
     const grid = createEl("div", "testimonials-grid");
     grid.classList.add(`testimonials-grid--${key}`);
-    section.classList.add(`testi-section--${key}`);
 
     const hiddenCards = [];
 
@@ -87,6 +90,9 @@ export function initTestimonialsPage() {
       const showMoreWrap = createEl("div", "testi-show-more-wrap");
 
       const btn = createEl("button", "testi-show-more-btn");
+      // FIX: aria-expanded on the button for accessibility
+      btn.setAttribute("aria-expanded", "false");
+
       const btnText = createEl("span", "testi-show-more-btn__text");
       btnText.textContent = `SHOW MORE ${label.toUpperCase()}`;
       const btnArrow = createEl("span", "testi-show-more-btn__arrow");
@@ -102,7 +108,8 @@ export function initTestimonialsPage() {
 
       let expanded = false;
 
-      btn.addEventListener("click", () => {
+      // FIX: named function instead of anonymous arrow
+      function handleShowMoreClick() {
         expanded = !expanded;
 
         hiddenCards.forEach((card, i) => {
@@ -122,15 +129,18 @@ export function initTestimonialsPage() {
           btnArrow.textContent = "↑";
           countBadge.style.display = "none";
           btn.classList.add("testi-show-more-btn--expanded");
+          btn.setAttribute("aria-expanded", "true");
         } else {
           btnText.textContent = `SHOW MORE ${label.toUpperCase()}`;
           btnArrow.textContent = "→";
           countBadge.style.display = "";
           btn.classList.remove("testi-show-more-btn--expanded");
+          btn.setAttribute("aria-expanded", "false");
           heading.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      });
+      }
 
+      btn.addEventListener("click", handleShowMoreClick);
       section.appendChild(showMoreWrap);
     }
 

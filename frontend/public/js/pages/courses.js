@@ -40,14 +40,14 @@ function buildCourseCard(course) {
     ),
   );
   imgWrap.appendChild(badges);
-  let level = course.level.toLowerCase();
-  let levelTag = createEl(
+
+  const level = course.level.toLowerCase();
+  const levelTag = createEl(
     "span",
-    "course-card__level " + LEVEL_CLASS[level],
+    "course-card__level " + (LEVEL_CLASS[level] || ""),
     level,
   );
   imgWrap.appendChild(levelTag);
-
   card.appendChild(imgWrap);
 
   // — Body —
@@ -77,12 +77,14 @@ function buildCourseCard(course) {
     cartBtn.disabled = true;
   }
 
-  cartBtn.addEventListener("click", () => {
+  // FIX: named function instead of anonymous arrow
+  function handleCartBtnClick() {
     addToCart(course);
     cartBtn.textContent = "Added ✓";
     cartBtn.disabled = true;
-  });
+  }
 
+  cartBtn.addEventListener("click", handleCartBtnClick);
   actions.appendChild(learnBtn);
   actions.appendChild(cartBtn);
   body.appendChild(actions);
@@ -136,26 +138,35 @@ export function initCoursesPage() {
 
   // — Language flags —
   document.querySelectorAll(".flag-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    // FIX: named function for flag button click handler
+    function handleFlagBtnClick() {
       const lang = btn.dataset.lang;
-      activeLangs.has(lang)
-        ? (activeLangs.delete(lang), btn.classList.remove("active"))
-        : (activeLangs.add(lang), btn.classList.add("active"));
+      if (activeLangs.has(lang)) {
+        activeLangs.delete(lang);
+        btn.classList.remove("active");
+      } else {
+        activeLangs.add(lang);
+        btn.classList.add("active");
+      }
       render();
-    });
+    }
+    btn.addEventListener("click", handleFlagBtnClick);
   });
 
   // — Tech & level selects —
-  document.getElementById("tech-select")?.addEventListener("change", (e) => {
+  // FIX: named function instead of anonymous arrow
+  function handleTechChange(e) {
     activeTech = e.target.value;
     render();
-  });
-  document.getElementById("level-select")?.addEventListener("change", (e) => {
+  }
+  function handleLevelChange(e) {
     activeLevel = e.target.value;
     render();
-  });
+  }
+  document.getElementById("tech-select")?.addEventListener("change", handleTechChange);
+  document.getElementById("level-select")?.addEventListener("change", handleLevelChange);
 
-  // — Price range sliders — deux tracks indépendants
+  // — Price range sliders —
   const minSlider = document.getElementById("min-price");
   const maxSlider = document.getElementById("max-price");
   const minValEl = document.getElementById("min-price-val");
@@ -172,13 +183,14 @@ export function initCoursesPage() {
 
   function setSliderFill(slider) {
     const pct =
-      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
+      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) *
+      100;
     slider.style.background = `linear-gradient(to right, ${RED} ${pct}%, ${GRAY} ${pct}%)`;
   }
 
   function updateMin() {
     let lo = parseInt(minSlider.value);
-    let hi = parseInt(maxSlider.value);
+    const hi = parseInt(maxSlider.value);
     if (lo > hi) {
       minSlider.value = hi;
       lo = hi;
@@ -190,7 +202,7 @@ export function initCoursesPage() {
   }
 
   function updateMax() {
-    let lo = parseInt(minSlider.value);
+    const lo = parseInt(minSlider.value);
     let hi = parseInt(maxSlider.value);
     if (hi < lo) {
       maxSlider.value = lo;
@@ -214,13 +226,16 @@ export function initCoursesPage() {
   }
 
   // — Search —
-  document.getElementById("search-input")?.addEventListener("input", (e) => {
-    searchQ = e.target.value.toLowerCase();
+  // FIX: named function instead of anonymous arrow
+  function handleSearchInput(e) {
+    searchQ = e.target.value.toLowerCase().trim();
     render();
-  });
+  }
+  document.getElementById("search-input")?.addEventListener("input", handleSearchInput);
 
   // — Clear all —
-  document.getElementById("clear-all")?.addEventListener("click", () => {
+  // FIX: named function instead of anonymous arrow
+  function handleClearAll() {
     activeLangs.clear();
     document
       .querySelectorAll(".flag-btn")
@@ -228,13 +243,16 @@ export function initCoursesPage() {
 
     activeTech = "all";
     activeLevel = "all";
-    document.getElementById("tech-select") &&
-      (document.getElementById("tech-select").value = "all");
-    document.getElementById("level-select") &&
-      (document.getElementById("level-select").value = "all");
+
+    const techSelect = document.getElementById("tech-select");
+    if (techSelect) techSelect.value = "all";
+
+    const levelSelect = document.getElementById("level-select");
+    if (levelSelect) levelSelect.value = "all";
 
     minPrice = 0;
     maxPrice = 300_000;
+
     if (minSlider) {
       minSlider.value = 0;
       updateMin();
@@ -243,11 +261,15 @@ export function initCoursesPage() {
       maxSlider.value = 300_000;
       updateMax();
     }
+
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
+
     render();
-  });
+  }
+
+  document.getElementById("clear-all")?.addEventListener("click", handleClearAll);
 
   render();
 }

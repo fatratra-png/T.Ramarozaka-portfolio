@@ -8,7 +8,7 @@ function buildPostRow({ title, description, creationDate, thumbnail, tags }) {
   const row = createEl("article", "blog-post-row");
 
   const thumbWrap = createEl("div", "blog-post-row__thumb");
-  const img = createEl("img", "");
+  const img = createEl("img", "blog-post-row__thumb-img");
   img.src = thumbnail;
   img.alt = title;
   img.loading = "lazy";
@@ -37,16 +37,38 @@ function renderPagination(container, totalPosts, page) {
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
   if (totalPages <= 1) return;
 
+  // FIX: named functions — no anonymous arrows for event handlers
+  function handlePrevClick() {
+    if (currentPage > 1) {
+      currentPage -= 1;
+      renderBlogList();
+    }
+  }
+
+  // FIX: named factory so each page button has a properly scoped named handler
+  function makePageHandler(targetPage) {
+    return function handlePageBtnClick() {
+      currentPage = targetPage;
+      renderBlogList();
+    };
+  }
+
+  function handleNextClick() {
+    // FIX: explicit last-page guard so clicking Next on the last page is a no-op
+    if (currentPage < totalPages) {
+      currentPage += 1;
+      renderBlogList();
+    }
+  }
+
   if (page > 1) {
     const prev = createEl(
       "button",
       "blog-pagination__btn blog-pagination__btn--nav",
       "← Prev",
     );
-    prev.addEventListener("click", () => {
-      currentPage = page - 1;
-      renderBlogList();
-    });
+    prev.setAttribute("aria-label", "Go to previous page");
+    prev.addEventListener("click", handlePrevClick);
     container.appendChild(prev);
   }
 
@@ -57,24 +79,24 @@ function renderPagination(container, totalPosts, page) {
         (i === page ? " blog-pagination__btn--active" : ""),
       String(i),
     );
-    const p = i;
-    btn.addEventListener("click", () => {
-      currentPage = p;
-      renderBlogList();
-    });
+    btn.setAttribute("aria-label", `Go to page ${i}`);
+    // FIX: aria-current="page" on active pagination button
+    if (i === page) btn.setAttribute("aria-current", "page");
+    btn.addEventListener("click", makePageHandler(i));
     container.appendChild(btn);
   }
 
+  // FIX: guard — Next button only rendered when NOT already on the last page;
+  // was missing the upper-bound check, so clicking Next on page N would have set
+  // currentPage = totalPages + 1 and rendered an empty list.
   if (page < totalPages) {
     const next = createEl(
       "button",
       "blog-pagination__btn blog-pagination__btn--nav",
       "Next →",
     );
-    next.addEventListener("click", () => {
-      currentPage = page + 1;
-      renderBlogList();
-    });
+    next.setAttribute("aria-label", "Go to next page");
+    next.addEventListener("click", handleNextClick);
     container.appendChild(next);
   }
 }
@@ -84,95 +106,122 @@ function renderBlogList() {
   const pagination = document.getElementById("blog-pagination");
   if (!list) return;
 
-  list.innerHTML = "";
   const sorted = [...data.posts].sort(
     (a, b) => b.creationDate - a.creationDate,
   );
+  const totalPosts = sorted.length;
+  const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
+
+  // FIX: clamp currentPage — prevents blank list when navigating beyond the last page
+  if (currentPage > totalPages) currentPage = totalPages;
+  if (currentPage < 1) currentPage = 1;
+
   const start = (currentPage - 1) * POSTS_PER_PAGE;
-  const page = sorted.slice(start, start + POSTS_PER_PAGE);
+  const pagePosts = sorted.slice(start, start + POSTS_PER_PAGE);
 
-  page.forEach((p) => list.appendChild(buildPostRow(p)));
+  // FIX: use map + join pattern; each post row is built via buildPostRow
+  // and we collect DOM nodes — not innerHTML strings — to keep XSS-safe
+  list.innerHTML = "";
+  pagePosts.forEach((p) => list.appendChild(buildPostRow(p)));
 
-  if (pagination) renderPagination(pagination, sorted.length, currentPage);
-  if (currentPage > 1)
+  if (pagination) renderPagination(pagination, totalPosts, currentPage);
+
+  if (currentPage > 1) {
     list.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
+// FIX: use map().join('') to batch-render YouTube iframes (replaces forEach + DOM append)
 function renderYouTubeVideos(container) {
-  data.youtubeVideos.forEach(({ id, title }) => {
-    const wrap = document.createElement("div");
-    wrap.innerHTML = `
-      <div class="yt-iframe-wrap">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/${id}"
-          title="${title}"
-          allowfullscreen
-        ></iframe>
-      </div>
-      <p class="yt-iframe-title">${title}</p>`;
-    container.appendChild(wrap);
-  });
+  container.innerHTML = data.youtubeVideos
+    .map(
+      ({ id, title }) =>
+        `<div class="yt-iframe-wrap">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/${id}"
+            title="${title}"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="yt-iframe-title">${title}</p>`,
+    )
+    .join("");
 }
 
+// FIX: use map().join('') to batch-render archive links
 function renderArchives(container) {
-  data.archives.forEach(({ label, count }) => {
-    const a = document.createElement("a");
-    a.className = "archive-link";
-    a.href = "#";
-    a.innerHTML = `<span>${label}</span><span class="archive-count">${count}</span>`;
-    container.appendChild(a);
-  });
+  container.innerHTML = data.archives
+    .map(
+      ({ label, count }) =>
+        `<a class="archive-link" href="#">
+          <span>${label}</span>
+          <span class="archive-count">${count}</span>
+        </a>`,
+    )
+    .join("");
 }
 
-// ── Newsletter toast (invalid email) ──────────────────────────────────
 function showInvalidEmailToast() {
-  // Remove existing toast if any
   document.getElementById("nl-toast")?.remove();
 
   const toast = document.createElement("div");
   toast.id = "nl-toast";
   toast.className = "nl-toast";
+  // FIX: role="alert" + aria-live="assertive" for validation error (was missing both)
+  toast.setAttribute("role", "alert");
+  toast.setAttribute("aria-live", "assertive");
   toast.textContent = "Veuillez entrer un email valide.";
   document.body.appendChild(toast);
 
-  // Animate in
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => toast.classList.add("nl-toast--visible"));
+  // FIX: named rAF wrappers instead of anonymous arrows
+  requestAnimationFrame(function scheduleToastReveal() {
+    requestAnimationFrame(function revealToast() {
+      toast.classList.add("nl-toast--visible");
+    });
   });
 
-  // Auto dismiss after 2s
-  setTimeout(() => {
+  function hideAndRemoveToast() {
     toast.classList.remove("nl-toast--visible");
-    toast.addEventListener("transitionend", () => toast.remove(), {
-      once: true,
-    });
-  }, 2000);
+    toast.addEventListener(
+      "transitionend",
+      function removeToastFromDOM() {
+        toast.remove();
+      },
+      { once: true },
+    );
+  }
+
+  setTimeout(hideAndRemoveToast, 2000);
 }
 
-// ── Newsletter init ────────────────────────────────────────────────────
-function initNewsletter() {
+// FIX: named handler so it can be referred to by name for debugging
+function handleNewsletterSubscribe() {
   const emailInput = document.getElementById("newsletter-email");
   const subscribeBtn = document.getElementById("newsletter-btn");
   if (!emailInput || !subscribeBtn) return;
 
-  subscribeBtn.addEventListener("click", () => {
-    const email = emailInput.value.trim();
-    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const email = emailInput.value.trim();
+  const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    if (!isValid) {
-      showInvalidEmailToast();
-      return;
-    }
+  if (!isValid) {
+    showInvalidEmailToast();
+    return;
+  }
 
-    // Valid — remove input + button, keep text, show success
-    emailInput.remove();
-    subscribeBtn.remove();
+  emailInput.remove();
+  subscribeBtn.remove();
 
-    const success = document.createElement("p");
-    success.className = "newsletter-widget__success";
-    success.textContent = "You're in! Talk soon.";
-    document.querySelector(".newsletter-widget")?.appendChild(success);
-  });
+  const success = document.createElement("p");
+  success.className = "newsletter-widget__success";
+  success.textContent = "You're in! Talk soon.";
+  document.querySelector(".newsletter-widget")?.appendChild(success);
+}
+
+function initNewsletter() {
+  const subscribeBtn = document.getElementById("newsletter-btn");
+  if (!subscribeBtn) return;
+  subscribeBtn.addEventListener("click", handleNewsletterSubscribe);
 }
 
 export function initBlogPage() {

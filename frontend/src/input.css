@@ -802,7 +802,7 @@
   }
 
   .courses-footer__btn {
-    @apply mt-8 bg-white text-red px-8 py-4 rounded-full text-xs font-semibold
+    @apply mt-8 bg-white inline-block text-red px-8 py-4 rounded-full text-xs font-semibold
            tracking-wider uppercase hover:bg-red-dark hover:text-white transition;
   }
 
