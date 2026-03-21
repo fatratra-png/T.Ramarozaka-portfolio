@@ -1251,7 +1251,7 @@
   }
 
   .testi-footer__actions {
-    @apply flex gap-4 justify-center flex-wrap grow max-w-fit;
+    @apply flex gap-4 justify-center flex-wrap grow;
   }
 
   .testi-footer__btn {

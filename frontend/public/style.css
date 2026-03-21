@@ -2647,7 +2647,6 @@
   }
   .testi-footer__actions {
     display: flex;
-    max-width: fit-content;
     flex-grow: 1;
     flex-wrap: wrap;
     justify-content: center;
