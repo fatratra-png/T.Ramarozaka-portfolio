@@ -625,7 +625,7 @@
   }
 
   .price-slider {
-    @apply flex-1 h-1 lg:w-47.5 grow-0 appearance-none
+    @apply flex-1 h-2 lg:w-47.5 grow-0 appearance-none border border-gray-400
            bg-[#e0e0e0] rounded-full outline-none cursor-pointer;
   }
 

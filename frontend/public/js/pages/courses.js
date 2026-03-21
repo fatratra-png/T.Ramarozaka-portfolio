@@ -165,6 +165,17 @@ export function initCoursesPage() {
     return n.toLocaleString("fr-MG") + " Ar";
   }
 
+  const SLIDER_MIN = 0;
+  const SLIDER_MAX = 300_000;
+  const RED = "var(--color-red, #c0392b)";
+  const GRAY = "#e0e0e0";
+
+  function setSliderFill(slider) {
+    const pct =
+      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
+    slider.style.background = `linear-gradient(to right, ${RED} ${pct}%, ${GRAY} ${pct}%)`;
+  }
+
   function updateMin() {
     let lo = parseInt(minSlider.value);
     let hi = parseInt(maxSlider.value);
@@ -174,6 +185,7 @@ export function initCoursesPage() {
     }
     minPrice = lo;
     if (minValEl) minValEl.textContent = fmt(lo);
+    setSliderFill(minSlider);
     render();
   }
 
@@ -186,16 +198,19 @@ export function initCoursesPage() {
     }
     maxPrice = hi;
     if (maxValEl) maxValEl.textContent = fmt(hi);
+    setSliderFill(maxSlider);
     render();
   }
 
   if (minSlider) {
     minSlider.addEventListener("input", updateMin);
     if (minValEl) minValEl.textContent = fmt(parseInt(minSlider.value));
+    setSliderFill(minSlider);
   }
   if (maxSlider) {
     maxSlider.addEventListener("input", updateMax);
     if (maxValEl) maxValEl.textContent = fmt(parseInt(maxSlider.value));
+    setSliderFill(maxSlider);
   }
 
   // — Search —
