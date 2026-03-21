@@ -319,7 +319,7 @@
   /* Both heading lines share base; only italic differs */
   .about__heading-plain,
   .about__heading-italic {
-    @apply block text-[56px] font-semibold text-text-dark leading-[1.1] font-display;
+    @apply block text-[52px] font-semibold text-text-dark leading-[1.1] font-display;
   }
 
   .about__heading-italic {
@@ -508,7 +508,7 @@
   /* ── COURSES PAGE ────────────────────────────────── */
 
   .courses {
-    @apply bg-bg-warm pt-35.5 mx-auto;
+    @apply bg-bg-warm pt-30 lg:pt-35.5 mx-auto;
   }
   .courses-main {
     @apply bg-white pt-6 pb-24;
@@ -815,7 +815,7 @@
   }
 
   .page-header__heading {
-    @apply text-[56px] leading-[1.1] font-semibold text-text-dark mb-5
+    @apply text-[52px] leading-[1.1] font-semibold text-text-dark mb-5
            max-lg:text-[40px] font-display;
   }
 
@@ -1120,11 +1120,11 @@
   /* ── RESEARCH PAGE ───────────────────────────────── */
 
   .research-page {
-    @apply bg-bg-warm min-h-screen mt-15.5;
+    @apply bg-bg-warm min-h-screen;
   }
 
   .research-page__container {
-    @apply mx-auto w-full;
+    @apply mx-auto w-full mt-20;
   }
 
   /* Flat list — no cards, just horizontal rule separators */
@@ -1358,7 +1358,7 @@
   }
 
   .contact-hero__heading {
-    @apply font-display text-[56px] font-semibold leading-[1.05]
+    @apply font-display text-[52px] font-semibold leading-[1.05]
            text-text-dark mb-7 max-lg:text-[52px];
   }
 
