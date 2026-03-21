@@ -40,7 +40,14 @@ function buildCourseCard(course) {
     ),
   );
   imgWrap.appendChild(badges);
-  imgWrap.appendChild(createEl("span", "course-card__level", course.level.toLowerCase()));
+  let level = course.level.toLowerCase();
+  let levelTag = createEl(
+    "span",
+    "course-card__level " + LEVEL_CLASS[level],
+    level,
+  );
+  imgWrap.appendChild(levelTag);
+
   card.appendChild(imgWrap);
 
   // — Body —
@@ -200,18 +207,25 @@ export function initCoursesPage() {
   // — Clear all —
   document.getElementById("clear-all")?.addEventListener("click", () => {
     activeLangs.clear();
-    document.querySelectorAll(".flag-btn").forEach(b => b.classList.remove("active"));
+    document
+      .querySelectorAll(".flag-btn")
+      .forEach((b) => b.classList.remove("active"));
 
-    activeTech  = "all";
+    activeTech = "all";
     activeLevel = "all";
-    document.getElementById("tech-select")  && (document.getElementById("tech-select").value   = "all");
-    document.getElementById("level-select") && (document.getElementById("level-select").value  = "all");
+    document.getElementById("tech-select") &&
+      (document.getElementById("tech-select").value = "all");
+    document.getElementById("level-select") &&
+      (document.getElementById("level-select").value = "all");
 
     minPrice = 0;
     maxPrice = 300_000;
     if (minSlider) minSlider.value = 0;
     if (maxSlider) maxSlider.value = 300_000;
-    if (fill)     { fill.style.left = "0%"; fill.style.width = "100%"; }
+    if (fill) {
+      fill.style.left = "0%";
+      fill.style.width = "100%";
+    }
     if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
 
     searchQ = "";
