@@ -1177,7 +1177,7 @@
   ─────────────────────────────────────────────────── */
 
   .testi-card--hidden {
-    @apply hidden;
+    @apply max-md:hidden;
   }
 
   @keyframes testi-reveal {
@@ -1197,7 +1197,7 @@
 
   /* Wrapper aligns button + count badge on the same row */
   .testi-show-more-wrap {
-    @apply flex items-center gap-3 max-w-7xl mx-auto px-8 mt-10 lg:px-20;
+    @apply hidden max-md:flex items-center gap-3 max-w-7xl mx-auto px-8 mt-10 lg:px-20;
   }
 
   /* The button itself — no box, just the underlined red text + arrow
@@ -1493,7 +1493,7 @@
   }
 
   .contact-hero__container {
-    @apply flex flex-col items-center mx-auto w-full max-w-7xl px-12 max-lg:px-6;
+    @apply flex flex-col items-center mx-auto w-full max-w-7xl px-12 max-lg:px-8;
   }
 
   .contact-hero__eyebrow {
@@ -1532,7 +1532,7 @@
            grid grid-cols-[1fr_400px];
 
     @media (width < 64rem) {
-      @apply px-6 gap-14;
+      @apply px-8 gap-14;
       grid-template-columns: 1fr;
     }
   }

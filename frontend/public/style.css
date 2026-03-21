@@ -2514,7 +2514,9 @@
     display: none;
   }
   .testi-card--hidden {
-    display: none;
+    @media (width < 48rem) {
+      display: none;
+    }
   }
   @keyframes testi-reveal {
     from {
@@ -2532,11 +2534,14 @@
   .testi-show-more-wrap {
     margin-inline: auto;
     margin-top: calc(var(--spacing) * 10);
-    display: flex;
+    display: none;
     max-width: var(--container-7xl);
     align-items: center;
     gap: calc(var(--spacing) * 3);
     padding-inline: calc(var(--spacing) * 8);
+    @media (width < 48rem) {
+      display: flex;
+    }
     @media (width >= 64rem) {
       padding-inline: calc(var(--spacing) * 20);
     }
@@ -3150,7 +3155,7 @@
     align-items: center;
     padding-inline: calc(var(--spacing) * 12);
     @media (width < 64rem) {
-      padding-inline: calc(var(--spacing) * 6);
+      padding-inline: calc(var(--spacing) * 8);
     }
   }
   .contact-hero__eyebrow {
@@ -3215,7 +3220,7 @@
     padding-inline: calc(var(--spacing) * 12);
     @media (width < 64rem) {
       gap: calc(var(--spacing) * 14);
-      padding-inline: calc(var(--spacing) * 6);
+      padding-inline: calc(var(--spacing) * 8);
       grid-template-columns: 1fr;
     }
   }
