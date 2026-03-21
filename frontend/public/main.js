@@ -4,6 +4,7 @@ import {
   initAboutSection,
   initHomeCoursesSection,
   initExperienceSection,
+  initExperienceScrollReveal,
   initCtaBanner,
 } from "./js/pages/home.js";
 import { initCoursesPage } from "./js/pages/courses.js";
@@ -17,6 +18,7 @@ const PAGE_INIT = {
     initAboutSection();
     initHomeCoursesSection();
     initExperienceSection();
+    initExperienceScrollReveal();
     initCtaBanner();
   },
   "courses.html": initCoursesPage,

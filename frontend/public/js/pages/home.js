@@ -92,6 +92,39 @@ export function initExperienceSection() {
   );
 }
 
+export function initExperienceScrollReveal() {
+  // Only run on mobile (< 1024px) — desktop uses CSS hover instead
+  const mq = window.matchMedia("(max-width: 1023px)");
+  if (!mq.matches) return;
+
+  const entries = document.querySelectorAll(".experience__entry");
+  if (!entries.length) return;
+
+  function highlightCentered() {
+    const viewportMid = window.innerHeight / 2;
+    let closestEntry = null;
+    let closestDist = Infinity;
+
+    entries.forEach((entry) => {
+      const rect = entry.getBoundingClientRect();
+      const entryMid = rect.top + rect.height / 2;
+      const dist = Math.abs(entryMid - viewportMid);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestEntry = entry;
+      }
+    });
+
+    entries.forEach((entry) => {
+      entry.classList.toggle("is-active", entry === closestEntry);
+    });
+  }
+
+  // Run on scroll and on load
+  window.addEventListener("scroll", highlightCentered, { passive: true });
+  highlightCentered();
+}
+
 export function initCtaBanner() {
   setTextById("cta-heading", CTA_CONTENT.heading);
   setTextById("cta-subheading", CTA_CONTENT.subheading);

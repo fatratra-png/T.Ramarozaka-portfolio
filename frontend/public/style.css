@@ -1138,10 +1138,20 @@
     border-color: var(--color-border);
     padding-inline: calc(var(--spacing) * 10);
     padding-block: calc(var(--spacing) * 10);
-    &:hover {
-      @media (hover: hover) {
-        border-color: var(--color-red);
+    @media (width >= 64rem) {
+      &:hover {
+        @media (hover: hover) {
+          border-color: var(--color-red);
+        }
       }
+    }
+  }
+  @media (max-width: 1023px) {
+    .experience__entry {
+      transition: border-color 0.3s ease;
+    }
+    .experience__entry.is-active {
+      border-color: var(--color-red);
     }
   }
   .experience__entry-year {

@@ -460,7 +460,22 @@
   }
 
   .experience__entry {
-    @apply px-10 py-10 border-l-2 border-border hover:border-red;
+    @apply px-10 py-10 border-l-2 border-border lg:hover:border-red;
+  }
+
+  /* ── EXPERIENCE — mobile center-highlight ────────────
+     On touch screens, the entry closest to the viewport
+     centre gets .is-active (set by initExperienceScrollReveal).
+     All others stay at the default border-border colour.
+  ────────────────────────────────────────────────────── */
+  @media (max-width: 1023px) {
+    .experience__entry {
+      transition: border-color 0.3s ease;
+    }
+
+    .experience__entry.is-active {
+      @apply border-red;
+    }
   }
 
   /* label-red pattern — expanded inline */
