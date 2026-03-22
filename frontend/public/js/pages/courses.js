@@ -155,8 +155,12 @@ export function initCoursesPage() {
     activeLevel = e.target.value;
     render();
   }
-  document.getElementById("tech-select")?.addEventListener("change", handleTechChange);
-  document.getElementById("level-select")?.addEventListener("change", handleLevelChange);
+  document
+    .getElementById("tech-select")
+    ?.addEventListener("change", handleTechChange);
+  document
+    .getElementById("level-select")
+    ?.addEventListener("change", handleLevelChange);
 
   const minSlider = document.getElementById("min-price");
   const maxSlider = document.getElementById("max-price");
@@ -174,8 +178,7 @@ export function initCoursesPage() {
 
   function setSliderFill(slider) {
     const pct =
-      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) *
-      100;
+      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
     slider.style.background = `linear-gradient(to right, ${RED} ${pct}%, ${GRAY} ${pct}%)`;
   }
 
@@ -220,7 +223,9 @@ export function initCoursesPage() {
     searchQ = e.target.value.toLowerCase().trim();
     render();
   }
-  document.getElementById("search-input")?.addEventListener("input", handleSearchInput);
+  document
+    .getElementById("search-input")
+    ?.addEventListener("input", handleSearchInput);
 
   function handleClearAll() {
     activeLangs.clear();
@@ -256,7 +261,9 @@ export function initCoursesPage() {
     render();
   }
 
-  document.getElementById("clear-all")?.addEventListener("click", handleClearAll);
+  document
+    .getElementById("clear-all")
+    ?.addEventListener("click", handleClearAll);
 
   render();
 }

@@ -9,7 +9,15 @@ function formatMonthYear(date) {
   }).format(date);
 }
 
-function buildPaperEntry({ title, abstract, publishedDate, journal, authors, tags, url }) {
+function buildPaperEntry({
+  title,
+  abstract,
+  publishedDate,
+  journal,
+  authors,
+  tags,
+  url,
+}) {
   const entry = createEl("article", "paper-entry");
 
   const header = createEl("div", "paper-entry__header");

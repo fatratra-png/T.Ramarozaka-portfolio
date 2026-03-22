@@ -1,4 +1,3 @@
-
 function handleContactFormSubmit(e) {
   e.preventDefault();
   const toast = document.getElementById("contact-toast");

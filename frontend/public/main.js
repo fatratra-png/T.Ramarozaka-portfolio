@@ -12,7 +12,6 @@ import { initBlogPage } from "./js/pages/blog.js";
 import { initTestimonialsPage } from "./js/pages/testimonials.js";
 import { initResearchPage } from "./js/pages/research.js";
 
-// FIX: named function declaration for the index page init (was anonymous arrow)
 function initHomePage() {
   initHeroSection();
   initAboutSection();
@@ -28,10 +27,8 @@ const PAGE_INIT = {
   "blog.html": initBlogPage,
   "testimonials.html": initTestimonialsPage,
   "research.html": initResearchPage,
-  // contact.html form logic lives in js/pages/contact.js (loaded via <script> in HTML)
 };
 
-// FIX: named function instead of anonymous arrow passed to addEventListener
 function handleDOMContentLoaded() {
   renderNavLinks();
   initCart();

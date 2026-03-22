@@ -1,4 +1,3 @@
-/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -4023,7 +4022,6 @@
       --tw-ring-offset-shadow: 0 0 #0000;
     }
   }
-  /* ── EMAIL NOTIFICATION ── */
   .email-notif {
     position: fixed;
     top: 88px;
@@ -4059,7 +4057,6 @@
       opacity 220ms ease;
   }
 
-  /* Top bar */
   .email-notif__bar {
     display: flex;
     align-items: center;
@@ -4114,7 +4111,6 @@
     background: rgba(185, 28, 28, 0.08);
   }
 
-  /* Content */
   .email-notif__content {
     display: flex;
     align-items: flex-start;
@@ -4178,7 +4174,6 @@
     font-weight: 600;
   }
 
-  /* Progress bar */
   .email-notif__progress {
     height: 2px;
     background: rgba(185, 28, 28, 0.08);

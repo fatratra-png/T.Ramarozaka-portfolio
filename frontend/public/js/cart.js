@@ -36,8 +36,6 @@ export function updateCartBadge() {
   badge.style.display = cart.length ? "flex" : "none";
 }
 
-
-
 function getOrCreatePopup() {
   let overlay = document.getElementById("cart-overlay");
   if (overlay) return overlay;
@@ -191,8 +189,6 @@ export function closeCartPopup() {
   overlay.classList.remove("is-open");
   document.body.style.overflow = "";
 }
-
-
 
 export function showOrderToast() {
   let toast = document.getElementById("order-toast");

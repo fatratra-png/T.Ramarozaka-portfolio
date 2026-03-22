@@ -9,7 +9,13 @@ const ROLE_ORDER = [
 
 const INITIAL_VISIBLE = 2;
 
-function buildTestimonialCard({ role, rating, description, author, thumbnail }) {
+function buildTestimonialCard({
+  role,
+  rating,
+  description,
+  author,
+  thumbnail,
+}) {
   const card = createEl("article", "testi-card");
   card.classList.add(`testi-card--${role}`);
 
