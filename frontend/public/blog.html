@@ -6,9 +6,17 @@
     <title>Tokimahery Ramarozaka — Blog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="data:," />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
@@ -16,7 +24,11 @@
   <body>
     <header class="navbar" id="navbar">
       <a class="navbar__brand" href="index.html">
-        <img src="assets/logo.png" alt="Logo" class="h-12.5" />
+        <img
+          src="assets/logo.png"
+          alt="Tokimahery Ramarozaka — Home"
+          class="h-12.5"
+        />
       </a>
 
       <nav
@@ -52,35 +64,22 @@
             id="navbar-cart-button"
             aria-label="Shopping cart"
           >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
-            </svg>
+            <i class="fa-solid fa-basket-shopping fa-xl" aria-hidden="true"></i>
           </button>
         </div>
       </div>
     </header>
 
-    <section class="blog-page">
+    <section class="blog-page" aria-labelledby="blog-page-heading">
       <div class="blog-page__container">
         <div class="page-header">
-          <div class="page-header__eyebrow">
+          <div class="page-header__eyebrow" aria-hidden="true">
             <span class="page-header__eyebrow-line"></span>
             <span class="page-header__eyebrow-label">Writing</span>
             <span class="page-header__eyebrow-line"></span>
           </div>
-          <h1 class="page-header__heading">
-            Blog &amp; <em class="page-header__heading-italic">Articles</em>
+          <h1 class="page-header__heading" id="blog-page-heading">
+            The <em class="page-header__heading-italic">blog</em>
           </h1>
           <p class="page-header__subtitle">
             Thoughts on education, research, software development and language.
@@ -90,15 +89,29 @@
         <div class="blog-layout">
           <div class="blog-main">
             <div class="blog-list" id="blog-list"></div>
-            <div class="blog-pagination" id="blog-pagination"></div>
+            <nav
+              class="blog-pagination"
+              id="blog-pagination"
+              aria-label="Blog pagination"
+            ></nav>
           </div>
-          <aside class="blog-sidebar">
-            <div class="sidebar-widget">
-              <h3 class="sidebar-widget__title">Archives</h3>
+
+          <aside class="blog-sidebar" aria-label="Blog sidebar">
+            <!-- FIX: <div class="sidebar-widget"> → <section> with aria-labelledby -->
+            <section class="sidebar-widget" aria-labelledby="archives-heading">
+              <h3 class="sidebar-widget__title" id="archives-heading">
+                Archives
+              </h3>
               <div id="blog-archives" class="archives-list"></div>
-            </div>
-            <div class="sidebar-widget">
-              <h3 class="sidebar-widget__title">Newsletter</h3>
+            </section>
+
+            <section
+              class="sidebar-widget"
+              aria-labelledby="newsletter-heading"
+            >
+              <h3 class="sidebar-widget__title" id="newsletter-heading">
+                Newsletter
+              </h3>
               <div class="newsletter-widget">
                 <p class="newsletter-widget__text">
                   Get new articles straight to your inbox. No spam, ever.
@@ -108,49 +121,55 @@
                   class="newsletter-widget__input"
                   id="newsletter-email"
                   placeholder="your@email.com"
+                  autocomplete="email"
                 />
                 <button class="newsletter-widget__btn" id="newsletter-btn">
                   Subscribe
                 </button>
               </div>
-            </div>
-            <div class="sidebar-widget">
-              <h3 class="sidebar-widget__title">On YouTube</h3>
+            </section>
+
+            <section class="sidebar-widget" aria-labelledby="youtube-heading">
+              <h3 class="sidebar-widget__title" id="youtube-heading">
+                On YouTube
+              </h3>
               <p class="yt-sidebar-label">Latest videos from the channel.</p>
               <div id="youtube-videos" class="yt-list"></div>
               <a
                 href="https://youtube.com"
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 class="yt-view-all"
                 >View all videos →</a
               >
-            </div>
+            </section>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- ── BLOG FOOTER ── -->
-    <section class="testi-footer">
+    <!-- FIX: <section class="testi-footer"> → <footer>; inline onclick removed; path fixed -->
+    <footer class="testi-footer" aria-label="Call to action">
       <h2 class="testi-footer__heading">Want to go deeper?</h2>
       <p class="testi-footer__text">
         Explore the courses or get in touch for a consultation.
       </p>
       <div class="testi-footer__actions">
-        <button
+        <!-- FIX: was <button onclick="location.href='courses.html'"> -->
+        <a
+          href="courses.html"
           class="testi-footer__btn testi-footer__btn--primary"
-          onclick="location.href = 'courses.html'"
         >
           BROWSE COURSES
-        </button>
-        <button
+        </a>
+        <!-- FIX: was <button onclick="location.href='../public/contact.html'"> -->
+        <a
+          href="contact.html"
           class="testi-footer__btn testi-footer__btn--secondary"
-          onclick="location.href = '../public/contact.html'"
         >
           COLLABORATE
-        </button>
+        </a>
       </div>
-    </section>
+    </footer>
   </body>
 </html>

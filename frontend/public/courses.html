@@ -6,17 +6,29 @@
     <title>Tokimahery Ramarozaka — All Courses</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="data:," />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
   </head>
   <body>
     <header class="navbar" id="navbar">
-      <a class="navbar__brand" href="index.html"
-        ><img src="assets/logo.png" alt="Logo" class="h-12.5" />
+      <a class="navbar__brand" href="index.html">
+        <img
+          src="assets/logo.png"
+          alt="Tokimahery Ramarozaka — Home"
+          class="h-12.5"
+        />
       </a>
       <nav
         class="navbar__nav"
@@ -49,55 +61,65 @@
             id="navbar-cart-button"
             aria-label="Shopping cart"
           >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
-            </svg>
+            <i class="fa-solid fa-basket-shopping fa-xl" aria-hidden="true"></i>
           </button>
         </div>
       </div>
     </header>
 
-    <section class="courses" id="courses">
+    <!-- FIX: added aria-labelledby -->
+    <section class="courses" id="courses" aria-labelledby="courses-heading">
       <div class="courses__container">
         <div class="courses__header">
-          <div class="courses__eyebrow">
+          <div class="courses__eyebrow" aria-hidden="true">
             <span class="courses__eyebrow-line"></span>
             <span class="courses__eyebrow-label">LEARNING</span>
             <span class="courses__eyebrow-line"></span>
           </div>
-          <h1 class="courses__heading"
-            All <em class="text-red" style="font-style: italic"></em>
-            All
-            <em style="font-style: italic; color: var(--color-red)">courses</em>
+          <!-- FIX: added id for aria-labelledby -->
+          <h1 class="courses__heading" id="courses-heading">
+            All <em class="page-header__heading-italic">courses</em>
           </h1>
           <p class="courses__subtitle">
             Online and offline courses across development, translation, and
             research.<br />Find the one that fits your level and goals.
           </p>
         </div>
-        <div class="filter_wrapper bg-white py-6 border-b border-border bg">
+
+        <!-- FIX: filter_wrapper → filter-wrapper (kebab-case); removed duplicate bg class -->
+        <div class="filter-wrapper bg-white py-6 border-b border-border">
           <div class="filters-bar">
-            <div class="filter-group">
-              <span class="filter-label">LANGUAGE</span>
+            <!-- FIX: <div> → <fieldset> with <legend> for grouped controls; aria-labels on flag buttons -->
+            <fieldset class="filter-group">
+              <legend class="filter-label">LANGUAGE</legend>
               <div class="language-filters" id="language-filters">
-                <button data-lang="mg" class="flag-btn">🇲🇬</button>
-                <button data-lang="fr" class="flag-btn">🇫🇷</button>
-                <button data-lang="en" class="flag-btn">🇬🇧</button>
+                <button
+                  data-lang="mg"
+                  class="flag-btn"
+                  aria-label="Filter by Malagasy"
+                >
+                  🇲🇬
+                </button>
+                <button
+                  data-lang="fr"
+                  class="flag-btn"
+                  aria-label="Filter by French"
+                >
+                  🇫🇷
+                </button>
+                <button
+                  data-lang="en"
+                  class="flag-btn"
+                  aria-label="Filter by English"
+                >
+                  🇬🇧
+                </button>
               </div>
-            </div>
-            <div class="filter-group">
-              <span class="filter-label">TECHNOLOGY</span>
+            </fieldset>
+
+            <!-- FIX: <div> → <fieldset>; <span> → <legend> -->
+            <fieldset class="filter-group">
+              <legend class="filter-label">TECHNOLOGY</legend>
               <select id="tech-select" class="select-filter">
                 <option value="all">All technologies</option>
                 <option value="javascript">JavaScript</option>
@@ -106,21 +128,25 @@
                 <option value="python">Python</option>
                 <option value="php">PHP</option>
               </select>
-            </div>
-            <div class="filter-group">
-              <span class="filter-label">LEVEL</span>
+            </fieldset>
+
+            <!-- FIX: <div> → <fieldset>; <span> → <legend> -->
+            <fieldset class="filter-group">
+              <legend class="filter-label">LEVEL</legend>
               <select id="level-select" class="select-filter">
                 <option value="all">All levels</option>
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
               </select>
-            </div>
-            <div class="price-group filter-group">
-              <span class="filter-label">PRICE RANGE</span>
+            </fieldset>
+
+            <!-- FIX: <div> → <fieldset>; <span class="price-slider-label"> → <label for="..."> -->
+            <fieldset class="price-group filter-group">
+              <legend class="filter-label">PRICE RANGE</legend>
               <div class="price-sliders">
                 <div class="price-slider-row">
-                  <span class="price-slider-label">Min</span>
+                  <label for="min-price" class="price-slider-label">Min</label>
                   <input
                     type="range"
                     id="min-price"
@@ -133,7 +159,7 @@
                   <span id="min-price-val" class="price-slider-val">0 Ar</span>
                 </div>
                 <div class="price-slider-row">
-                  <span class="price-slider-label">Max</span>
+                  <label for="max-price" class="price-slider-label">Max</label>
                   <input
                     type="range"
                     id="max-price"
@@ -148,19 +174,23 @@
                   >
                 </div>
               </div>
-            </div>
-            <div class="search-group filter-group">
-              <span class="filter-label">SEARCH</span>
+            </fieldset>
+
+            <!-- FIX: <div> → <fieldset>; added visible label for search input -->
+            <fieldset class="search-group filter-group">
+              <legend class="filter-label">SEARCH</legend>
               <input
                 id="search-input"
-                type="text"
+                type="search"
                 class="search-input"
                 placeholder="Keywords..."
               />
-            </div>
+            </fieldset>
+
             <button id="clear-all" class="clear-all">CLEAR ALL</button>
           </div>
         </div>
+
         <div class="courses-main">
           <p class="courses-count" id="courses-count">9 COURSES FOUND</p>
           <div class="courses__grid" id="courses-grid"></div>
@@ -168,20 +198,19 @@
       </div>
     </section>
 
-    <section class="courses-footer">
+    <!-- FIX: <section> → <footer> (page-level closing CTA); inline onclick removed; link corrected -->
+    <footer class="courses-footer" aria-label="Call to action">
       <div class="max-w-md mx-auto text-center">
         <h2 class="courses-footer__heading">Not sure where to start?</h2>
         <p class="courses-footer__text">
           Book a free discovery call and find the course that fits your goals
           and schedule.
         </p>
-        <button
-          onclick="window.location.href = '../public/contact.html'"
-          class="courses-footer__btn"
-        >
+        <!-- FIX: was <button onclick="window.location.href='../public/contact.html'"> -->
+        <a href="contact.html" class="courses-footer__btn">
           Book discovery call
-        </button>
+        </a>
       </div>
-    </section>
+    </footer>
   </body>
 </html>

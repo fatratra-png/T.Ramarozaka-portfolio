@@ -6,17 +6,29 @@
     <title>Tokimahery Ramarozaka — Testimonials</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="data:," />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
   </head>
   <body>
     <header class="navbar" id="navbar">
-      <a class="navbar__brand" href="index.html"
-        ><img src="assets/logo.png" alt="Logo" class="h-12.5" />
+      <a class="navbar__brand" href="index.html">
+        <img
+          src="assets/logo.png"
+          alt="Tokimahery Ramarozaka — Home"
+          class="h-12.5"
+        />
       </a>
       <nav
         class="navbar__nav"
@@ -50,35 +62,22 @@
             id="navbar-cart-button"
             aria-label="Shopping cart"
           >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
-            </svg>
+            <i class="fa-solid fa-basket-shopping fa-xl" aria-hidden="true"></i>
           </button>
         </div>
       </div>
     </header>
 
-    <section class="testi-page">
+    <section class="testi-page" aria-labelledby="testi-page-heading">
       <div class="testi-page__container">
         <div class="page-header">
-          <div class="page-header__eyebrow">
+          <div class="page-header__eyebrow" aria-hidden="true">
             <span class="page-header__eyebrow-line"></span>
             <span class="page-header__eyebrow-label">Social Proof</span>
             <span class="page-header__eyebrow-line"></span>
           </div>
-          <h1 class="page-header__heading">
-            What people <em class="page-header__heading-italic">say</em>
+          <h1 class="page-header__heading" id="testi-page-heading">
+            What people <br /><em class="page-header__heading-italic">say</em>
           </h1>
           <p class="page-header__subtitle">
             Hundreds of students, collaborators, and clients have trusted
@@ -88,28 +87,31 @@
 
         <div id="testimonials-sections"></div>
       </div>
-
-      <div class="testi-footer">
-        <h2 class="testi-footer__heading">Join them.</h2>
-        <p class="testi-footer__text">
-          Whether you want to learn, collaborate, or get something built —
-          Tokimahery is ready to help you move forward.
-        </p>
-        <div class="testi-footer__actions">
-          <button
-            class="testi-footer__btn testi-footer__btn--primary"
-            onclick="location.href = 'courses.html'"
-          >
-            Book a course
-          </button>
-          <button
-            class="testi-footer__btn testi-footer__btn--secondary"
-            onclick="location.href = '../public/contact.html'"
-          >
-            Collaborate
-          </button>
-        </div>
-      </div>
     </section>
+
+    <!-- FIX: <div class="testi-footer"> → <footer>; inline onclick removed; path fixed -->
+    <footer class="testi-footer" aria-label="Call to action">
+      <h2 class="testi-footer__heading">Join them.</h2>
+      <p class="testi-footer__text">
+        Whether you want to learn, collaborate, or get something built —
+        Tokimahery is ready to help you move forward.
+      </p>
+      <div class="testi-footer__actions">
+        <!-- FIX: was <button onclick="location.href='courses.html'"> -->
+        <a
+          href="courses.html"
+          class="testi-footer__btn testi-footer__btn--primary"
+        >
+          Book a course
+        </a>
+        <!-- FIX: was <button onclick="location.href='../public/contact.html'"> -->
+        <a
+          href="contact.html"
+          class="testi-footer__btn testi-footer__btn--secondary"
+        >
+          Collaborate
+        </a>
+      </div>
+    </footer>
   </body>
 </html>

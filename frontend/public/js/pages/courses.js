@@ -40,7 +40,14 @@ function buildCourseCard(course) {
     ),
   );
   imgWrap.appendChild(badges);
-  imgWrap.appendChild(createEl("span", "course-card__level", course.level.toLowerCase()));
+
+  const level = course.level.toLowerCase();
+  const levelTag = createEl(
+    "span",
+    "course-card__level " + (LEVEL_CLASS[level] || ""),
+    level,
+  );
+  imgWrap.appendChild(levelTag);
   card.appendChild(imgWrap);
 
   // — Body —
@@ -70,12 +77,14 @@ function buildCourseCard(course) {
     cartBtn.disabled = true;
   }
 
-  cartBtn.addEventListener("click", () => {
+  // FIX: named function instead of anonymous arrow
+  function handleCartBtnClick() {
     addToCart(course);
     cartBtn.textContent = "Added ✓";
     cartBtn.disabled = true;
-  });
+  }
 
+  cartBtn.addEventListener("click", handleCartBtnClick);
   actions.appendChild(learnBtn);
   actions.appendChild(cartBtn);
   body.appendChild(actions);
@@ -129,26 +138,35 @@ export function initCoursesPage() {
 
   // — Language flags —
   document.querySelectorAll(".flag-btn").forEach((btn) => {
-    btn.addEventListener("click", () => {
+    // FIX: named function for flag button click handler
+    function handleFlagBtnClick() {
       const lang = btn.dataset.lang;
-      activeLangs.has(lang)
-        ? (activeLangs.delete(lang), btn.classList.remove("active"))
-        : (activeLangs.add(lang), btn.classList.add("active"));
+      if (activeLangs.has(lang)) {
+        activeLangs.delete(lang);
+        btn.classList.remove("active");
+      } else {
+        activeLangs.add(lang);
+        btn.classList.add("active");
+      }
       render();
-    });
+    }
+    btn.addEventListener("click", handleFlagBtnClick);
   });
 
   // — Tech & level selects —
-  document.getElementById("tech-select")?.addEventListener("change", (e) => {
+  // FIX: named function instead of anonymous arrow
+  function handleTechChange(e) {
     activeTech = e.target.value;
     render();
-  });
-  document.getElementById("level-select")?.addEventListener("change", (e) => {
+  }
+  function handleLevelChange(e) {
     activeLevel = e.target.value;
     render();
-  });
+  }
+  document.getElementById("tech-select")?.addEventListener("change", handleTechChange);
+  document.getElementById("level-select")?.addEventListener("change", handleLevelChange);
 
-  // — Price range sliders — deux tracks indépendants
+  // — Price range sliders —
   const minSlider = document.getElementById("min-price");
   const maxSlider = document.getElementById("max-price");
   const minValEl = document.getElementById("min-price-val");
@@ -158,20 +176,33 @@ export function initCoursesPage() {
     return n.toLocaleString("fr-MG") + " Ar";
   }
 
+  const SLIDER_MIN = 0;
+  const SLIDER_MAX = 300_000;
+  const RED = "var(--color-red, #c0392b)";
+  const GRAY = "#e0e0e0";
+
+  function setSliderFill(slider) {
+    const pct =
+      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) *
+      100;
+    slider.style.background = `linear-gradient(to right, ${RED} ${pct}%, ${GRAY} ${pct}%)`;
+  }
+
   function updateMin() {
     let lo = parseInt(minSlider.value);
-    let hi = parseInt(maxSlider.value);
+    const hi = parseInt(maxSlider.value);
     if (lo > hi) {
       minSlider.value = hi;
       lo = hi;
     }
     minPrice = lo;
     if (minValEl) minValEl.textContent = fmt(lo);
+    setSliderFill(minSlider);
     render();
   }
 
   function updateMax() {
-    let lo = parseInt(minSlider.value);
+    const lo = parseInt(minSlider.value);
     let hi = parseInt(maxSlider.value);
     if (hi < lo) {
       maxSlider.value = lo;
@@ -179,46 +210,66 @@ export function initCoursesPage() {
     }
     maxPrice = hi;
     if (maxValEl) maxValEl.textContent = fmt(hi);
+    setSliderFill(maxSlider);
     render();
   }
 
   if (minSlider) {
     minSlider.addEventListener("input", updateMin);
     if (minValEl) minValEl.textContent = fmt(parseInt(minSlider.value));
+    setSliderFill(minSlider);
   }
   if (maxSlider) {
     maxSlider.addEventListener("input", updateMax);
     if (maxValEl) maxValEl.textContent = fmt(parseInt(maxSlider.value));
+    setSliderFill(maxSlider);
   }
 
   // — Search —
-  document.getElementById("search-input")?.addEventListener("input", (e) => {
-    searchQ = e.target.value.toLowerCase();
+  // FIX: named function instead of anonymous arrow
+  function handleSearchInput(e) {
+    searchQ = e.target.value.toLowerCase().trim();
     render();
-  });
+  }
+  document.getElementById("search-input")?.addEventListener("input", handleSearchInput);
 
   // — Clear all —
-  document.getElementById("clear-all")?.addEventListener("click", () => {
+  // FIX: named function instead of anonymous arrow
+  function handleClearAll() {
     activeLangs.clear();
-    document.querySelectorAll(".flag-btn").forEach(b => b.classList.remove("active"));
+    document
+      .querySelectorAll(".flag-btn")
+      .forEach((b) => b.classList.remove("active"));
 
-    activeTech  = "all";
+    activeTech = "all";
     activeLevel = "all";
-    document.getElementById("tech-select")  && (document.getElementById("tech-select").value   = "all");
-    document.getElementById("level-select") && (document.getElementById("level-select").value  = "all");
+
+    const techSelect = document.getElementById("tech-select");
+    if (techSelect) techSelect.value = "all";
+
+    const levelSelect = document.getElementById("level-select");
+    if (levelSelect) levelSelect.value = "all";
 
     minPrice = 0;
     maxPrice = 300_000;
-    if (minSlider) minSlider.value = 0;
-    if (maxSlider) maxSlider.value = 300_000;
-    if (fill)     { fill.style.left = "0%"; fill.style.width = "100%"; }
-    if (priceVal) priceVal.textContent = "0 Ar – 300,000 Ar";
+
+    if (minSlider) {
+      minSlider.value = 0;
+      updateMin();
+    }
+    if (maxSlider) {
+      maxSlider.value = 300_000;
+      updateMax();
+    }
 
     searchQ = "";
     const searchInput = document.getElementById("search-input");
     if (searchInput) searchInput.value = "";
+
     render();
-  });
+  }
+
+  document.getElementById("clear-all")?.addEventListener("click", handleClearAll);
 
   render();
 }

@@ -6,6 +6,7 @@
     <title>Tokimahery Ramarozaka — Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="data:," />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
       rel="stylesheet"
@@ -22,8 +23,12 @@
   </head>
   <body>
     <header class="navbar" id="navbar">
-      <a class="navbar__brand" href="index.html"
-        ><img src="assets/logo.png" alt="Logo" class="h-12.5" />
+      <a class="navbar__brand" href="index.html">
+        <img
+          src="assets/logo.png"
+          alt="Tokimahery Ramarozaka — Home"
+          class="h-12.5"
+        />
       </a>
       <nav
         class="navbar__nav"
@@ -57,34 +62,21 @@
             id="navbar-cart-button"
             aria-label="Shopping cart"
           >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 01-8 0" />
-            </svg>
+            <i class="fa-solid fa-basket-shopping fa-xl" aria-hidden="true"></i>
           </button>
         </div>
       </div>
     </header>
 
-    <section class="research-page">
+    <section class="research-page" aria-labelledby="research-page-heading">
       <div class="research-page__container">
         <div class="page-header">
-          <div class="page-header__eyebrow">
+          <div class="page-header__eyebrow" aria-hidden="true">
             <span class="page-header__eyebrow-line"></span>
             <span class="page-header__eyebrow-label">Academic Work</span>
             <span class="page-header__eyebrow-line"></span>
           </div>
-          <h1 class="page-header__heading">
+          <h1 class="page-header__heading" id="research-page-heading">
             Research <em class="page-header__heading-italic">papers</em>
           </h1>
           <p class="page-header__subtitle">
@@ -98,6 +90,7 @@
         </div>
       </div>
     </section>
+
     <section class="cta-banner" id="cta-banner" aria-labelledby="cta-heading">
       <h2 class="cta-banner__heading" id="cta-heading"></h2>
       <p class="cta-banner__subheading" id="cta-subheading"></p>

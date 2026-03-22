@@ -17,6 +17,8 @@ export function renderNavLinks() {
       label,
     );
     a.href = href;
+    // FIX: add aria-current="page" to the active desktop nav link
+    if (isActive) a.setAttribute("aria-current", "page");
     nav.appendChild(a);
   });
 
@@ -25,7 +27,6 @@ export function renderNavLinks() {
 }
 
 function _renderMobileNav(current) {
-  // Create the drawer element
   const mobileNav = createEl("nav", "navbar__mobile-nav");
   mobileNav.id = "navbar-mobile-nav";
   mobileNav.setAttribute("aria-label", "Mobile navigation");
@@ -40,10 +41,11 @@ function _renderMobileNav(current) {
       label,
     );
     a.href = href;
+    // FIX: add aria-current="page" to the active mobile nav link
+    if (isActive) a.setAttribute("aria-current", "page");
     mobileNav.appendChild(a);
   });
 
-  // Insert right after <header>
   const header = document.getElementById("navbar");
   if (header && header.parentNode) {
     header.parentNode.insertBefore(mobileNav, header.nextSibling);
@@ -55,29 +57,35 @@ export function initHamburger() {
   const mobileNav = document.getElementById("navbar-mobile-nav");
   if (!btn || !mobileNav) return;
 
-  btn.addEventListener("click", () => {
+  // FIX: named function instead of anonymous arrow
+  function handleHamburgerClick() {
     const isOpen = btn.classList.toggle("is-open");
     mobileNav.classList.toggle("is-open", isOpen);
     btn.setAttribute("aria-expanded", String(isOpen));
-  });
+  }
+
+  // FIX: named function instead of anonymous arrow (reused for links + outside click)
+  function closeMobileNav() {
+    btn.classList.remove("is-open");
+    mobileNav.classList.remove("is-open");
+    btn.setAttribute("aria-expanded", "false");
+  }
+
+  btn.addEventListener("click", handleHamburgerClick);
 
   // Close on link click
   mobileNav.querySelectorAll(".navbar__mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", () => {
-      btn.classList.remove("is-open");
-      mobileNav.classList.remove("is-open");
-      btn.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", closeMobileNav);
   });
 
-  // Close on outside click
-  document.addEventListener("click", (e) => {
+  // FIX: named function instead of anonymous arrow
+  function handleOutsideClick(e) {
     if (!btn.contains(e.target) && !mobileNav.contains(e.target)) {
-      btn.classList.remove("is-open");
-      mobileNav.classList.remove("is-open");
-      btn.setAttribute("aria-expanded", "false");
+      closeMobileNav();
     }
-  });
+  }
+
+  document.addEventListener("click", handleOutsideClick);
 }
 
 export function initCart() {
@@ -95,10 +103,13 @@ export function initCart() {
 
   updateCartBadge();
 
-  // Wire the cart button to open the popup
   const cartBtn = document.getElementById("navbar-cart-button");
-  cartBtn?.addEventListener("click", (e) => {
+
+  // FIX: named function instead of anonymous arrow
+  function handleCartButtonClick(e) {
     e.stopPropagation();
     openCartPopup();
-  });
+  }
+
+  cartBtn?.addEventListener("click", handleCartButtonClick);
 }

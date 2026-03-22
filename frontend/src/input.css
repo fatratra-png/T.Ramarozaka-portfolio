@@ -272,6 +272,24 @@
   .hero__image-frame {
     @apply relative w-100 h-100 max-lg:w-65 max-lg:h-65
            flex items-center justify-center;
+    isolation: isolate;
+    overflow: visible;
+  }
+  @media (width > 1024px) {
+    .hero__image-frame::after {
+      content: "";
+      background-image: url("./assets/bg.svg");
+      background-size: contain;
+      position: absolute;
+      width: 350px;
+      aspect-ratio: 1/1;
+
+      top: 0;
+      right: 0;
+      translate: 72% -72%;
+
+      z-index: -1;
+    }
   }
 
   .hero__frame-bg {
@@ -319,7 +337,7 @@
   /* Both heading lines share base; only italic differs */
   .about__heading-plain,
   .about__heading-italic {
-    @apply block text-[56px] font-semibold text-text-dark leading-[1.1] font-display;
+    @apply block text-[52px] font-semibold text-text-dark leading-[1.1] font-display;
   }
 
   .about__heading-italic {
@@ -378,8 +396,8 @@
   }
 
   .home-courses__heading {
-    @apply text-center text-[52px] font-semibold text-text-dark leading-[1.15] mb-14
-           max-lg:text-[36px] font-display;
+    @apply text-center lg:text-[52px] font-semibold text-text-dark leading-[1.15] mb-14
+           text-[40px] font-display;
   }
 
   .home-courses__heading-italic {
@@ -452,7 +470,7 @@
   }
 
   .experience__heading {
-    @apply text-[52px] font-semibold text-text-dark leading-none mb-14 font-display;
+    @apply lg:text-[52px] text-[40px] font-semibold text-text-dark leading-none mb-14 font-display;
   }
 
   .experience__grid {
@@ -460,7 +478,22 @@
   }
 
   .experience__entry {
-    @apply px-10 py-10 border-l-2 border-border hover:border-red;
+    @apply px-10 py-10 border-l-2 border-border lg:hover:border-red;
+  }
+
+  /* ── EXPERIENCE — mobile center-highlight ────────────
+     On touch screens, the entry closest to the viewport
+     centre gets .is-active (set by initExperienceScrollReveal).
+     All others stay at the default border-border colour.
+  ────────────────────────────────────────────────────── */
+  @media (max-width: 1023px) {
+    .experience__entry {
+      transition: border-color 0.3s ease;
+    }
+
+    .experience__entry.is-active {
+      @apply border-red;
+    }
   }
 
   /* label-red pattern — expanded inline */
@@ -508,7 +541,7 @@
   /* ── COURSES PAGE ────────────────────────────────── */
 
   .courses {
-    @apply bg-bg-warm pt-35.5 mx-auto;
+    @apply bg-bg-warm pt-30 lg:pt-35.5 mx-auto;
   }
   .courses-main {
     @apply bg-white pt-6 pb-24;
@@ -625,7 +658,7 @@
   }
 
   .price-slider {
-    @apply flex-1 h-1 lg:w-47.5 grow-0 appearance-none
+    @apply flex-1 h-2 lg:w-47.5 grow-0 appearance-none border border-gray-400
            bg-[#e0e0e0] rounded-full outline-none cursor-pointer;
   }
 
@@ -662,7 +695,7 @@
   }
 
   .clear-all {
-    @apply text-[10px] font-bold tracking-[0.14em] uppercase text-red
+    @apply text-[10px] font-bold tracking-[0.14em] text-text-muted uppercase hover:text-red
            cursor-pointer bg-transparent border-0 p-0 mt-[26px]
            self-start transition-opacity duration-150;
     @media (width < 40rem) {
@@ -787,7 +820,7 @@
   }
 
   .courses-footer__btn {
-    @apply mt-8 bg-white text-red px-8 py-4 rounded-full text-xs font-semibold
+    @apply mt-8 bg-white inline-block text-red px-8 py-4 rounded-full text-xs font-semibold
            tracking-wider uppercase hover:bg-red-dark hover:text-white transition;
   }
 
@@ -815,7 +848,7 @@
   }
 
   .page-header__heading {
-    @apply text-[56px] leading-[1.1] font-semibold text-text-dark mb-5
+    @apply text-[52px] leading-[1.1] font-semibold text-text-dark mb-5 mx-auto text-center
            max-lg:text-[40px] font-display;
   }
 
@@ -880,11 +913,11 @@
 
   /* Red title — matches the video */
   .blog-post-row__title {
-    @apply text-[20px] leading-[1.3] text-red mb-2 font-body;
+    @apply text-[20px] leading-[1.3] text-red mb-2 wrap-break-word font-body;
   }
 
   .blog-post-row__desc {
-    @apply text-[14px] leading-[1.7] text-text-muted mb-20 line-clamp-2
+    @apply text-[14px] leading-[1.7] text-text-muted mb-20 wrap-break-word line-clamp-2
            max-sm:mb-4;
   }
 
@@ -1013,47 +1046,57 @@
   .testi-page {
     @apply bg-bg-warm min-h-screen pb-0;
   }
-
   .testi-page__container {
-    @apply max-w-7xl mx-auto w-full px-10;
+    @apply pt-20;
+  }
+  .page-header {
+    @apply max-w-7xl mx-auto w-full;
   }
 
-  /* Role section block */
   .testi-section {
-    @apply mb-14;
+    @apply w-full px-8 py-16;
+  }
+  .testi-section-heading,
+  .testimonials-grid {
+    @apply max-w-7xl mx-auto lg:px-12;
   }
 
+  #testimonials-sections .testi-section:nth-child(odd) {
+    @apply bg-white;
+  }
+
+  #testimonials-sections .testi-section:nth-child(even) {
+    @apply bg-bg-warm;
+  }
   /* Section heading: red line + uppercase label */
   .testi-section-heading {
     @apply flex items-center gap-4 mb-10;
   }
 
   .testi-section-heading__line {
-    @apply block flex-shrink-0 h-0.5 bg-red w-8;
+    @apply block shrink-0 h-0.5 bg-red w-8;
   }
 
   .testi-section-heading__label {
     @apply text-[10px] font-semibold tracking-[0.2em] uppercase text-text-muted;
   }
 
-  /* Testimonials grid — 3-col */
+  /* Testimonials grid — 3-col default */
   .testimonials-grid {
     @apply grid grid-cols-3 gap-7 max-[72rem]:grid-cols-2 max-md:grid-cols-1;
   }
 
-  /* Card layout: author → red sep → quote text → stars */
+  /* Card base — shared structure */
   .testi-card {
-    @apply bg-bg-white border border-border rounded-2xl p-7
-           flex flex-col hover:-translate-y-0.5 transition-transform duration-200
-           shadow-[0_1px_4px_rgb(0_0_0/0.04)];
+    @apply flex flex-col transition-transform duration-200 bg-[#fafbfa] py-8 px-6 rounded-2xl hover:shadow-lg;
   }
 
   .testi-card__author {
-    @apply flex items-center gap-4 mb-3;
+    @apply flex items-center gap-4;
   }
 
   .testi-card__avatar {
-    @apply w-11 h-11 rounded-full overflow-hidden flex-shrink-0;
+    @apply w-11 h-11 rounded-full overflow-hidden shrink-0;
   }
 
   .testi-card__avatar-img {
@@ -1072,23 +1115,149 @@
     @apply text-[10px] tracking-[0.14em] uppercase text-text-muted;
   }
 
-  /* Red separator between author and quote */
   .testi-card__sep {
-    @apply block flex-shrink-0 h-0.5 bg-red mb-5 mt-1 w-8;
+    @apply block shrink-0 h-0.5 bg-red w-8 my-2;
   }
 
   .testi-card__text {
-    @apply text-[14px] leading-[1.8] text-text-dark italic flex-1;
+    @apply text-[14px] leading-[1.8] text-text-muted flex-1 mb-6;
   }
 
-  /* Stars at the bottom */
   .testi-card__stars {
-    @apply flex gap-1 mt-5;
+    @apply flex gap-1;
+  }
+
+  /* ── CUSTOMERS ───────────────────────────────────────
+     Layout: stars (top) → quote → author (bottom)
+     Open layout — no card box/border
+  ─────────────────────────────────────────────────── */
+  .testimonials-grid--customer {
+    @apply grid-cols-3 max-[72rem]:grid-cols-2 max-md:grid-cols-1;
+  }
+
+  .testi-card--customer {
+    @apply bg-white border border-border-light/70 shadow-none py-8 px-6 gap-0 hover:shadow-md hover:-translate-y-0.5 rounded-2xl;
+  }
+
+  .testi-card--customer .testi-card__stars {
+    order: 1;
+    @apply mb-4;
+  }
+
+  .testi-card--customer .testi-card__text {
+    order: 2;
+    @apply not-italic mb-5 text-zinc-600;
+  }
+
+  .testi-card--customer .testi-card__author {
+    order: 3;
+    @apply mt-auto pt-2;
+  }
+
+  .testi-card--customer .testi-card__sep {
+    @apply hidden;
+  }
+
+  /* ── COLLABORATORS ───────────────────────────────────
+     Layout: quote (top, italic) → author (bottom)
+     Boxed white cards, 2-col grid, cream section bg
+  ─────────────────────────────────────────────────── */
+
+  .testimonials-grid--collaborator {
+    @apply grid-cols-2 max-md:grid-cols-1;
+  }
+
+  .testi-card--collaborator {
+    @apply bg-bg-white border border-border-light shadow-sm hover:shadow-lg rounded-2xl py-12 px-8 hover:-translate-y-0.5 gap-0;
+  }
+
+  .testi-card--collaborator .testi-card__text {
+    order: 1;
+    @apply italic mb-10 font-display text-stone-700 text-base leading-[1.4];
+  }
+
+  .testi-card--collaborator .testi-card__author {
+    order: 2;
+    @apply mt-auto;
+  }
+
+  .testi-card--collaborator .testi-card__sep {
+    @apply hidden;
+  }
+
+  .testi-card--collaborator .testi-card__stars {
+    @apply hidden;
+  }
+
+  /* ── PROGRESSIVE DISCLOSURE ─────────────────────────
+     Hidden cards are collapsed by default; revealed with
+     a staggered fade-up animation via JS.
+  ─────────────────────────────────────────────────── */
+
+  .testi-card--hidden {
+    @apply max-md:hidden;
+  }
+
+  @keyframes testi-reveal {
+    from {
+      opacity: 0;
+      translate: 0 16px;
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  .testi-card--revealed {
+    animation: testi-reveal 0.35s ease both;
+  }
+
+  /* Wrapper aligns button + count badge on the same row */
+  .testi-show-more-wrap {
+    @apply hidden max-md:flex items-center gap-3 max-w-7xl mx-auto px-8 mt-10 lg:px-20;
+  }
+
+  /* The button itself — no box, just the underlined red text + arrow
+     mirroring the "ASK FOR A COLLABORATION →" reference image */
+  .testi-show-more-btn {
+    @apply inline-flex items-center gap-2 cursor-pointer
+           bg-transparent border-0 border-b-2 border-b-red
+           pb-0.25 p-0 transition-opacity duration-150
+           hover:opacity-70;
+  }
+
+  .testi-show-more-btn__text {
+    @apply text-[11px] font-semibold tracking-[0.18em] uppercase text-red;
+  }
+
+  .testi-show-more-btn__arrow {
+    @apply text-[13px] text-red inline-block
+           transition-transform duration-200;
+  }
+
+  .testi-show-more-btn:hover .testi-show-more-btn__arrow {
+    @apply translate-x-1;
+  }
+
+  .testi-show-more-btn--expanded .testi-show-more-btn__arrow {
+    @apply translate-x-0;
+  }
+
+  .testi-show-more-btn--expanded:hover .testi-show-more-btn__arrow {
+    @apply -translate-y-0.5;
+  }
+
+  /* Small pill showing the hidden card count e.g. "+4" */
+  .testi-show-more-btn__count {
+    @apply text-[10px] font-semibold tracking-wide text-red
+           bg-red/10 border border-red/25
+           rounded-full px-2.5 py-0.5;
   }
 
   /* Testimonials page footer CTA */
   .testi-footer {
-    @apply bg-red text-center px-6 py-20 mt-24;
+    @apply bg-red text-center px-6 py-20;
   }
 
   .testi-footer__heading {
@@ -1100,7 +1269,7 @@
   }
 
   .testi-footer__actions {
-    @apply flex gap-4 justify-center flex-wrap;
+    @apply flex gap-4 justify-center flex-wrap grow;
   }
 
   .testi-footer__btn {
@@ -1120,11 +1289,11 @@
   /* ── RESEARCH PAGE ───────────────────────────────── */
 
   .research-page {
-    @apply bg-bg-warm min-h-screen mt-15.5;
+    @apply bg-bg-warm min-h-screen;
   }
 
   .research-page__container {
-    @apply mx-auto w-full;
+    @apply mx-auto w-full mt-20;
   }
 
   /* Flat list — no cards, just horizontal rule separators */
@@ -1342,7 +1511,7 @@
   }
 
   .contact-hero__container {
-    @apply flex flex-col items-center mx-auto w-full max-w-7xl px-12 max-lg:px-6;
+    @apply flex flex-col items-center mx-auto w-full max-w-7xl px-12 max-lg:px-8;
   }
 
   .contact-hero__eyebrow {
@@ -1358,7 +1527,7 @@
   }
 
   .contact-hero__heading {
-    @apply font-display text-[56px] font-semibold leading-[1.05]
+    @apply font-display text-[52px] font-semibold leading-[1.05]
            text-text-dark mb-7 max-lg:text-[52px];
   }
 
@@ -1381,7 +1550,7 @@
            grid grid-cols-[1fr_400px];
 
     @media (width < 64rem) {
-      @apply px-6 gap-14;
+      @apply px-8 gap-14;
       grid-template-columns: 1fr;
     }
   }
