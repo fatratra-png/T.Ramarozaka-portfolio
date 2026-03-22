@@ -37,7 +37,6 @@
         aria-label="Primary navigation"
       ></nav>
 
-      <!-- Hamburger (mobile only) -->
       <button
         class="navbar__hamburger"
         id="navbar-hamburger"
@@ -97,7 +96,6 @@
           </div>
 
           <aside class="blog-sidebar" aria-label="Blog sidebar">
-            <!-- FIX: <div class="sidebar-widget"> → <section> with aria-labelledby -->
             <section class="sidebar-widget" aria-labelledby="archives-heading">
               <h3 class="sidebar-widget__title" id="archives-heading">
                 Archives
@@ -148,21 +146,18 @@
       </div>
     </section>
 
-    <!-- FIX: <section class="testi-footer"> → <footer>; inline onclick removed; path fixed -->
     <footer class="testi-footer" aria-label="Call to action">
       <h2 class="testi-footer__heading">Want to go deeper?</h2>
       <p class="testi-footer__text">
         Explore the courses or get in touch for a consultation.
       </p>
       <div class="testi-footer__actions">
-        <!-- FIX: was <button onclick="location.href='courses.html'"> -->
         <a
           href="courses.html"
           class="testi-footer__btn testi-footer__btn--primary"
         >
           BROWSE COURSES
         </a>
-        <!-- FIX: was <button onclick="location.href='../public/contact.html'"> -->
         <a
           href="contact.html"
           class="testi-footer__btn testi-footer__btn--secondary"
