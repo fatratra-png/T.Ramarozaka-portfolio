@@ -4191,21 +4191,20 @@
     transition: transform 5000ms linear;
     transform: scaleX(0);
   }
-    @media (width < 640px) {
+  @media (width < 640px) {
     .nl-toast--easter {
       bottom: auto;
       top: 80px;
-      left: 12px;
-      right: 12px;
-      transform: translateX(0) translateY(-16px);
+      left: 50%;
+      right: auto;
+      width: calc(100vw - 24px);
+      transform: translateX(-50%) translateY(-16px);
       white-space: normal;
       text-align: center;
-      width: auto;
-      max-width: 100%;
     }
- 
+
     .nl-toast--easter.nl-toast--visible {
-      transform: translateX(0) translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
-}
+  }
 }

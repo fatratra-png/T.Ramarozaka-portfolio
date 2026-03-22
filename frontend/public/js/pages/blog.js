@@ -170,6 +170,7 @@ function showInvalidEmailToast() {
   }, 2000);
 }
 
+// ── iOS ding via Web Audio API ─────────────────────────────────────────────
 function playDingSound() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -192,6 +193,7 @@ function playDingSound() {
   } catch (e) {}
 }
 
+// ── Email notification ─────────────────────────────────────────────────────
 function showEmailNotification(email) {
   document.getElementById("email-notif")?.remove();
 
@@ -266,12 +268,59 @@ function dismissNotif(notif) {
   );
 }
 
+// ── Self-subscribe easter egg ──────────────────────────────────────────────
 function showSelfSubscribeToast() {
-  document.getElementById("nl-toast")?.remove();
+  document.getElementById("easter-toast")?.remove();
 
+  const isMobile = window.innerWidth < 640;
   const toast = document.createElement("div");
-  toast.id = "nl-toast";
-  toast.className = "nl-toast nl-toast--easter";
+  toast.id = "easter-toast";
+
+  // On mobile: fixed top, full width, slide from top
+  // On desktop: centered bottom, slide from bottom
+  if (isMobile) {
+    toast.style.cssText = `
+      position: fixed;
+      top: 80px;
+      left: 12px;
+      right: 12px;
+      z-index: 9999;
+      background: #7f1d1d;
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 20px;
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 220ms ease, transform 220ms ease;
+      text-align: center;
+      line-height: 1.5;
+      pointer-events: none;
+    `;
+  } else {
+    toast.style.cssText = `
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      z-index: 9999;
+      background: #7f1d1d;
+      color: white;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: 8px;
+      opacity: 0;
+      max-width: 420px;
+      width: max-content;
+      transition: opacity 220ms ease, transform 220ms ease;
+      text-align: center;
+      line-height: 1.5;
+      pointer-events: none;
+    `;
+  }
+
   toast.setAttribute("role", "alert");
   toast.innerHTML = `
     <span style="font-size:16px;margin-right:8px;">🤦</span>
@@ -282,12 +331,20 @@ function showSelfSubscribeToast() {
 
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
-      toast.classList.add("nl-toast--visible");
+      toast.style.opacity = "1";
+      if (isMobile) {
+        toast.style.transform = "translateY(0)";
+      } else {
+        toast.style.transform = "translateX(-50%) translateY(0)";
+      }
     });
   });
 
   setTimeout(function () {
-    toast.classList.remove("nl-toast--visible");
+    toast.style.opacity = "0";
+    toast.style.transform = isMobile
+      ? "translateY(-20px)"
+      : "translateX(-50%) translateY(16px)";
     toast.addEventListener(
       "transitionend",
       function () {
@@ -298,6 +355,7 @@ function showSelfSubscribeToast() {
   }, 4000);
 }
 
+// ── Newsletter ─────────────────────────────────────────────────────────────
 function handleNewsletterSubscribe() {
   const emailInput = document.getElementById("newsletter-email");
   const subscribeBtn = document.getElementById("newsletter-btn");
@@ -311,11 +369,8 @@ function handleNewsletterSubscribe() {
     return;
   }
 
-  if (
-    email.toLowerCase() === "tokyramarozaka@gmail.com" ||
-    email.toLowerCase() === "toky@mail.hei.school" ||
-    email.toLowerCase() === "toky@gmail.com"
-  ) {
+  // Easter egg — prof subscribes with his own email
+  if (email.toLowerCase() === "tokyramarozaka@gmail.com") {
     showSelfSubscribeToast();
     return;
   }
