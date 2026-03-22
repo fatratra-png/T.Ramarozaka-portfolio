@@ -9,7 +9,13 @@ const ROLE_ORDER = [
 
 const INITIAL_VISIBLE = 2;
 
-function buildTestimonialCard({ role, rating, description, author, thumbnail }) {
+function buildTestimonialCard({
+  role,
+  rating,
+  description,
+  author,
+  thumbnail,
+}) {
   const card = createEl("article", "testi-card");
   card.classList.add(`testi-card--${role}`);
 
@@ -37,7 +43,6 @@ function buildTestimonialCard({ role, rating, description, author, thumbnail }) 
   card.appendChild(createEl("p", "testi-card__text", description));
 
   const stars = createEl("div", "testi-card__stars");
-  // FIX: add aria-label so screen readers convey rating without reading raw SVG
   stars.setAttribute("aria-label", `Rating: ${rating} out of 5`);
   stars.innerHTML = starsHTML(rating);
   card.appendChild(stars);
@@ -53,7 +58,6 @@ export function initTestimonialsPage() {
     const group = data.testimonials.filter((t) => t.role === key);
     if (group.length === 0) return;
 
-    // FIX: <div> → <section> for semantic grouping; aria-labelledby wired to heading id
     const section = createEl("section", "testi-section");
     section.setAttribute("aria-labelledby", `testi-label-${key}`);
     section.classList.add(`testi-section--${key}`);
@@ -65,7 +69,6 @@ export function initTestimonialsPage() {
       "testi-section-heading__label",
       label.toUpperCase(),
     );
-    // FIX: id added so section's aria-labelledby resolves correctly
     headingLabel.id = `testi-label-${key}`;
     heading.appendChild(headingLabel);
     section.appendChild(heading);
@@ -90,7 +93,6 @@ export function initTestimonialsPage() {
       const showMoreWrap = createEl("div", "testi-show-more-wrap");
 
       const btn = createEl("button", "testi-show-more-btn");
-      // FIX: aria-expanded on the button for accessibility
       btn.setAttribute("aria-expanded", "false");
 
       const btnText = createEl("span", "testi-show-more-btn__text");
@@ -108,7 +110,6 @@ export function initTestimonialsPage() {
 
       let expanded = false;
 
-      // FIX: named function instead of anonymous arrow
       function handleShowMoreClick() {
         expanded = !expanded;
 

@@ -9,10 +9,17 @@ function formatMonthYear(date) {
   }).format(date);
 }
 
-function buildPaperEntry({ title, abstract, publishedDate, journal, authors, tags, url }) {
+function buildPaperEntry({
+  title,
+  abstract,
+  publishedDate,
+  journal,
+  authors,
+  tags,
+  url,
+}) {
   const entry = createEl("article", "paper-entry");
 
-  // Header: tags + date
   const header = createEl("div", "paper-entry__header");
   const tagsWrap = createEl("div", "paper-entry__tags");
   tags.forEach((t) =>
@@ -24,12 +31,9 @@ function buildPaperEntry({ title, abstract, publishedDate, journal, authors, tag
   );
   entry.appendChild(header);
 
-  // Title
   entry.appendChild(createEl("h3", "paper-entry__title", title));
 
-  // Authors · Journal
   const meta = createEl("p", "paper-entry__meta");
-  // FIX: use .map().join('') to set innerHTML rather than string concatenation
   meta.innerHTML =
     authors.map((a) => escapeHtml(a)).join(", ") +
     " · <em>" +
@@ -37,23 +41,19 @@ function buildPaperEntry({ title, abstract, publishedDate, journal, authors, tag
     "</em>";
   entry.appendChild(meta);
 
-  // Abstract
   entry.appendChild(createEl("p", "paper-entry__abstract", abstract));
 
-  // Read PDF link
   const link = createEl("a", "paper-entry__read-link");
   link.href = url;
   link.target = "_blank";
   link.rel = "noopener noreferrer";
   link.setAttribute("aria-label", `Read PDF: ${title}`);
-  // FIX: icon aria-hidden so screen readers don't read the icon glyph
   link.innerHTML = `<span class="paper-entry__read-icon" aria-hidden="true"><i class="fa-solid fa-file-pdf"></i></span> READ PDF`;
   entry.appendChild(link);
 
   return entry;
 }
 
-// FIX: simple HTML escape helper to prevent XSS when inserting data into innerHTML
 function escapeHtml(str) {
   return String(str)
     .replace(/&/g, "&amp;")
@@ -66,7 +66,6 @@ export function initResearchPage() {
   const list = document.getElementById("papers-list");
   if (!list) return;
 
-  // FIX: use forEach on sorted array (map+join not needed here since we append DOM nodes)
   [...data.papers]
     .sort((a, b) => b.publishedDate - a.publishedDate)
     .forEach((p) => list.appendChild(buildPaperEntry(p)));
@@ -75,7 +74,6 @@ export function initResearchPage() {
   setTextById("cta-subheading", RESEARCH_CTA_CONTENT.subheading);
   setTextById("cta-button", RESEARCH_CTA_CONTENT.buttonText);
 
-  // FIX: named function instead of anonymous arrow
   function handleResearchCtaClick() {
     location.href = RESEARCH_CTA_CONTENT.page;
   }

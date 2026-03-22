@@ -1,4 +1,3 @@
-/*! tailwindcss v4.2.1 | MIT License | https://tailwindcss.com */
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
@@ -4021,10 +4020,191 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-scale-x: 1;
-      --tw-scale-y: 1;
-      --tw-scale-z: 1;
-      --tw-outline-style: solid;
+    }
+  }
+  .email-notif {
+    position: fixed;
+    top: 88px;
+    right: 28px;
+    z-index: 9999;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgba(185, 28, 28, 0.12);
+    box-shadow:
+      0 4px 24px rgba(185, 28, 28, 0.08),
+      0 1px 4px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transform: translateX(calc(100% + 28px));
+    opacity: 0;
+    transition:
+      transform 420ms cubic-bezier(0.34, 1.48, 0.64, 1),
+      opacity 300ms ease;
+    pointer-events: auto;
+  }
+
+  .email-notif--visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .email-notif--out {
+    transform: translateX(calc(100% + 28px));
+    opacity: 0;
+    transition:
+      transform 300ms cubic-bezier(0.4, 0, 1, 1),
+      opacity 220ms ease;
+  }
+
+  .email-notif__bar {
+    display: flex;
+    align-items: center;
+    padding: 10px 30px;
+    background: #fdf5f5;
+    border-bottom: 1px solid rgba(185, 28, 28, 0.08);
+  }
+
+  .email-notif__bar-left {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  .email-notif__bar-app {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #b91c1c;
+  }
+
+  .email-notif__bar-time {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: #a8a29e;
+    margin-right: 10px;
+  }
+
+  .email-notif__dismiss {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #c4b5b5;
+    font-size: 12px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    transition:
+      color 150ms ease,
+      background 150ms ease;
+  }
+
+  .email-notif__dismiss:hover {
+    color: #b91c1c;
+    background: rgba(185, 28, 28, 0.08);
+  }
+
+  .email-notif__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px 40px 32px;
+    margin: inline 10px;
+  }
+
+  .email-notif__icon-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(185, 28, 28, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 20px;
+  }
+
+  .email-notif__text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .email-notif__from {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    color: #b91c1c;
+    margin: 0 0 8px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .email-notif__subject {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px;
+    line-height: 1.3;
+  }
+
+  .email-notif__preview {
+    font-family: var(--font-body);
+    font-size: 12px;
+    color: #78716c;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .email-notif__preview strong {
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+
+  .email-notif__progress {
+    height: 2px;
+    background: rgba(185, 28, 28, 0.08);
+  }
+
+  .email-notif__progress-bar {
+    height: 100%;
+    width: 100%;
+    background: #b91c1c;
+    transform-origin: left;
+    transform: scaleX(1);
+  }
+
+  .email-notif__progress-bar--run {
+    transition: transform 5000ms linear;
+    transform: scaleX(0);
+  }
+  @media (width < 640px) {
+    .nl-toast--easter {
+      bottom: auto;
+      top: 80px;
+      left: 50%;
+      right: auto;
+      width: calc(100vw - 24px);
+      transform: translateX(-50%) translateY(-16px);
+      white-space: normal;
+      text-align: center;
+    }
+
+    .nl-toast--easter.nl-toast--visible {
+      transform: translateX(-50%) translateY(0);
     }
   }
 }

@@ -17,7 +17,6 @@ function formatPriceMGA(n) {
 function buildCourseCard(course) {
   const card = createEl("article", "course-card");
 
-  // — Image + badges —
   const imgWrap = createEl("div", "course-card__image-wrapper");
   const img = createEl("img", "course-card__image");
   img.src = course.thumbnail;
@@ -25,7 +24,6 @@ function buildCourseCard(course) {
   img.loading = "lazy";
   imgWrap.appendChild(img);
 
-  // Lang + tech badges
   const badges = createEl("div", "course-card__badges");
   badges.appendChild(
     createEl(
@@ -50,7 +48,6 @@ function buildCourseCard(course) {
   imgWrap.appendChild(levelTag);
   card.appendChild(imgWrap);
 
-  // — Body —
   const body = createEl("div", "course-card__body");
   body.appendChild(createEl("h3", "course-card__title", course.title));
   body.appendChild(
@@ -77,7 +74,6 @@ function buildCourseCard(course) {
     cartBtn.disabled = true;
   }
 
-  // FIX: named function instead of anonymous arrow
   function handleCartBtnClick() {
     addToCart(course);
     cartBtn.textContent = "Added ✓";
@@ -136,9 +132,7 @@ export function initCoursesPage() {
     }
   }
 
-  // — Language flags —
   document.querySelectorAll(".flag-btn").forEach((btn) => {
-    // FIX: named function for flag button click handler
     function handleFlagBtnClick() {
       const lang = btn.dataset.lang;
       if (activeLangs.has(lang)) {
@@ -153,8 +147,6 @@ export function initCoursesPage() {
     btn.addEventListener("click", handleFlagBtnClick);
   });
 
-  // — Tech & level selects —
-  // FIX: named function instead of anonymous arrow
   function handleTechChange(e) {
     activeTech = e.target.value;
     render();
@@ -163,10 +155,13 @@ export function initCoursesPage() {
     activeLevel = e.target.value;
     render();
   }
-  document.getElementById("tech-select")?.addEventListener("change", handleTechChange);
-  document.getElementById("level-select")?.addEventListener("change", handleLevelChange);
+  document
+    .getElementById("tech-select")
+    ?.addEventListener("change", handleTechChange);
+  document
+    .getElementById("level-select")
+    ?.addEventListener("change", handleLevelChange);
 
-  // — Price range sliders —
   const minSlider = document.getElementById("min-price");
   const maxSlider = document.getElementById("max-price");
   const minValEl = document.getElementById("min-price-val");
@@ -183,8 +178,7 @@ export function initCoursesPage() {
 
   function setSliderFill(slider) {
     const pct =
-      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) *
-      100;
+      ((parseInt(slider.value) - SLIDER_MIN) / (SLIDER_MAX - SLIDER_MIN)) * 100;
     slider.style.background = `linear-gradient(to right, ${RED} ${pct}%, ${GRAY} ${pct}%)`;
   }
 
@@ -225,16 +219,14 @@ export function initCoursesPage() {
     setSliderFill(maxSlider);
   }
 
-  // — Search —
-  // FIX: named function instead of anonymous arrow
   function handleSearchInput(e) {
     searchQ = e.target.value.toLowerCase().trim();
     render();
   }
-  document.getElementById("search-input")?.addEventListener("input", handleSearchInput);
+  document
+    .getElementById("search-input")
+    ?.addEventListener("input", handleSearchInput);
 
-  // — Clear all —
-  // FIX: named function instead of anonymous arrow
   function handleClearAll() {
     activeLangs.clear();
     document
@@ -269,7 +261,9 @@ export function initCoursesPage() {
     render();
   }
 
-  document.getElementById("clear-all")?.addEventListener("click", handleClearAll);
+  document
+    .getElementById("clear-all")
+    ?.addEventListener("click", handleClearAll);
 
   render();
 }

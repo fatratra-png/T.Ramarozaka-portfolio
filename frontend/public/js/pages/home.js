@@ -2,7 +2,6 @@ import { data } from "../../tokimahery.data.js";
 import { HERO_CONFIG, CTA_CONTENT, CARD_TAG_MODIFIERS } from "../config.js";
 import { createEl, renderListIntoContainer, setTextById } from "../utils.js";
 
-// FIX: named builder instead of anonymous arrow inside renderListIntoContainer
 function buildSocialLink({ platform, url, svg }) {
   const a = createEl("a", "hero__social-icon");
   a.href = url;
@@ -27,7 +26,6 @@ export function initHeroSection() {
 
   renderListIntoContainer("hero-socials", HERO_CONFIG.socials, buildSocialLink);
 
-  // FIX: named event handlers instead of anonymous arrows
   function handleCTACourses() {
     location.href = "courses.html";
   }
@@ -44,7 +42,6 @@ export function initHeroSection() {
     ?.addEventListener("click", handleCTAAbout);
 }
 
-// FIX: named builder for about stats
 function buildStatItem({ number, label }) {
   const stat = createEl("div", "about__stat");
   stat.appendChild(createEl("span", "about__stat-number", String(number)));
@@ -58,7 +55,6 @@ export function initAboutSection() {
   renderListIntoContainer("about-stats", data.overview, buildStatItem);
 }
 
-// FIX: named builder for home course cards
 function buildHomeCourseCard({ tag, title, mode, duration }) {
   const card = createEl("article", "home-courses__card");
   const modifier = CARD_TAG_MODIFIERS[tag] || "";
@@ -81,7 +77,6 @@ export function initHomeCoursesSection() {
   );
 }
 
-// FIX: named builder for experience entries
 function buildExperienceEntry({ year, role, org, desc }) {
   const entry = createEl("article", "experience__entry");
   entry.appendChild(
@@ -110,7 +105,6 @@ export function initExperienceScrollReveal() {
   const entries = document.querySelectorAll(".experience__entry");
   if (!entries.length) return;
 
-  // FIX: named function instead of anonymous arrow
   function highlightCentered() {
     const viewportMid = window.innerHeight / 2;
     let closestEntry = null;
@@ -140,7 +134,6 @@ export function initCtaBanner() {
   setTextById("cta-subheading", CTA_CONTENT.subheading);
   setTextById("cta-button", CTA_CONTENT.buttonText);
 
-  // FIX: named function instead of anonymous arrow
   function handleCtaButtonClick() {
     location.href = CTA_CONTENT.page;
   }

@@ -1,4 +1,3 @@
-/** Create an element with an optional class and text content. */
 export function createEl(tag, className, text) {
   const el = document.createElement(tag);
   el.className = className;
@@ -6,20 +5,17 @@ export function createEl(tag, className, text) {
   return el;
 }
 
-/** Append items built by `buildFn` into a container found by id. */
 export function renderListIntoContainer(containerId, items, buildFn) {
   const container = document.getElementById(containerId);
   if (!container) return;
   items.forEach((item) => container.appendChild(buildFn(item)));
 }
 
-/** Set the text content of an element found by id. */
 export function setTextById(id, text) {
   const el = document.getElementById(id);
   if (el) el.textContent = text;
 }
 
-/** Format a number as Malagasy Ariary. */
 export function formatPrice(n) {
   return n.toLocaleString("fr-MG") + " Ar";
 }
@@ -37,7 +33,6 @@ export function formatDate(d) {
   return `${month} ${day}${getOrdinal(day)}, ${year}`;
 }
 
-/** Return an HTML string of 5 star SVGs, filled up to `rating`. */
 export function starsHTML(rating) {
   return Array.from(
     { length: 5 },

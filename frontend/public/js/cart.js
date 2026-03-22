@@ -36,21 +36,15 @@ export function updateCartBadge() {
   badge.style.display = cart.length ? "flex" : "none";
 }
 
-// ─────────────────────────────────────────────
-// CART POPUP
-// ─────────────────────────────────────────────
-
 function getOrCreatePopup() {
   let overlay = document.getElementById("cart-overlay");
   if (overlay) return overlay;
 
-  // Overlay (backdrop)
   overlay = document.createElement("div");
   overlay.id = "cart-overlay";
   overlay.className = "cart-overlay";
   overlay.setAttribute("aria-hidden", "true");
 
-  // Modal
   const modal = document.createElement("div");
   modal.id = "cart-modal";
   modal.className = "cart-modal";
@@ -58,7 +52,6 @@ function getOrCreatePopup() {
   modal.setAttribute("aria-modal", "true");
   modal.setAttribute("aria-label", "Your cart");
 
-  // Header
   const header = document.createElement("div");
   header.className = "cart-modal__header";
   const title = document.createElement("h2");
@@ -76,13 +69,11 @@ function getOrCreatePopup() {
   header.appendChild(closeBtn);
   modal.appendChild(header);
 
-  // Body
   const body = document.createElement("div");
   body.id = "cart-modal-body";
   body.className = "cart-modal__body";
   modal.appendChild(body);
 
-  // Footer
   const footer = document.createElement("div");
   footer.id = "cart-modal-footer";
   footer.className = "cart-modal__footer";
@@ -91,12 +82,10 @@ function getOrCreatePopup() {
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
 
-  // Close on backdrop click
   overlay.addEventListener("click", (e) => {
     if (e.target === overlay) closeCartPopup();
   });
 
-  // Close on Escape
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeCartPopup();
   });
@@ -120,7 +109,6 @@ function renderCartPopup() {
     return;
   }
 
-  // Item list
   const list = document.createElement("ul");
   list.className = "cart-modal__list";
 
@@ -157,7 +145,6 @@ function renderCartPopup() {
 
   body.appendChild(list);
 
-  // Total + confirm
   const total = cart.reduce((sum, c) => sum + c.price, 0);
 
   const totalRow = document.createElement("div");
@@ -177,7 +164,6 @@ function renderCartPopup() {
   confirmBtn.addEventListener("click", () => {
     closeCartPopup();
     clearCart();
-    // Refresh "Added ✓" buttons if on courses page
     document.querySelectorAll(".course-card__btn--cart").forEach((btn) => {
       btn.textContent = "Add to cart";
       btn.disabled = false;
@@ -192,7 +178,6 @@ function renderCartPopup() {
 export function openCartPopup() {
   const overlay = getOrCreatePopup();
   renderCartPopup();
-  // Force reflow for transition
   overlay.offsetHeight;
   overlay.classList.add("is-open");
   document.body.style.overflow = "hidden";
@@ -204,10 +189,6 @@ export function closeCartPopup() {
   overlay.classList.remove("is-open");
   document.body.style.overflow = "";
 }
-
-// ─────────────────────────────────────────────
-// ORDER TOAST
-// ─────────────────────────────────────────────
 
 export function showOrderToast() {
   let toast = document.getElementById("order-toast");
@@ -256,12 +237,10 @@ export function showOrderToast() {
   toast.appendChild(closeBtn);
   document.body.appendChild(toast);
 
-  // Animate in
   requestAnimationFrame(() => {
     requestAnimationFrame(() => toast.classList.add("is-visible"));
   });
 
-  // Auto-dismiss after 5s
   setTimeout(() => dismissToast(toast), 5000);
 }
 
