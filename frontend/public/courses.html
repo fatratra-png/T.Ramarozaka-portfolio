@@ -35,7 +35,6 @@
         id="navbar-nav"
         aria-label="Primary navigation"
       ></nav>
-      <!-- Hamburger (mobile only) -->
       <button
         class="navbar__hamburger"
         id="navbar-hamburger"
@@ -67,7 +66,6 @@
       </div>
     </header>
 
-    <!-- FIX: added aria-labelledby -->
     <section class="courses" id="courses" aria-labelledby="courses-heading">
       <div class="courses__container">
         <div class="courses__header">
@@ -76,7 +74,6 @@
             <span class="courses__eyebrow-label">LEARNING</span>
             <span class="courses__eyebrow-line"></span>
           </div>
-          <!-- FIX: added id for aria-labelledby -->
           <h1 class="courses__heading" id="courses-heading">
             All <em class="page-header__heading-italic">courses</em>
           </h1>
@@ -86,10 +83,8 @@
           </p>
         </div>
 
-        <!-- FIX: filter_wrapper → filter-wrapper (kebab-case); removed duplicate bg class -->
         <div class="filter-wrapper bg-white py-6 border-b border-border">
           <div class="filters-bar">
-            <!-- FIX: <div> → <fieldset> with <legend> for grouped controls; aria-labels on flag buttons -->
             <fieldset class="filter-group">
               <legend class="filter-label">LANGUAGE</legend>
               <div class="language-filters" id="language-filters">
@@ -117,7 +112,6 @@
               </div>
             </fieldset>
 
-            <!-- FIX: <div> → <fieldset>; <span> → <legend> -->
             <fieldset class="filter-group">
               <legend class="filter-label">TECHNOLOGY</legend>
               <select id="tech-select" class="select-filter">
@@ -130,7 +124,6 @@
               </select>
             </fieldset>
 
-            <!-- FIX: <div> → <fieldset>; <span> → <legend> -->
             <fieldset class="filter-group">
               <legend class="filter-label">LEVEL</legend>
               <select id="level-select" class="select-filter">
@@ -141,7 +134,6 @@
               </select>
             </fieldset>
 
-            <!-- FIX: <div> → <fieldset>; <span class="price-slider-label"> → <label for="..."> -->
             <fieldset class="price-group filter-group">
               <legend class="filter-label">PRICE RANGE</legend>
               <div class="price-sliders">
@@ -176,7 +168,6 @@
               </div>
             </fieldset>
 
-            <!-- FIX: <div> → <fieldset>; added visible label for search input -->
             <fieldset class="search-group filter-group">
               <legend class="filter-label">SEARCH</legend>
               <input
@@ -198,7 +189,6 @@
       </div>
     </section>
 
-    <!-- FIX: <section> → <footer> (page-level closing CTA); inline onclick removed; link corrected -->
     <footer class="courses-footer" aria-label="Call to action">
       <div class="max-w-md mx-auto text-center">
         <h2 class="courses-footer__heading">Not sure where to start?</h2>
@@ -206,7 +196,6 @@
           Book a free discovery call and find the course that fits your goals
           and schedule.
         </p>
-        <!-- FIX: was <button onclick="window.location.href='../public/contact.html'"> -->
         <a href="contact.html" class="courses-footer__btn">
           Book discovery call
         </a>
