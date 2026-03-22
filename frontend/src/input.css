@@ -78,15 +78,16 @@
 
   .navbar__nav-link::after {
     content: "";
-    @apply absolute bottom-0 left-1/2 right-1/2 h-0.5 bg-white;
+    @apply absolute bottom-0 left-1/2 right-1/2 h-0 bg-white;
     transition:
       left 200ms ease,
-      right 200ms ease;
+      right 200ms ease,
+      height 200ms ease;
   }
 
   .navbar__nav-link:hover::after,
   .navbar__nav-link--active::after {
-    @apply left-0 right-0;
+    @apply left-0 right-0 h-0.5;
   }
 
   .navbar__nav-link--active {
