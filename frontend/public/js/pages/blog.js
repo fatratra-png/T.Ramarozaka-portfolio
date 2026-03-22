@@ -268,6 +268,39 @@ function dismissNotif(notif) {
   );
 }
 
+// ── Self-subscribe easter egg ──────────────────────────────────────────────
+function showSelfSubscribeToast() {
+  document.getElementById("nl-toast")?.remove();
+
+  const toast = document.createElement("div");
+  toast.id = "nl-toast";
+  toast.className = "nl-toast nl-toast--easter";
+  toast.setAttribute("role", "alert");
+  toast.innerHTML = `
+    <span style="font-size:16px;margin-right:8px;">🤦</span>
+    Monsieur… vous vous souscrivez à vous-même ?
+    <span style="font-size:14px;margin-left:6px;">C'est votre newsletter.</span>
+  `;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      toast.classList.add("nl-toast--visible");
+    });
+  });
+
+  setTimeout(function () {
+    toast.classList.remove("nl-toast--visible");
+    toast.addEventListener(
+      "transitionend",
+      function () {
+        toast.remove();
+      },
+      { once: true },
+    );
+  }, 4000);
+}
+
 // ── Newsletter ─────────────────────────────────────────────────────────────
 function handleNewsletterSubscribe() {
   const emailInput = document.getElementById("newsletter-email");
@@ -279,6 +312,16 @@ function handleNewsletterSubscribe() {
 
   if (!isValid) {
     showInvalidEmailToast();
+    return;
+  }
+
+  // Easter egg — prof subscribes with his own email
+  if (
+    email.toLowerCase() === "tokyramarozaka@gmail.com" ||
+    email.toLowerCase() === "toky@mail.hei.school" ||
+    email.toLowerCase() === "toky@gmail.com"
+  ) {
+    showSelfSubscribeToast();
     return;
   }
 
