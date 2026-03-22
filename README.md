@@ -16,6 +16,7 @@ Projet réalisé dans le cadre de l'examen final du cours **WEB1: Interfaces web
 | Couche  | Technologie                                                        |
 | ------- | ------------------------------------------------------------------ |
 | CSS     | [Tailwind CSS v4](https://tailwindcss.com/) via `@tailwindcss/cli` |
+|         | + Convention BEM:Block Element Modifier & kebab-case-classes 
 | JS      | Vanilla JavaScript (ES Modules)                                    |
 | Icônes  | [Font Awesome 6.7.2](https://fontawesome.com/) via CDN             |
 | Polices | Playfair Display + DM Sans via Google Fonts                        |
