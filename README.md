@@ -11,3 +11,4 @@
 
 -Vanilla JS
 -Tailwind CSS v4
+-FontAwesome Icons

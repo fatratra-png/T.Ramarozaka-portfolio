@@ -16,7 +16,6 @@
   --font-body: "DM Sans", sans-serif;
 }
 
-
 @layer base {
   * {
     @apply box-border;
@@ -28,9 +27,7 @@
   }
 }
 
-
 @layer components {
-
   .navbar {
     @apply fixed top-0 left-0 right-0 z-50 bg-red
            flex items-center justify-between px-8 h-18;
@@ -145,7 +142,6 @@
     @apply absolute -top-1 -right-1 bg-white text-red text-[9px] font-bold
            w-4 h-4 rounded-full flex items-center justify-center;
   }
-
 
   .hero {
     @apply bg-bg-warm min-h-screen flex items-center pt-15.5;
@@ -279,7 +275,6 @@
     @apply w-full h-full object-cover;
   }
 
-
   .about {
     @apply bg-bg-white py-24;
   }
@@ -342,7 +337,6 @@
   .about__stat-label {
     @apply text-[10px] font-semibold tracking-[0.18em] uppercase text-text-muted;
   }
-
 
   .home-courses {
     @apply bg-bg-warm py-24;
@@ -413,7 +407,6 @@
            underline underline-offset-4 hover:opacity-60 transition-opacity duration-150;
   }
 
-
   .experience {
     @apply bg-bg-white py-24;
   }
@@ -446,7 +439,6 @@
     @apply px-10 py-10 border-l-2 border-border lg:hover:border-red;
   }
 
-
   @media (max-width: 1023px) {
     .experience__entry {
       transition: border-color 0.3s ease;
@@ -474,7 +466,6 @@
   .experience__entry-desc {
     @apply text-[14px] leading-[1.75] text-text-muted;
   }
-
 
   .cta-banner {
     @apply bg-red py-20 flex flex-col items-center justify-center
@@ -531,7 +522,6 @@
   .courses__subtitle {
     @apply text-[15px] leading-[1.75] text-text-muted max-w-2xl mx-auto;
   }
-
 
   .filters-bar {
     @apply bg-bg-warm rounded-xl flex flex-wrap gap-8 justify-between items-start py-4 px-8;
@@ -669,11 +659,9 @@
            text-text-muted mb-6 pt-4;
   }
 
-
   .courses__grid {
     @apply grid grid-cols-4 gap-10 max-lg:grid-cols-2 max-sm:grid-cols-1;
   }
-
 
   .course-card {
     @apply bg-white rounded-[10px] overflow-hidden flex flex-col;
@@ -783,7 +771,6 @@
     @apply col-span-full text-center py-20 text-text-muted text-[15px];
   }
 
-
   .page-header {
     @apply pt-15.5 pb-14 text-center bg-bg-warm mx-auto max-w-200
            max-sm:px-5 max-sm:pt-10 max-sm:pb-8;
@@ -813,7 +800,6 @@
   .page-header__subtitle {
     @apply text-[15px] leading-[1.75] text-text-muted max-w-120 mx-auto;
   }
-
 
   .blog-page {
     @apply bg-bg-warm min-h-screen mt-20;
@@ -984,7 +970,6 @@
     grid-template-columns: 1fr calc(var(--spacing) * 80);
   }
 
-
   .testi-page {
     @apply bg-bg-warm min-h-screen pb-0;
   }
@@ -1066,7 +1051,6 @@
     @apply flex gap-1;
   }
 
-  
   .testimonials-grid--customer {
     @apply grid-cols-3 max-[72rem]:grid-cols-2 max-md:grid-cols-1;
   }
@@ -1094,8 +1078,6 @@
     @apply hidden;
   }
 
-
-
   .testimonials-grid--collaborator {
     @apply grid-cols-2 max-md:grid-cols-1;
   }
@@ -1121,7 +1103,6 @@
   .testi-card--collaborator .testi-card__stars {
     @apply hidden;
   }
-
 
   .testi-card--hidden {
     @apply max-md:hidden;
@@ -1210,7 +1191,6 @@
     @apply bg-transparent text-white hover:bg-white hover:text-red;
   }
 
-
   .research-page {
     @apply bg-bg-warm min-h-screen;
   }
@@ -1278,7 +1258,6 @@
   .paper-entry__read-icon {
     @apply text-[14px];
   }
-
 
   .cart-overlay {
     @apply fixed inset-0 z-[100] flex justify-end items-start
@@ -1379,7 +1358,6 @@
            hover:bg-red-hover transition-colors duration-200;
   }
 
-
   .order-toast {
     @apply fixed bottom-6 left-1/2 z-[200]
            flex items-start gap-4
@@ -1454,7 +1432,6 @@
     @apply text-base text-center leading-[1.75] text-text-muted max-w-[54ch];
   }
 
-
   .contact-section {
     @apply bg-bg-white py-24;
   }
@@ -1468,7 +1445,6 @@
       grid-template-columns: 1fr;
     }
   }
-
 
   .contact-form {
     @apply flex flex-col gap-10;
@@ -1524,7 +1500,6 @@
            px-8 py-4 transition-colors duration-200 hover:bg-red-hover;
   }
 
-
   .contact-sidebar {
     @apply flex flex-col gap-12 sticky top-26;
   }
@@ -1551,7 +1526,6 @@
            transition-colors duration-150 hover:text-red;
   }
 
-
   .contact-sidebar__socials {
     @apply flex items-center gap-5;
   }
@@ -1562,7 +1536,6 @@
            transition-all duration-200
            hover:border-red hover:text-red hover:bg-red/6;
   }
-
 
   .contact-sidebar__status {
     @apply bg-bg-warm p-7 rounded-lg;
@@ -1591,7 +1564,6 @@
   .contact-sidebar__status-text {
     @apply italic text-sm leading-[1.65] text-text-muted;
   }
-
 
   .contact-toast {
     @apply fixed bottom-8 left-1/2 z-[200] bg-[#1a3a2a] text-white
