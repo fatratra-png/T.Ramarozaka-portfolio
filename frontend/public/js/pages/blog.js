@@ -201,8 +201,8 @@ function playDingSound() {
     }
 
     const now = ctx.currentTime;
-    createTone(1318, 0.4, now, 0.8);        // E6 — bright bell hit
-    createTone(1760, 0.2, now, 0.6);        // A6 — shimmer
+    createTone(1318, 0.4, now, 0.8); // E6 — bright bell hit
+    createTone(1760, 0.2, now, 0.6); // A6 — shimmer
     createTone(1318, 0.15, now + 0.08, 0.5); // slight echo
   } catch (e) {
     // Silently fail if AudioContext is blocked
@@ -215,8 +215,10 @@ function showGmailNotification(email) {
   document.getElementById("gmail-notif")?.remove();
 
   const now = new Date();
-  const timeStr = now.getHours().toString().padStart(2, "0") + ":" +
-                  now.getMinutes().toString().padStart(2, "0");
+  const timeStr =
+    now.getHours().toString().padStart(2, "0") +
+    ":" +
+    now.getMinutes().toString().padStart(2, "0");
 
   const notif = document.createElement("div");
   notif.id = "gmail-notif";
@@ -251,9 +253,11 @@ function showGmailNotification(email) {
   document.body.appendChild(notif);
 
   // Close button
-  notif.querySelector(".gmail-notif__close").addEventListener("click", function () {
-    dismissGmailNotif(notif);
-  });
+  notif
+    .querySelector(".gmail-notif__close")
+    .addEventListener("click", function () {
+      dismissGmailNotif(notif);
+    });
 
   // Animate in
   requestAnimationFrame(function () {
@@ -270,9 +274,13 @@ function showGmailNotification(email) {
 
 function dismissGmailNotif(notif) {
   notif.classList.remove("gmail-notif--visible");
-  notif.addEventListener("transitionend", function () {
-    notif.remove();
-  }, { once: true });
+  notif.addEventListener(
+    "transitionend",
+    function () {
+      notif.remove();
+    },
+    { once: true },
+  );
 }
 
 // ── Newsletter init ────────────────────────────────────────────────────────
