@@ -170,7 +170,6 @@ function showInvalidEmailToast() {
   }, 2000);
 }
 
-// ── iOS ding via Web Audio API ─────────────────────────────────────────────
 function playDingSound() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -193,7 +192,6 @@ function playDingSound() {
   } catch (e) {}
 }
 
-// ── Email notification ─────────────────────────────────────────────────────
 function showEmailNotification(email) {
   document.getElementById("email-notif")?.remove();
 
@@ -268,7 +266,6 @@ function dismissNotif(notif) {
   );
 }
 
-// ── Self-subscribe easter egg ──────────────────────────────────────────────
 function showSelfSubscribeToast() {
   document.getElementById("nl-toast")?.remove();
 
@@ -301,7 +298,6 @@ function showSelfSubscribeToast() {
   }, 4000);
 }
 
-// ── Newsletter ─────────────────────────────────────────────────────────────
 function handleNewsletterSubscribe() {
   const emailInput = document.getElementById("newsletter-email");
   const subscribeBtn = document.getElementById("newsletter-btn");
@@ -315,7 +311,6 @@ function handleNewsletterSubscribe() {
     return;
   }
 
-  // Easter egg — prof subscribes with his own email
   if (
     email.toLowerCase() === "tokyramarozaka@gmail.com" ||
     email.toLowerCase() === "toky@mail.hei.school" ||
