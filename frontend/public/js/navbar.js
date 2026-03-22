@@ -17,12 +17,10 @@ export function renderNavLinks() {
       label,
     );
     a.href = href;
-    // FIX: add aria-current="page" to the active desktop nav link
     if (isActive) a.setAttribute("aria-current", "page");
     nav.appendChild(a);
   });
 
-  // ── Mobile nav drawer ──
   _renderMobileNav(current);
 }
 
@@ -41,7 +39,6 @@ function _renderMobileNav(current) {
       label,
     );
     a.href = href;
-    // FIX: add aria-current="page" to the active mobile nav link
     if (isActive) a.setAttribute("aria-current", "page");
     mobileNav.appendChild(a);
   });
@@ -64,7 +61,6 @@ export function initHamburger() {
     btn.setAttribute("aria-expanded", String(isOpen));
   }
 
-  // FIX: named function instead of anonymous arrow (reused for links + outside click)
   function closeMobileNav() {
     btn.classList.remove("is-open");
     mobileNav.classList.remove("is-open");
@@ -73,12 +69,10 @@ export function initHamburger() {
 
   btn.addEventListener("click", handleHamburgerClick);
 
-  // Close on link click
   mobileNav.querySelectorAll(".navbar__mobile-nav-link").forEach((link) => {
     link.addEventListener("click", closeMobileNav);
   });
 
-  // FIX: named function instead of anonymous arrow
   function handleOutsideClick(e) {
     if (!btn.contains(e.target) && !mobileNav.contains(e.target)) {
       closeMobileNav();
@@ -105,7 +99,6 @@ export function initCart() {
 
   const cartBtn = document.getElementById("navbar-cart-button");
 
-  // FIX: named function instead of anonymous arrow
   function handleCartButtonClick(e) {
     e.stopPropagation();
     openCartPopup();
