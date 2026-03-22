@@ -19,14 +19,10 @@
     />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" type="module"></script>
-    <!-- FIX: inline <script> extracted to module file -->
     <script src="js/pages/contact.js" type="module"></script>
   </head>
 
   <body>
-    <!-- ════════════════════════════════
-       NAVBAR (same as all pages – populated by main.js)
-    ════════════════════════════════ -->
     <header class="navbar" id="navbar">
       <a class="navbar__brand" href="index.html">
         <img
@@ -42,7 +38,6 @@
         aria-label="Primary navigation"
       ></nav>
 
-      <!-- Hamburger (mobile only) -->
       <button
         class="navbar__hamburger"
         id="navbar-hamburger"
@@ -75,9 +70,6 @@
       </div>
     </header>
 
-    <!-- ════════════════════════════════
-       CONTACT HERO
-    ════════════════════════════════ -->
     <section class="contact-hero" aria-labelledby="contact-heading">
       <div class="contact-hero__container mx-auto">
         <div class="contact-hero__eyebrow" aria-hidden="true">
@@ -98,12 +90,8 @@
       </div>
     </section>
 
-    <!-- ════════════════════════════════
-       CONTACT FORM + SIDEBAR
-    ════════════════════════════════ -->
     <section class="contact-section" aria-label="Contact form and details">
       <div class="contact-section__container">
-        <!-- LEFT: form -->
         <form
           class="contact-form"
           id="contact-form"
@@ -174,9 +162,7 @@
           </div>
         </form>
 
-        <!-- RIGHT: sidebar info -->
         <aside class="contact-sidebar" aria-label="Contact information">
-          <!-- Details -->
           <div>
             <h2 class="contact-sidebar__block-title">Contact Details</h2>
             <dl class="contact-sidebar__details">
@@ -199,7 +185,6 @@
             </dl>
           </div>
 
-          <!-- Social Networks -->
           <nav aria-label="Social networks">
             <h2 class="contact-sidebar__block-title">Social Networks</h2>
             <div class="contact-sidebar__socials">
@@ -242,7 +227,6 @@
             </div>
           </nav>
 
-          <!-- Status -->
           <div class="contact-sidebar__status">
             <div class="contact-sidebar__status-badge">
               <span
@@ -260,7 +244,6 @@
       </div>
     </section>
 
-    <!-- Success toast -->
     <div
       class="contact-toast"
       id="contact-toast"
