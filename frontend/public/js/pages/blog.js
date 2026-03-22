@@ -43,14 +43,12 @@ function renderPagination(container, totalPosts, page) {
       renderBlogList();
     }
   }
-
   function makePageHandler(targetPage) {
-    return function handlePageBtnClick() {
+    return function () {
       currentPage = targetPage;
       renderBlogList();
     };
   }
-
   function handleNextClick() {
     if (currentPage < totalPages) {
       currentPage += 1;
@@ -115,10 +113,8 @@ function renderBlogList() {
   pagePosts.forEach((p) => list.appendChild(buildPostRow(p)));
 
   if (pagination) renderPagination(pagination, totalPosts, currentPage);
-
-  if (currentPage > 1) {
+  if (currentPage > 1)
     list.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 }
 
 function renderYouTubeVideos(container) {
@@ -126,14 +122,10 @@ function renderYouTubeVideos(container) {
     .map(
       ({ id, title }) =>
         `<div class="yt-iframe-wrap">
-          <iframe
-            src="https://www.youtube-nocookie.com/embed/${id}"
-            title="${title}"
-            allowfullscreen
-            loading="lazy"
-          ></iframe>
-        </div>
-        <p class="yt-iframe-title">${title}</p>`,
+        <iframe src="https://www.youtube-nocookie.com/embed/${id}"
+          title="${title}" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="yt-iframe-title">${title}</p>`,
     )
     .join("");
 }
@@ -143,16 +135,15 @@ function renderArchives(container) {
     .map(
       ({ label, count }) =>
         `<a class="archive-link" href="#">
-          <span>${label}</span>
-          <span class="archive-count">${count}</span>
-        </a>`,
+        <span>${label}</span>
+        <span class="archive-count">${count}</span>
+      </a>`,
     )
     .join("");
 }
 
 function showInvalidEmailToast() {
   document.getElementById("nl-toast")?.remove();
-
   const toast = document.createElement("div");
   toast.id = "nl-toast";
   toast.className = "nl-toast";
@@ -161,119 +152,113 @@ function showInvalidEmailToast() {
   toast.textContent = "Veuillez entrer un email valide.";
   document.body.appendChild(toast);
 
-  requestAnimationFrame(function scheduleToastReveal() {
-    requestAnimationFrame(function revealToast() {
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
       toast.classList.add("nl-toast--visible");
     });
   });
 
-  function hideAndRemoveToast() {
+  setTimeout(function () {
     toast.classList.remove("nl-toast--visible");
     toast.addEventListener(
       "transitionend",
-      function removeToastFromDOM() {
+      function () {
         toast.remove();
       },
       { once: true },
     );
-  }
-
-  setTimeout(hideAndRemoveToast, 2000);
+  }, 2000);
 }
 
-// ── iOS-style ding sound via Web Audio API ─────────────────────────────────
+// ── iOS ding via Web Audio API ─────────────────────────────────────────────
 function playDingSound() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-    // Bell-like tone: two oscillators layered
-    function createTone(freq, gainVal, startTime, duration) {
+    function tone(freq, vol, start, dur) {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.type = "sine";
-      osc.frequency.setValueAtTime(freq, startTime);
-      gain.gain.setValueAtTime(gainVal, startTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-      osc.start(startTime);
-      osc.stop(startTime + duration);
+      osc.frequency.setValueAtTime(freq, start);
+      gain.gain.setValueAtTime(vol, start);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + dur);
+      osc.start(start);
+      osc.stop(start + dur);
     }
-
-    const now = ctx.currentTime;
-    createTone(1318, 0.4, now, 0.8); // E6 — bright bell hit
-    createTone(1760, 0.2, now, 0.6); // A6 — shimmer
-    createTone(1318, 0.15, now + 0.08, 0.5); // slight echo
-  } catch (e) {
-    // Silently fail if AudioContext is blocked
-  }
+    const t = ctx.currentTime;
+    tone(1318, 0.4, t, 0.8);
+    tone(1760, 0.2, t, 0.6);
+    tone(1318, 0.12, t + 0.08, 0.5);
+  } catch (e) {}
 }
 
-// ── Gmail-style email notification ────────────────────────────────────────
-function showGmailNotification(email) {
-  // Remove any existing notification
-  document.getElementById("gmail-notif")?.remove();
+// ── Email notification ─────────────────────────────────────────────────────
+function showEmailNotification(email) {
+  document.getElementById("email-notif")?.remove();
 
   const now = new Date();
-  const timeStr =
-    now.getHours().toString().padStart(2, "0") +
-    ":" +
-    now.getMinutes().toString().padStart(2, "0");
+  const timeStr = now.toLocaleTimeString("fr-FR", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   const notif = document.createElement("div");
-  notif.id = "gmail-notif";
-  notif.className = "gmail-notif";
+  notif.id = "email-notif";
+  notif.className = "email-notif";
   notif.setAttribute("role", "status");
-  notif.setAttribute("aria-live", "polite");
 
   notif.innerHTML = `
-    <div class="gmail-notif__header">
-      <div class="gmail-notif__logo">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#EA4335"/>
-          <path d="M0 5.457v13.909c0 .904.732 1.636 1.636 1.636h3.819V11.73L0 7.09V5.457z" fill="#34A853"/>
-          <path d="M18.545 11.73v9.273h3.819A1.636 1.636 0 0024 19.366V7.09l-5.455 4.64z" fill="#4285F4"/>
-          <path d="M0 7.09l5.455 4.64L12 9.549 18.545 11.73 24 7.09V5.457c0-2.023-2.309-3.178-3.927-1.964L18.545 4.64 12 9.548 5.455 4.64 3.927 3.493C2.309 2.279 0 3.434 0 5.457V7.09z" fill="#FBBC05"/>
-        </svg>
-      </div>
-      <div class="gmail-notif__app">Gmail</div>
-      <div class="gmail-notif__time">${timeStr}</div>
-      <button class="gmail-notif__close" aria-label="Fermer">✕</button>
+    <div class="email-notif__bar">
+      <span class="email-notif__bar-left">
+        <i class="fa-solid fa-envelope" style="color:#b91c1c;font-size:13px;margin-right:6px;"></i>
+        <span class="email-notif__bar-app">Mail</span>
+      </span>
+      <span class="email-notif__bar-time">${timeStr}</span>
+      <button class="email-notif__dismiss" aria-label="Fermer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
-    <div class="gmail-notif__body">
-      <div class="gmail-notif__avatar">T</div>
-      <div class="gmail-notif__content">
-        <div class="gmail-notif__from">tokyramarozaka@gmail.com</div>
-        <div class="gmail-notif__subject">Demande de souscription à la newsletter</div>
-        <div class="gmail-notif__preview">Bonjour, je souhaite m'abonner à votre newsletter pour recevoir vos derniers articles…</div>
+    <div class="email-notif__content">
+      <div class="email-notif__icon-wrap">
+        <i class="fa-solid fa-paper-plane" style="color:#b91c1c;font-size:18px;"></i>
       </div>
+      <div class="email-notif__text">
+        <p class="email-notif__from">tokyramarozaka@gmail.com</p>
+        <p class="email-notif__subject">Nouvelle souscription à la newsletter</p>
+        <p class="email-notif__preview">Votre adresse <strong>${email}</strong> a bien été enregistrée. Bienvenue !</p>
+      </div>
+    </div>
+    <div class="email-notif__progress">
+      <div class="email-notif__progress-bar"></div>
     </div>
   `;
 
   document.body.appendChild(notif);
 
-  // Close button
   notif
-    .querySelector(".gmail-notif__close")
+    .querySelector(".email-notif__dismiss")
     .addEventListener("click", function () {
-      dismissGmailNotif(notif);
+      dismissNotif(notif);
     });
 
-  // Animate in
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
-      notif.classList.add("gmail-notif--visible");
+      notif.classList.add("email-notif--visible");
+      notif
+        .querySelector(".email-notif__progress-bar")
+        .classList.add("email-notif__progress-bar--run");
     });
   });
 
-  // Auto-dismiss after 5s
   setTimeout(function () {
-    dismissGmailNotif(notif);
+    dismissNotif(notif);
   }, 5000);
 }
 
-function dismissGmailNotif(notif) {
-  notif.classList.remove("gmail-notif--visible");
+function dismissNotif(notif) {
+  notif.classList.remove("email-notif--visible");
+  notif.classList.add("email-notif--out");
   notif.addEventListener(
     "transitionend",
     function () {
@@ -283,7 +268,7 @@ function dismissGmailNotif(notif) {
   );
 }
 
-// ── Newsletter init ────────────────────────────────────────────────────────
+// ── Newsletter ─────────────────────────────────────────────────────────────
 function handleNewsletterSubscribe() {
   const emailInput = document.getElementById("newsletter-email");
   const subscribeBtn = document.getElementById("newsletter-btn");
@@ -305,11 +290,10 @@ function handleNewsletterSubscribe() {
   success.textContent = "You're in! Talk soon.";
   document.querySelector(".newsletter-widget")?.appendChild(success);
 
-  // Play ding + show Gmail notification
   playDingSound();
   setTimeout(function () {
-    showGmailNotification(email);
-  }, 300);
+    showEmailNotification(email);
+  }, 350);
 }
 
 function initNewsletter() {
@@ -320,12 +304,9 @@ function initNewsletter() {
 
 export function initBlogPage() {
   renderBlogList();
-
   const ytContainer = document.getElementById("youtube-videos");
   const archContainer = document.getElementById("blog-archives");
-
   if (ytContainer) renderYouTubeVideos(ytContainer);
   if (archContainer) renderArchives(archContainer);
-
   initNewsletter();
 }
